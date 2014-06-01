@@ -1,0 +1,29 @@
+.manufacturerListContainer {
+float: left;
+
+	border: 1px solid blue;
+	width: 100%;
+	/*text-align: center;*/
+}
+
+.manufacturerListItem {
+	float: left;
+	/*border: 1px solid red;*/
+	text-align: center;
+	margin: 20px;
+	width: 200px;
+}
+
+.manufacturerListItem .manufacturerLogo {
+	width: 150px;
+	height: 150px;
+	border: 0px;
+}
+
+.manufacturerListItem .manufacturerName {
+	float: left;
+	width: 100%;
+	 text-align : center;
+	/*border: 1px solid black;*/
+	text-align: center;
+}

@@ -1,0 +1,10 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+Hello
+
+${names}
+#{list items:names, as:"name"}
+${name.name}
+${name.id}
+#{/list}

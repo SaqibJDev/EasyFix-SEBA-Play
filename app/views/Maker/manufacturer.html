@@ -1,0 +1,12 @@
+#{extends 'main.html' /} #{set title:'Maker' /}
+
+<div class="manufacturerListContainer">
+	<div style="margin: 0 auto; width: 750px; ">
+	#{list items:devices, as:"device"}
+	<div class="manufacturerListItem">
+		<img src="${'/public/images/'+device.image}" class="manufacturerLogo" />
+		<div class="manufacturerName">${device.name}</div>
+	</div>
+	#{/list}
+</div>
+</div>
