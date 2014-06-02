@@ -12,6 +12,9 @@ GET     /maker/                                       Maker.index
 GET     /Maker/{maker}                   controllers.Maker.manufacturer(maker)
 GET     /maker/{maker}                   controllers.Maker.manufacturer(maker)
 
+GET     /Maker/{maker}/{deviceModel}                   controllers.Maker.deviceModelRepairList(maker,deviceModel)
+GET     /maker/{maker}/{deviceModel}                   controllers.Maker.deviceModelRepairList(maker,deviceModel)
+
 # Ignore favicon requests
 GET     /favicon.ico                            404
 

@@ -2,6 +2,7 @@ package controllers;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
 import org.joda.time.DateTime;
 
 import models.DeviceModel;
+import models.DeviceRepair;
 import models.Manufacturer;
 import play.mvc.Controller;
 
@@ -39,7 +41,38 @@ public class Maker extends Controller {
 					return o1.name.compareTo(o2.name);
 				}
 			}); 
-			render(devices);
+//			renderArgs.put("device", devices);
+//			renderArgs.put("maker", maker);
+			render(maker, devices);
+		} else {
+			render();
+		}
+
+	}
+	
+	public static void deviceModelRepairList(String maker, String deviceModel) {
+		
+		System.out.println("Manufacturer : " + maker+ "| Model:"+deviceModel);
+		//DeviceModel device = new DeviceModel("iPhone 4");
+		Manufacturer manufacturer = (Manufacturer) Manufacturer
+				.find("byName", maker).fetch().get(0);
+		List<DeviceRepair> deviceRepairList = new ArrayList<DeviceRepair>();
+		if (manufacturer != null) {
+			
+			List<DeviceModel> devices = manufacturer.deviceModels;
+			for (DeviceModel deviceModelLocal : devices) {
+				if(deviceModelLocal.name.equals(deviceModel)){
+					System.out.println("Manufacturer exists : " + maker+ "| Model exists:"+deviceModel);
+					deviceRepairList = deviceModelLocal.deviceRepairList;
+				}
+			}
+			Collections.sort(deviceRepairList, new Comparator<DeviceRepair>() {
+
+				public int compare(DeviceRepair arg0, DeviceRepair arg1) {
+					return arg0.name.compareTo(arg1.name);
+				}
+			}); 
+			render(deviceRepairList);
 		} else {
 			render();
 		}

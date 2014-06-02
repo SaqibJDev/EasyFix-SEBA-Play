@@ -1,0 +1,13 @@
+#{extends 'main.html' /} #{set title:'Maker' /}
+
+<div class="middlePageContentContainer">
+	<div style="margin: 0 auto; width: 750px; ">
+	#{list items:deviceRepairList, as:"deviceRepair"}
+	<div class="repairListItem">
+		<img src="${'/public/images/repairs/'+deviceRepair.image}" class="repairLogo" />
+		<p class="repairHeading">${deviceRepair.name}</p>
+		<p class="repairHeading">${deviceRepair.name}</p>
+	</div>
+	#{/list}
+</div>
+</div>
