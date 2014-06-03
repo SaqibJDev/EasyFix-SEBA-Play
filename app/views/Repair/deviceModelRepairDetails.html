@@ -1,0 +1,15 @@
+#{extends 'main.html' /} #{set title:'Maker' /}
+
+
+<div class="middlePageContentContainer">
+#{include 'breadcrumbs.html'/}
+	<div style="margin: 0 auto; width: 750px; ">
+	<div class="repairItemDetails">
+		<img src="${'/public/images/repairs/'+deviceRepair.image}" class="repairItemImage" />
+		<span class="repairCost">Repair Cost:</span><span class="repairCost" style="color:#2b78e4;width:50%;">${deviceRepair.price} &#8364;</span><br />
+		<span class="repairTime">Repair Time:  ${deviceRepair.repairTime}</span>
+		<div class="details">${deviceRepair.description}</div>
+		<div class= "bookButton">Book</div>
+	</div>
+</div>
+</div>
