@@ -6,14 +6,24 @@
 GET     /                                       Application.index
 
 # Manufacturer page
-GET     /Maker/                                       Maker.index
-GET     /maker/                                       Maker.index
-
-GET     /Maker/{maker}                   controllers.Maker.manufacturer(maker)
-GET     /maker/{maker}                   controllers.Maker.manufacturer(maker)
-
-GET     /Maker/{maker}/{deviceModel}                   controllers.Maker.deviceModelRepairList(maker,deviceModel)
-GET     /maker/{maker}/{deviceModel}                   controllers.Maker.deviceModelRepairList(maker,deviceModel)
+	# Index Page: Manufacturer List Page
+		GET     /Repair                                      controllers.Repair.index
+		GET     /repair                                       controllers.Repair.index
+		
+		GET     /Repair/                                      controllers.Repair.index
+		GET     /repair/                                       controllers.Repair.index
+	
+	# Device Model List of selected Manufacturer 
+		GET     /Repair/{maker}                   controllers.Repair.manufacturer(maker)
+		GET     /repair/{maker}                   controllers.Repair.manufacturer(maker)
+	
+	# Repair list of selected device
+		GET     /Repair/{maker}/{deviceModel}                   controllers.Repair.deviceModelRepairList(maker,deviceModel)
+		GET     /repair/{maker}/{deviceModel}                   controllers.Repair.deviceModelRepairList(maker,deviceModel)
+	
+	# Repair details of selected repair
+		GET     /Repair/{maker}/{deviceModel}/{repair}                   controllers.Repair.deviceModelRepairDetails(maker,deviceModel,repair)
+		GET     /repair/{maker}/{deviceModel}/{repair}                   controllers.Repair.deviceModelRepairDetails(maker,deviceModel,repair)
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

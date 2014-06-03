@@ -13,8 +13,9 @@ import models.DeviceModel;
 import models.DeviceRepair;
 import models.Manufacturer;
 import play.mvc.Controller;
+import utility.Utilities;
 
-public class Maker extends Controller {
+public class Repair extends Controller {
 
 	public static void index() {
 		List<Manufacturer> manufacturers = Manufacturer.findAll();
@@ -40,29 +41,31 @@ public class Maker extends Controller {
 				public int compare(DeviceModel o1, DeviceModel o2) {
 					return o1.name.compareTo(o2.name);
 				}
-			}); 
-//			renderArgs.put("device", devices);
-//			renderArgs.put("maker", maker);
+			});
+			// renderArgs.put("device", devices);
+			// renderArgs.put("maker", maker);
 			render(maker, devices);
 		} else {
 			render();
 		}
 
 	}
-	
+
 	public static void deviceModelRepairList(String maker, String deviceModel) {
-		
-		System.out.println("Manufacturer : " + maker+ "| Model:"+deviceModel);
-		//DeviceModel device = new DeviceModel("iPhone 4");
+
+		System.out
+				.println("Manufacturer : " + maker + "| Model:" + deviceModel);
+		// DeviceModel device = new DeviceModel("iPhone 4");
 		Manufacturer manufacturer = (Manufacturer) Manufacturer
 				.find("byName", maker).fetch().get(0);
 		List<DeviceRepair> deviceRepairList = new ArrayList<DeviceRepair>();
 		if (manufacturer != null) {
-			
+
 			List<DeviceModel> devices = manufacturer.deviceModels;
 			for (DeviceModel deviceModelLocal : devices) {
-				if(deviceModelLocal.name.equals(deviceModel)){
-					System.out.println("Manufacturer exists : " + maker+ "| Model exists:"+deviceModel);
+				if (deviceModelLocal.name.equals(deviceModel)) {
+					System.out.println("Manufacturer exists : " + maker
+							+ "| Model exists:" + deviceModel);
 					deviceRepairList = deviceModelLocal.deviceRepairList;
 				}
 			}
@@ -71,12 +74,24 @@ public class Maker extends Controller {
 				public int compare(DeviceRepair arg0, DeviceRepair arg1) {
 					return arg0.name.compareTo(arg1.name);
 				}
-			}); 
-			render(deviceRepairList);
+			});
+			render(maker, deviceModel, deviceRepairList);
 		} else {
 			render();
 		}
 
+	}
+
+	public static void deviceModelRepairDetails(String maker, String deviceModel, String repair) {
+
+		String []breadcrumbs = request.get().url.split("/"); 
+		DeviceRepair deviceRepair = (DeviceRepair) DeviceRepair.find("byName", repair).fetch(1).get(0);
+		if(deviceRepair != null){
+			render(maker, deviceModel, deviceRepair, breadcrumbs);
+		}else{
+			render(breadcrumbs);
+		}
+		
 	}
 
 }

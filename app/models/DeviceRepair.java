@@ -17,6 +17,7 @@ import play.db.jpa.Model;
 public class DeviceRepair extends Model{
 
 	public String name;
+	public String displayName;
 	public String description;
 	public String image;
 	public float price;

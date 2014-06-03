@@ -23,6 +23,7 @@ import play.db.jpa.Model;
 public class Manufacturer extends Model{
 
 	public String name;
+	public String displayName;
 	public String description;
 	public String image;
 	public java.sql.Timestamp createdOn;

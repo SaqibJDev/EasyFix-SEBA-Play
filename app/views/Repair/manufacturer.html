@@ -5,7 +5,7 @@
 	#{list items:devices, as:"device"}
 	<div class="manufacturerListItem">
 		<img src="${'/public/images/'+device.image}" class="manufacturerLogo" />
-		<div class="manufacturerName"><a href="/maker/${maker+'/'+device.name}">${device.name}</a></div>
+		<div class="manufacturerName"><a href="/repair/${maker+'/'+device.name}">${device.displayName}</a></div>
 	</div>
 	#{/list}
 </div>
