@@ -13,7 +13,6 @@ import models.DeviceModel;
 import models.DeviceRepair;
 import models.Manufacturer;
 import play.mvc.Controller;
-import utility.Utilities;
 
 public class Repair extends Controller {
 
