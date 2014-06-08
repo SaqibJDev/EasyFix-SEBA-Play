@@ -5,6 +5,8 @@ package utility;
 import java.lang.reflect.Type;
 import java.util.List;
 
+import models.technician.WorkingHours;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -65,6 +67,17 @@ public class GsonUtil {
     }
 
     /**
+     * Returns a list of specified workinghours from the given json array
+     *
+     * @param <T>
+     * @param jsonString
+     * @param t the type defined by the user
+     * @return a list of specified objects as given in the json array
+     */
+    public static <T> List<WorkingHours> fromJsonToWHList(String jsonString, Type t) {
+        return gson.fromJson ( jsonString , t );
+    }
+    /**
      * Returns a list of specified object from the given json array
      *
      * @param <T>
@@ -72,10 +85,9 @@ public class GsonUtil {
      * @param t the type defined by the user
      * @return a list of specified objects as given in the json array
      */
-    public static <T> List<T> fromJsonToList(String jsonString, Type t) {
+    public static <T> List<Object> fromJsonToList(String jsonString, Type t) {
         return gson.fromJson ( jsonString , t );
     }
-
     public static Object parse(Object obj, String jsonLine) {
         Gson gson = new Gson ( );
         obj = gson.fromJson ( jsonLine , Object.class );

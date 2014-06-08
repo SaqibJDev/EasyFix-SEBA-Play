@@ -23,9 +23,12 @@ import org.junit.Test;
 
 import play.Logger;
 import utility.GsonUtil;
-
-public class TechnicianStorageTest extends TestCase{
-
+/**
+ * 
+ * @author Chrysa Papadaki - papadaki.chr@gmail.com
+ *
+ */
+public class StorageTest extends TestCase {
 
     @Test
     public void testInsertTechnicians() {
@@ -67,7 +70,7 @@ public class TechnicianStorageTest extends TestCase{
         for (Technician tech : techs) {
             dao.add(tech);
         }
-        
+
         assertNotNull(dao.getAllTechnicians());
     }
 
@@ -79,7 +82,7 @@ public class TechnicianStorageTest extends TestCase{
         // List<Interval>>();
         List<Interval> hours = new ArrayList<Interval>();
 
-        List<Object> weekHours = new ArrayList<Object>();
+        List<WorkingHours> weekHours = new ArrayList<WorkingHours>();
         // hours for Calendar.MONDAY
         hours.add(new Interval(new DateTime(2014, 1, 1, 10, 0), new DateTime(
                 2014, 1, 1, 16, 0)));
@@ -113,7 +116,7 @@ public class TechnicianStorageTest extends TestCase{
         // List<Interval>>();
         List<Interval> hours = new ArrayList<Interval>();
 
-        List<Object> weekHours = new ArrayList<Object>();
+        List<WorkingHours> weekHours = new ArrayList<WorkingHours>();
         // hours for Calendar.MONDAY
         hours.add(new Interval(new DateTime(2014, 1, 1, 10, 0), new DateTime(
                 2014, 1, 1, 16, 0)));
@@ -144,16 +147,16 @@ public class TechnicianStorageTest extends TestCase{
                         .getAddress(), 1);
         apps.add(ap);
 
-        // Locations that user can serve
+        // Locations that technician can serve
         List<Location> locs = new ArrayList<Location>();
         locs.add(new Location("Munich", "80333"));
         locs.add(new Location("Garching", "85748"));
 
         Logger.info("Internal tech created");
-        return new Technician(fname, lname, new ContactInformation(
-                "087424837", "01587464798", fname+"@tum.de", locs), "Smartphone technician",
-                "iphone", weekHours, "logo1.jpeg", new Schedule(apps), false,
-                modelList);
+        return new Technician(fname, lname, new ContactInformation("087424837",
+                "01587464798", fname + "@tum.de", locs),
+                "Smartphone technician", "iphone", weekHours, "logo1.jpeg",
+                new Schedule(apps), false, modelList);
 
     }
 }

@@ -1,5 +1,6 @@
 package models.dao;
 
+import java.lang.reflect.Type;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -15,6 +16,8 @@ import models.technician.Technician;
 import models.technician.WorkingHours;
 
 import org.joda.time.DateTime;
+
+import com.google.gson.reflect.TypeToken;
 
 import play.Logger;
 import utility.GsonUtil;
@@ -158,18 +161,23 @@ public class TechnicianDAO {
             st = connection.prepareStatement(queryString);
             resultSet = st.executeQuery();
             List<Technician> techs = new ArrayList<Technician>();
+            
+            Type listType = new TypeToken<List<WorkingHours>>() {
+            }.getType();
+            
             while (resultSet.next()) {
                 // TODO check whether he/she can go to the specified location
                 System.out.println("Tech " + resultSet.getLong("id")
                         + ", Name " + resultSet.getString("name"));
+                
                 Technician t = new Technician(resultSet.getString("name"), "",
                         GsonUtil.fromJsonToObj(resultSet.getString("contact"),
                                 ContactInformation.class),
                         resultSet.getString("title"),
                         resultSet.getString("description"),
-                        GsonUtil.fromJsonToList(
+                        GsonUtil.fromJsonToWHList(
                                 resultSet.getString("workingHours"),
-                                WorkingHours.class),
+                                listType),
                         resultSet.getString("image"),
                         GsonUtil.fromJsonToObj(resultSet.getString("schedule"),
                                 Schedule.class),
@@ -218,7 +226,7 @@ public class TechnicianDAO {
                                 ContactInformation.class),
                         resultSet.getString("title"),
                         resultSet.getString("description"),
-                        GsonUtil.fromJsonToList(
+                        GsonUtil.fromJsonToWHList(
                                 resultSet.getString("workingHours"),
                                 WorkingHours.class),
                         resultSet.getString("image"),
@@ -269,7 +277,7 @@ public class TechnicianDAO {
                                 ContactInformation.class),
                         resultSet.getString("title"),
                         resultSet.getString("description"),
-                        GsonUtil.fromJsonToList(
+                        GsonUtil.fromJsonToWHList(
                                 resultSet.getString("workingHours"),
                                 WorkingHours.class),
                         resultSet.getString("image"),

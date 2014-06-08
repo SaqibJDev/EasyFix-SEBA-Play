@@ -20,6 +20,11 @@ public class Actor extends Model {
     @Expose
     private String firstName;
 
+    public Actor() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
     public java.sql.Timestamp createdOn;
     public java.sql.Timestamp lastUpdated;
 

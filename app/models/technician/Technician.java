@@ -20,7 +20,7 @@ import models.device.DeviceModel;
  * 
  */
 @Entity
-public final class Technician extends Actor {
+public class Technician extends Actor {
 
     /**
      * The title of occupation of technician
@@ -48,7 +48,7 @@ public final class Technician extends Actor {
      */
     public Technician(String firstName, String lastName,
             ContactInformation contactInformation, String title,
-            String description, List<Object> list, String image,
+            String description, List<WorkingHours> list, String image,
             Schedule schedule, boolean isExternal,
             List<DeviceModel> deviceModelList) {
 
@@ -77,7 +77,7 @@ public final class Technician extends Actor {
      */
     public Technician(String firstName, String lastName,
             ContactInformation contactInformation, String title,
-            String description, List<Object> workingHours, String image,
+            String description, List<WorkingHours> workingHours, String image,
             boolean isExternal, List<DeviceModel> deviceModelList) {
         super(firstName, lastName, contactInformation);
         this.title = title;
@@ -88,12 +88,18 @@ public final class Technician extends Actor {
         this.deviceModelList = deviceModelList;
     }
 
+
+    public Technician() {
+        // TODO Auto-generated constructor stub
+    }
+
+
     /**
      * The specified working hours of technician
      */
     @Expose
     @ElementCollection
-    private List<Object> workingHours;
+    private List<WorkingHours> workingHours;
 
     /**
      * The image path of technician
@@ -132,11 +138,11 @@ public final class Technician extends Actor {
         this.description = description;
     }
 
-    public List<Object> getWorkingHours() {
+    public List<WorkingHours> getWorkingHours() {
         return workingHours;
     }
 
-    public void setWorkingHours(List<Object> workingHours) {
+    public void setWorkingHours(List<WorkingHours> workingHours) {
         this.workingHours = workingHours;
     }
 
