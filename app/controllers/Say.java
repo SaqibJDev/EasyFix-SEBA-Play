@@ -3,28 +3,11 @@ package controllers;
 
 
 
-import groovy.ui.text.FindReplaceUtility;
-
-import java.sql.Date;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
-
-
-
-
-
-
-
-
-
-
-import org.joda.time.DateTime;
-
-import models.DeviceModel;
-import models.Manufacturer;
-import play.libs.Time;
+import models.device.DeviceModel;
+import models.device.Manufacturer;
 import play.mvc.Controller;
 
 public class Say extends Controller{

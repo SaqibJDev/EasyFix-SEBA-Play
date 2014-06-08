@@ -1,19 +1,14 @@
 package controllers;
 
-import java.sql.Date;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import org.joda.time.DateTime;
-
-import models.DeviceModel;
-import models.DeviceRepair;
-import models.Manufacturer;
+import models.device.DeviceModel;
+import models.device.DeviceRepair;
+import models.device.Manufacturer;
 import play.mvc.Controller;
-import utility.Utilities;
 
 public class Repair extends Controller {
 
