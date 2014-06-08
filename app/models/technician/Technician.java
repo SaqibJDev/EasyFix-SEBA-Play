@@ -25,11 +25,13 @@ public class Technician extends Actor {
     /**
      * The title of occupation of technician
      */
+    @Expose
     private String title;
 
     /**
      * Short description about technician's skills and competences
      */
+    @Expose
     private String description;
 
     /**

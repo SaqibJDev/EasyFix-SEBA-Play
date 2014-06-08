@@ -25,7 +25,9 @@ public class Actor extends Model {
         // TODO Auto-generated constructor stub
     }
 
+    @Expose
     public java.sql.Timestamp createdOn;
+    @Expose
     public java.sql.Timestamp lastUpdated;
 
     public String getFirstName() {
