@@ -84,12 +84,12 @@ public class Repair extends Controller {
 
 	public static void deviceModelRepairDetails(String maker, String deviceModel, String repair) {
 
-		String []breadcrumbs = request.get().url.split("/"); 
+		//String []breadcrumbs = request.get().url.split("/"); 
 		DeviceRepair deviceRepair = (DeviceRepair) DeviceRepair.find("byName", repair).fetch(1).get(0);
 		if(deviceRepair != null){
-			render(maker, deviceModel, deviceRepair, breadcrumbs);
+			render(maker, deviceModel, deviceRepair);
 		}else{
-			render(breadcrumbs);
+			render();
 		}
 		
 	}
