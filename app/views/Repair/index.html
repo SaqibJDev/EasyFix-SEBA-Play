@@ -1,6 +1,7 @@
 #{extends 'main.html' /} #{set title:'Maker' /}
 
 <div class="middlePageContentContainer">
+#{include 'breadcrumbs.html'/}
 	<div style="margin: 0 auto; width: 750px;">
 		#{list items:manufacturers, as:"manufacturer"}
 		<div class="manufacturerListItem">
