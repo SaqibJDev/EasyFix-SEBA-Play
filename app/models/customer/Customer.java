@@ -1,7 +1,10 @@
 package models.customer;
 
 import javax.persistence.Entity;
+<<<<<<< HEAD
 import javax.persistence.PrimaryKeyJoinColumn;
+=======
+>>>>>>> df11bc212a6466e5ab54361ae08630b40b38178f
 import javax.persistence.Table;
 
 import models.Actor;

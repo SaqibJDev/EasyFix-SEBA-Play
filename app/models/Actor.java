@@ -71,7 +71,10 @@ public class Actor extends Model{
      */
     @Expose
     @OneToOne
+<<<<<<< HEAD
     @Embedded
+=======
+>>>>>>> df11bc212a6466e5ab54361ae08630b40b38178f
     private ContactInformation contactInformation;
 
     public Actor(String firstName, String lastName,

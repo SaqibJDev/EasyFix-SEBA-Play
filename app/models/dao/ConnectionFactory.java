@@ -12,8 +12,13 @@ import java.sql.SQLException;
 public class ConnectionFactory {
     String driverClassName = "com.mysql.jdbc.Driver";
     String connectionUrl = "jdbc:mysql://localhost:8082/playdb_chrysa";
+<<<<<<< HEAD
     String dbUser = "chrpapa";
     String dbPwd = "chrpapa";
+=======
+    String dbUser = "chrysa";
+    String dbPwd = "chrysa";
+>>>>>>> df11bc212a6466e5ab54361ae08630b40b38178f
 
     private static ConnectionFactory connectionFactory = null;
 

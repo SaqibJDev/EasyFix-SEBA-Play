@@ -2,8 +2,12 @@ package models;
 
 import java.util.List;
 
+<<<<<<< HEAD
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
+=======
+import javax.persistence.Entity;
+>>>>>>> df11bc212a6466e5ab54361ae08630b40b38178f
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -19,12 +23,19 @@ import com.google.gson.annotations.Expose;
  * 
  */
 @Immutable
+<<<<<<< HEAD
 @Embeddable
+=======
+@Entity
+>>>>>>> df11bc212a6466e5ab54361ae08630b40b38178f
 public class ContactInformation extends Model{
 
     @Expose
     @OneToOne
+<<<<<<< HEAD
     @Embedded
+=======
+>>>>>>> df11bc212a6466e5ab54361ae08630b40b38178f
     private Location address;
 
     /**

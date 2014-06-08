@@ -8,13 +8,22 @@ import play.db.jpa.Model;
 import com.google.gson.annotations.Expose;
 
 /**
+<<<<<<< HEAD
  * It corresponds to both location that technician can go and customer's
+=======
+ * It corrsponds to both location that technician can go and customer's
+>>>>>>> df11bc212a6466e5ab54361ae08630b40b38178f
  * preferable place to meet
  * 
  * @author Chrysa Papadaki - papadaki.chr@gmail.com
  * 
  */
+<<<<<<< HEAD
 @Embeddable
+=======
+//@Embeddable
+@Entity
+>>>>>>> df11bc212a6466e5ab54361ae08630b40b38178f
 public class Location extends Model {
 	/**
 	 * The name of the city, town, village or other community or delivery

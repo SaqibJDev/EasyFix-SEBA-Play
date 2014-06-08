@@ -4,9 +4,15 @@ import java.util.List;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Embeddable;
+<<<<<<< HEAD
 import javax.persistence.OneToMany;
+=======
+import javax.persistence.Entity;
+>>>>>>> df11bc212a6466e5ab54361ae08630b40b38178f
 
 import org.joda.time.Interval;
+
+import play.db.jpa.Model;
 
 import play.db.jpa.Model;
 
@@ -16,6 +22,10 @@ import com.google.gson.annotations.Expose;
  * @author Chrysa Papadaki - papadaki.chr@gmail.com
  */
 @Embeddable
+<<<<<<< HEAD
+=======
+@Entity
+>>>>>>> df11bc212a6466e5ab54361ae08630b40b38178f
 public class WorkingHours extends Model{
 
     /**
