@@ -101,6 +101,7 @@ public class Technician extends Actor {
      */
     @Expose
     @ElementCollection
+    @OneToMany
     private List<WorkingHours> workingHours;
 
     /**

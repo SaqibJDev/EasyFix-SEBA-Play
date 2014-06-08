@@ -1,6 +1,7 @@
 package models.customer;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 import models.Actor;
 import models.ContactInformation;

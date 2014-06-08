@@ -5,9 +5,12 @@ import java.util.Map;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Embeddable;
+import javax.persistence.Entity;
 
 import org.joda.time.Interval;
 import org.joda.time.Period;
+
+import play.db.jpa.Model;
 
 import com.google.gson.annotations.Expose;
 
@@ -15,7 +18,8 @@ import com.google.gson.annotations.Expose;
  * @author Chrysa Papadaki - papadaki.chr@gmail.com
  */
 @Embeddable
-public class WorkingHours {
+@Entity
+public class WorkingHours extends Model{
 
     /**
      * Calendar.DAY_OF_WEEK

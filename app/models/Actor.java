@@ -1,6 +1,10 @@
 package models;
 
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToOne;
 
 import play.db.jpa.Model;
 
@@ -12,7 +16,8 @@ import com.google.gson.annotations.Expose;
  * 
  */
 @Entity
-public class Actor extends Model {
+@Inheritance(strategy = InheritanceType.JOINED)
+public class Actor extends Model{
 
     /**
      * The first name of person
@@ -64,6 +69,7 @@ public class Actor extends Model {
      * contact information of person
      */
     @Expose
+    @OneToOne
     private ContactInformation contactInformation;
 
     public Actor(String firstName, String lastName,
