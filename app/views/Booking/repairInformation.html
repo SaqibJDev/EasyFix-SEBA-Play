@@ -1,0 +1,18 @@
+#{extends 'main.html' /} #{set title:'Maker' /}
+
+<div class="middlePageContentContainer">
+	<div style="margin: 0 auto; width: 750px;">
+		#{list items:externalTechniciansList, as:"technician"}
+		<div class="repairListItem">
+			<img src="${'/public/images/technicians/'+technician.image}"
+				class="repairLogo" />
+			<p class="repairHeading">${deviceRepair.displayName}</p>
+			<br />
+			<p class="details">${deviceRepair.description}</p>
+			<a href="/repair/${maker+'/'+deviceModel+'/'+deviceRepair.name}">
+				<div class="priceButton">${deviceRepair.price} &#8364;</div>
+			</a>
+		</div>
+		#{/list}
+	</div>
+</div>
