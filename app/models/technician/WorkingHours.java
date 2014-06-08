@@ -1,13 +1,14 @@
 package models.technician;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Embeddable;
+import javax.persistence.OneToMany;
 
 import org.joda.time.Interval;
-import org.joda.time.Period;
+
+import play.db.jpa.Model;
 
 import com.google.gson.annotations.Expose;
 
@@ -15,7 +16,7 @@ import com.google.gson.annotations.Expose;
  * @author Chrysa Papadaki - papadaki.chr@gmail.com
  */
 @Embeddable
-public class WorkingHours {
+public class WorkingHours extends Model{
 
     /**
      * Calendar.DAY_OF_WEEK
@@ -25,6 +26,7 @@ public class WorkingHours {
     
     @Expose
     @ElementCollection
+    @OneToMany
     private  List<Interval> hours;
     /**
      * Map of working hours, use Calendar.DAY_OF_WEEK to define integer and joda

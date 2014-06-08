@@ -2,7 +2,14 @@ package models;
 
 import java.util.List;
 
+import javax.persistence.Embeddable;
+import javax.persistence.Embedded;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
 import org.hibernate.annotations.Immutable;
+
+import play.db.jpa.Model;
 
 import com.google.gson.annotations.Expose;
 
@@ -12,9 +19,12 @@ import com.google.gson.annotations.Expose;
  * 
  */
 @Immutable
-public class ContactInformation {
+@Embeddable
+public class ContactInformation extends Model{
 
     @Expose
+    @OneToOne
+    @Embedded
     private Location address;
 
     /**
@@ -94,6 +104,7 @@ public class ContactInformation {
      * desirable meeting place
      */
     @Expose
+    @OneToMany
     private List<Location> addresses;
 
     public String getTelephone() {

@@ -8,6 +8,7 @@ import java.util.List;
 import models.device.DeviceModel;
 import models.device.DeviceRepair;
 import models.device.Manufacturer;
+import play.Logger;
 import play.mvc.Controller;
 
 public class Repair extends Controller {
@@ -88,5 +89,4 @@ public class Repair extends Controller {
 		}
 		
 	}
-
 }

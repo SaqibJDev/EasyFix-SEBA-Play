@@ -1,6 +1,8 @@
 package models.customer;
 
 import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
 import models.Actor;
 import models.ContactInformation;
@@ -12,6 +14,8 @@ import com.google.gson.annotations.Expose;
  *
  */
 @Entity
+@Table(name = "customer")
+@PrimaryKeyJoinColumn(name = "customer_id", referencedColumnName = "actor_id")
 public class Customer extends Actor {
 
     /**

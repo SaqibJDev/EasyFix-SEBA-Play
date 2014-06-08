@@ -2,16 +2,13 @@ package models.technician;
 
 import java.util.List;
 
-import javax.persistence.CollectionTable;
-import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Embeddable;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-
-import com.google.gson.annotations.Expose;
+import javax.persistence.OneToMany;
 
 import models.Appointment;
+
+import com.google.gson.annotations.Expose;
 
 /**
  * 
@@ -26,6 +23,7 @@ public class Schedule {
      */
     @ElementCollection
     @Expose
+    @OneToMany
     List<Appointment> appointments;
 
     public Schedule(List<Appointment> appointments) {

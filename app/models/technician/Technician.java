@@ -3,15 +3,16 @@ package models.technician;
 import java.util.List;
 
 import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-
-import com.google.gson.annotations.Expose;
+import javax.persistence.OneToOne;
 
 import models.Actor;
 import models.ContactInformation;
-import models.Location;
 import models.device.DeviceModel;
+
+import com.google.gson.annotations.Expose;
 
 /**
  * It is used for internal and external technicians
@@ -101,6 +102,7 @@ public class Technician extends Actor {
      */
     @Expose
     @ElementCollection
+    @OneToMany
     private List<WorkingHours> workingHours;
 
     /**
@@ -113,6 +115,8 @@ public class Technician extends Actor {
      * The schedule of technician
      */
     @Expose
+    @Embedded
+    @OneToOne
     private Schedule schedule;
 
     /**
@@ -124,6 +128,7 @@ public class Technician extends Actor {
     /**
      * DeviceModels which can be repaired by technician
      */
+    @ElementCollection
     @OneToMany
     public List<DeviceModel> deviceModelList;
 

@@ -11,7 +11,7 @@ import java.sql.SQLException;
  */
 public class ConnectionFactory {
     String driverClassName = "com.mysql.jdbc.Driver";
-    String connectionUrl = "jdbc:mysql://localhost:8082/playdb";
+    String connectionUrl = "jdbc:mysql://localhost:8082/playdb_chrysa";
     String dbUser = "chrpapa";
     String dbPwd = "chrpapa";
 
