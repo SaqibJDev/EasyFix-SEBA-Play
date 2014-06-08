@@ -1,7 +1,8 @@
 <div>
 <ul class="breadcrumb">
 <li><a href="/">Home</a></li>
-%{breadcrumbURL = ""}%
+%{breadcrumbs = request.get().url.split("/");
+breadcrumbURL = ""}%
 #{list items:breadcrumbs, as:"breadcrumb"}
 		#{if breadcrumb!=""}%{breadcrumbURL+= "/"+breadcrumb;}%<li><a href="${breadcrumbURL}">${breadcrumb}</a></li>#{/if}
 		#{/list}</ul></div>
