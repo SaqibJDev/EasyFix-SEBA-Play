@@ -20,7 +20,7 @@ import org.joda.time.DateTime;
 import com.google.gson.reflect.TypeToken;
 
 import play.Logger;
-import utility.GsonUtil;
+//import utility.GsonUtil;
 
 /**
  * DAO Pattern to CRUD sql database
@@ -61,10 +61,10 @@ public class TechnicianDAO {
             st.setDate(5, new Date(new DateTime().getMillis()));
             st.setDate(6, new Date(new DateTime().getMillis()));
             st.setBoolean(7, technician.isExternal);
-            st.setString(8,
-                    GsonUtil.createJson(technician.contactInformation));
+//            st.setString(8,
+//                    GsonUtil.createJson(technician.contactInformation));
             //st.setString(9, GsonUtil.createJson(technician.getSchedule()));
-            st.setString(10, GsonUtil.createJson(technician.workingHours));
+//            st.setString(10, GsonUtil.createJson(technician.workingHours));
             st.executeUpdate();
            Logger.info("Technician Added Successfully");
         } catch (SQLException e) {

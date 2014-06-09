@@ -7,11 +7,12 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import models.device.DeviceModel;
+import models.device.DeviceRepair;
+import models.device.Manufacturer;
+
 import org.joda.time.DateTime;
 
-import models.DeviceModel;
-import models.DeviceRepair;
-import models.Manufacturer;
 import play.mvc.Controller;
 
 public class Repair extends Controller {

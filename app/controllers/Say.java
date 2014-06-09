@@ -20,10 +20,13 @@ import java.util.List;
 
 
 
+
+
+import models.device.DeviceModel;
+import models.device.Manufacturer;
+
 import org.joda.time.DateTime;
 
-import models.DeviceModel;
-import models.Manufacturer;
 import play.libs.Time;
 import play.mvc.Controller;
 
