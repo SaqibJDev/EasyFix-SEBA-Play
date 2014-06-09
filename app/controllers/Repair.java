@@ -7,11 +7,12 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import models.device.DeviceModel;
+import models.device.DeviceRepair;
+import models.device.Manufacturer;
+
 import org.joda.time.DateTime;
 
-import models.DeviceModel;
-import models.DeviceRepair;
-import models.Manufacturer;
 import play.mvc.Controller;
 
 public class Repair extends Controller {
@@ -19,7 +20,6 @@ public class Repair extends Controller {
 	public static void index() {
 		List<Manufacturer> manufacturers = Manufacturer.findAll();
 		Collections.sort(manufacturers, new Comparator<Manufacturer>() {
-
 			public int compare(Manufacturer o1, Manufacturer o2) {
 				return o1.name.compareTo(o2.name);
 			}
@@ -35,6 +35,7 @@ public class Repair extends Controller {
 		if (manufacturer != null) {
 			System.out.println("Manufacturer exists : " + maker);
 			List<DeviceModel> devices = manufacturer.deviceModels;
+			System.out.println("List of models count : " + devices.size());
 			Collections.sort(devices, new Comparator<DeviceModel>() {
 
 				public int compare(DeviceModel o1, DeviceModel o2) {

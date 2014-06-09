@@ -9,9 +9,6 @@ import java.util.List;
 
 import org.joda.time.DateTime;
 
-import models.DeviceModel;
-import models.DeviceRepair;
-import models.Manufacturer;
 import play.mvc.Controller;
 
 public class StaticPages extends Controller {
