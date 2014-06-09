@@ -1,14 +1,58 @@
-#{extends 'main.html' /} #{set title:'Maker' /}
+#{extends 'master.html' /} 
+#{set title:'EasyFix - Choose manufacturer'/} 
 
-<div class="middlePageContentContainer">
 #{include 'breadcrumbs.html'/}
-	<div style="margin: 0 auto; width: 750px;">
-		#{list items:manufacturers, as:"manufacturer"}
-		<div class="manufacturerListItem">
-			<img src="${'/public/images/'+manufacturer.image}"
-				class="manufacturerLogo" />
-			<div class="manufacturerName"><a href="/repair/${manufacturer.name}">${manufacturer.displayName}</a></div>
+<section id="home">
+	<div class="container">
+
+		<div class="row">
+			<center>
+				<h3>Choose the manufacturer of your broken phone!</h3>
+			</center>
 		</div>
-		#{/list}
-	</div>
-</div>
+
+		<p>
+
+			<div class="form-group">
+			<form role="search">
+			%{i=0}%
+			#{list items:manufacturers, as:"manufacturer"}
+			#{if i%3 == 0}
+			 <div class="text-right">
+		     <div class="col-md-4">
+		<p>	<a href="/repair/${manufacturer.name}"><img src="${'/public/images/'+manufacturer.image}" width="150"
+								height="112.5" border="0" alt="Home"></a>
+						</p>
+	     <a href="/repair/${manufacturer.name}">${manufacturer.displayName}</a> 
+			 </div>
+		 </div>
+		 #{/if}
+		 #{if i%3 == 1}
+		 <center>
+          <div class="col-md-4">
+	  		<p>	<a href="/repair/${manufacturer.name}"><img src="${'/public/images/'+manufacturer.image}"
+								width="150" height="112.5" border="0" alt="Home"></a>
+						</p>
+			  
+             <a href="/repair/${manufacturer.name}">${manufacturer.displayName}</a>
+			   </div>		   
+		   </center>
+		   #{/if}
+		   #{if i%3 == 2}
+	       <div class="col-md-4">
+   	  		<p>	<a href="/repair/${manufacturer.name}"><img src="${'/public/images/'+manufacturer.image}" width="150"
+							height="112.5" border="0" alt="Home"></a>
+					</p>
+
+	           <a href="/repair/${manufacturer.name}">${manufacturer.displayName}</a>
+	           </div>
+	         #{/if}
+	         %{i++}%
+	         #{/list}
+			</form>
+	       
+     </div>
+</p>
+   </div>
+   </div>
+     </section>

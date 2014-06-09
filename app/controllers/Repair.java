@@ -20,7 +20,6 @@ public class Repair extends Controller {
 	public static void index() {
 		List<Manufacturer> manufacturers = Manufacturer.findAll();
 		Collections.sort(manufacturers, new Comparator<Manufacturer>() {
-
 			public int compare(Manufacturer o1, Manufacturer o2) {
 				return o1.name.compareTo(o2.name);
 			}
@@ -36,6 +35,7 @@ public class Repair extends Controller {
 		if (manufacturer != null) {
 			System.out.println("Manufacturer exists : " + maker);
 			List<DeviceModel> devices = manufacturer.deviceModels;
+			System.out.println("List of models count : " + devices.size());
 			Collections.sort(devices, new Comparator<DeviceModel>() {
 
 				public int compare(DeviceModel o1, DeviceModel o2) {

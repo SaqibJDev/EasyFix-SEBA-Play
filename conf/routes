@@ -22,8 +22,17 @@ GET     /                                       Application.index
 		GET     /repair/{maker}/{deviceModel}                   controllers.Repair.deviceModelRepairList(maker,deviceModel)
 	
 	# Repair details of selected repair
-		GET     /Repair/{maker}/{deviceModel}/{repair}                   controllers.Repair.deviceModelRepairDetails(maker,deviceModel,repair)
-		GET     /repair/{maker}/{deviceModel}/{repair}                   controllers.Repair.deviceModelRepairDetails(maker,deviceModel,repair)
+		GET     /Repair/{maker}/{deviceModel}/{repair}        controllers.Repair.deviceModelRepairDetails(maker,deviceModel,repair)
+		GET     /repair/{maker}/{deviceModel}/{repair}        controllers.Repair.deviceModelRepairDetails(maker,deviceModel,repair)
+
+# Static Pages
+	# Q&A page
+		GET     /QandA						                   controllers.StaticPages.QandA
+	
+	# About Us page
+		GET     /AboutUs						               controllers.StaticPages.AboutUs
+	
+
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
