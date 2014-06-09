@@ -2,9 +2,9 @@
 
 <div class="middlePageContentContainer">
 	<div style="margin: 0 auto; width: 750px;">
-		#{list items:deviceRepairList, as:"deviceRepair"}
+		#{list items:externalTechniciansList, as:"technician"}
 		<div class="repairListItem">
-			<img src="${'/public/images/repairs/'+deviceRepair.image}"
+			<img src="${'/public/images/technicians/'+technician.image}"
 				class="repairLogo" />
 			<p class="repairHeading">${deviceRepair.displayName}</p>
 			<br />

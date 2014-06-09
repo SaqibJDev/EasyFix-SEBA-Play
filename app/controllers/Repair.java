@@ -1,19 +1,14 @@
 package controllers;
 
-import java.sql.Date;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import org.joda.time.DateTime;
-
-import models.DeviceModel;
-import models.DeviceRepair;
-import models.Manufacturer;
+import models.device.DeviceModel;
+import models.device.DeviceRepair;
+import models.device.Manufacturer;
 import play.mvc.Controller;
-import utility.Utilities;
 
 public class Repair extends Controller {
 
@@ -84,12 +79,12 @@ public class Repair extends Controller {
 
 	public static void deviceModelRepairDetails(String maker, String deviceModel, String repair) {
 
-		//String []breadcrumbs = request.get().url.split("/"); 
+		String []breadcrumbs = request.get().url.split("/"); 
 		DeviceRepair deviceRepair = (DeviceRepair) DeviceRepair.find("byName", repair).fetch(1).get(0);
 		if(deviceRepair != null){
-			render(maker, deviceModel, deviceRepair);
+			render(maker, deviceModel, deviceRepair, breadcrumbs);
 		}else{
-			render();
+			render(breadcrumbs);
 		}
 		
 	}

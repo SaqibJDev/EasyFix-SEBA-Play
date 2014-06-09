@@ -1,0 +1,58 @@
+﻿
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch chrysa
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#	modified:   .classpath
+#	modified:   app/controllers/Repair.java
+#	modified:   app/controllers/Say.java
+#	deleted:    app/models/DeviceModel.java
+#	deleted:    app/models/DeviceRepair.java
+#	deleted:    app/models/Manufacturer.java
+#	modified:   conf/application.conf
+#	modified:   eclipse/classes/BasicTest.class
+#	modified:   eclipse/classes/controllers/Say.class
+#	deleted:    eclipse/classes/models/DeviceModel.class
+#	deleted:    eclipse/classes/models/DeviceRepair.class
+#	deleted:    eclipse/classes/models/Manufacturer.class
+#	modified:   test/BasicTest.java
+#	modified:   tmp/bytecode/DEV/_app_views_Repair_deviceModelRepairDetails.html
+#	modified:   tmp/bytecode/DEV/_app_views_Repair_deviceModelRepairList.html
+#	modified:   tmp/bytecode/DEV/_app_views_Repair_index.html
+#	modified:   tmp/bytecode/DEV/_app_views_Repair_manufacturer.html
+#	modified:   tmp/bytecode/DEV/_app_views_errors_404.html
+#	modified:   tmp/bytecode/DEV/_app_views_errors_500.html
+#	modified:   tmp/bytecode/DEV/_app_views_main.html
+#	modified:   tmp/bytecode/DEV/controllers.Application
+#	modified:   tmp/bytecode/DEV/controllers.Repair
+#	modified:   tmp/bytecode/DEV/controllers.Repair$1
+#	modified:   tmp/bytecode/DEV/controllers.Repair$2
+#	modified:   tmp/bytecode/DEV/controllers.Repair$3
+#	modified:   tmp/bytecode/DEV/controllers.Say
+#	modified:   tmp/classes/controllers/Say.class
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#	app/models/
+#	app/utility/GsonUtil.java
+#	app/views/Booking/
+#	conf/log4j.properties
+#	test/TechnicianStorageTest.java
+#	tmp/bytecode/DEV/models.Actor
+#	tmp/bytecode/DEV/models.Appointment
+#	tmp/bytecode/DEV/models.CheckAvailability
+#	tmp/bytecode/DEV/models.ContactInformation
+#	tmp/bytecode/DEV/models.Location
+#	tmp/bytecode/DEV/models.customer.Customer
+#	tmp/bytecode/DEV/models.device.DeviceModel
+#	tmp/bytecode/DEV/models.device.DeviceRepair
+#	tmp/bytecode/DEV/models.device.Manufacturer
+#	tmp/bytecode/DEV/models.technician.Schedule
+#	tmp/bytecode/DEV/models.technician.Technician
+#	tmp/bytecode/DEV/models.technician.WorkingHours
+#	tmp/bytecode/DEV/utility.DatabaseUtil
+#	tmp/bytecode/DEV/utility.GsonUtil
+
