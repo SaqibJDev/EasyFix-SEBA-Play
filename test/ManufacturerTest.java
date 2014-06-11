@@ -2,21 +2,13 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import models.ContactInformation;
-import models.Interval;
-import models.Location;
 import models.device.DeviceModel;
 import models.device.DeviceRepair;
 import models.device.Manufacturer;
-import models.technician.Technician;
-import models.technician.WorkingHours;
 
-import org.joda.time.DateTime;
 import org.junit.Test;
 
-import play.db.jpa.JPABase;
 import play.test.UnitTest;
-import utility.QueryUtil;
 
 /**
  * 

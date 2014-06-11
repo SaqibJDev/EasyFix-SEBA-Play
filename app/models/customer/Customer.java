@@ -21,6 +21,7 @@ import com.google.gson.annotations.Expose;
 @Table(name = "customer")
 public class Customer extends Actor {
 
+    private long customerId;
     /**
      * Additional Information 
      */

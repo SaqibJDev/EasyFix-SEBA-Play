@@ -1,15 +1,18 @@
 package models.technician;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import models.Actor;
 import models.ContactInformation;
 import models.device.DeviceModel;
+import models.device.DeviceRepair;
+import models.rating.RatingValue;
 
 import com.google.gson.annotations.Expose;
 
@@ -22,6 +25,7 @@ import com.google.gson.annotations.Expose;
 @Entity
 public class Technician extends Actor {
 
+    public long technicianid;
     /**
      * The title of occupation of technician
      */
@@ -75,7 +79,7 @@ public class Technician extends Actor {
      */
     @Expose
     public String image;
-
+    
     /**
      * It defines whether the technician is external or internal
      */
@@ -88,5 +92,57 @@ public class Technician extends Actor {
     @ElementCollection
     @OneToMany
     public List<DeviceModel> deviceModelList;
+    
+
+    /**
+     * The score of users' ratings on technician service
+     */
+    @OneToOne
+    public RatingValue ratingScore;
+    
+    public static List<Technician> findByAddress(String city) {
+
+        return Technician.find(
+                "select t from Technician t, Location l "
+                        + "where t.isExternal = false and l.city like ?",
+                "%" + city + "%").fetch();
+    }
+    
+    public static List<Technician> findByGeoPoint(long latitude, long longtitude) {
+        return null;
+//TODO
+    }
+    public static List<Technician> findTechniciansByIsExternal(
+            boolean isExternal) {
+        return Technician.find(
+                "select t from Technician t, Location l "
+                        + "where t.isExternal =" + isExternal).fetch();
+    }
+    
+    public static List<Technician> findTechniciansByRepair(
+            List<Technician> technicians, String dm, String repair) {
+        List<Technician> repairTechnicians = new ArrayList<Technician>();
+        if (technicians != null) {
+            for (Technician tech : technicians) {
+
+                List<DeviceModel> supportedModels = tech.deviceModelList;
+                List<DeviceRepair> repairs = new ArrayList<DeviceRepair>();
+                for (DeviceModel model : supportedModels) {
+
+                    if (model.name.equalsIgnoreCase(dm)) {
+                        repairs = model.deviceRepairList;
+                        for (DeviceRepair deviceRepair : repairs) {
+                            if (deviceRepair.name.equals(repair)) {
+                                repairTechnicians.add(tech);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return repairTechnicians;
+    }
+    
 
 }

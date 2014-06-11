@@ -1,14 +1,12 @@
 package controllers;
 
-import play.*;
-import play.mvc.*;
-import utility.QueryUtil;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
-import java.util.*;
-
-import models.*;
 import models.device.DeviceRepair;
 import models.technician.Technician;
+import play.mvc.Controller;
 
 public class ExternalTechnicians extends Controller {
 
@@ -16,8 +14,8 @@ public class ExternalTechnicians extends Controller {
 	 * Show external technicians who offer repair services for selected device model and repair
 	 */
     public static void show(String maker, String deviceModel, String repair) {
-        List<Technician> exTechnicians = QueryUtil.findTechniciansByRepair(
-                QueryUtil.findTechniciansByIsExternal(true), deviceModel,
+        List<Technician> exTechnicians = Technician.findTechniciansByRepair(
+                Technician.findTechniciansByIsExternal(true), deviceModel,
                 repair);
         DeviceRepair deviceRepair = (DeviceRepair) DeviceRepair
                 .find("byName", repair).fetch(1).get(0);
@@ -36,7 +34,7 @@ public class ExternalTechnicians extends Controller {
 	 * Show list of all external technicians
 	 */
     public static void showAll() {
-        List<Technician> exTechnicians = QueryUtil.findTechniciansByIsExternal(true);
+        List<Technician> exTechnicians = Technician.findTechniciansByIsExternal(true);
         
         if (exTechnicians != null && exTechnicians.size() > 0) {
             Collections.sort(exTechnicians, new Comparator<Technician>() {
@@ -53,7 +51,7 @@ public class ExternalTechnicians extends Controller {
      * Show details of external technician company/show, address, Contact link
      */
     public static void details(String maker, String deviceModel, String repair, String name) {
-        List<Technician> exTechnicians = QueryUtil.findTechniciansByIsExternal(true);
+        List<Technician> exTechnicians = Technician.findTechniciansByIsExternal(true);
         
         if (exTechnicians != null && exTechnicians.size() > 0) {
             for (Technician technician : exTechnicians) {

@@ -2,6 +2,7 @@ package models.technician;
 
 import java.util.List;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -19,7 +20,8 @@ public class WorkingHours extends Model{
      * Calendar.DAY_OF_WEEK
      */
     public int day;
-    @Embedded
+    @ElementCollection
+    @OneToMany
     public List<Interval> hours;
 
     /**

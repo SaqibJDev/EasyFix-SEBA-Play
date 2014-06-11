@@ -18,7 +18,6 @@ import org.junit.Test;
 
 import play.Logger;
 import play.test.UnitTest;
-import utility.QueryUtil;
 
 /**
  * 
@@ -57,11 +56,11 @@ public class FixAppointmentTest extends UnitTest {
     public void modelRepairExTechnicianByRepairAndLocationTest() {
 
         createAndRetrieveTechnician("chrysa");
-        List<Technician> techs = QueryUtil.findByGeoPoint(122,123);//QueryUtil.findByAddressQuery("garching");
+        List<Technician> techs = Technician.findByGeoPoint(122,123);//Technician.findByAddressQuery("garching");
 
         assertNotSame(techs.size(), 0);
         Logger.info("sizeeee"+techs.size());
-        techs = QueryUtil.findTechniciansByRepair(techs,
+        techs = Technician.findTechniciansByRepair(techs,
                 createDeviceModelList().get(0).name, "screen2");
 
         // Test

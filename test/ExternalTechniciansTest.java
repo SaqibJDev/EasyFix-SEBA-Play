@@ -12,9 +12,7 @@ import models.technician.WorkingHours;
 import org.joda.time.DateTime;
 import org.junit.Test;
 
-import play.db.jpa.JPABase;
 import play.test.UnitTest;
-import utility.QueryUtil;
 
 
 public class ExternalTechniciansTest extends UnitTest {
@@ -22,10 +20,10 @@ public class ExternalTechniciansTest extends UnitTest {
     @Test
     public void retrieveExternalTechnician() {
         createAndRetrieveTechnician();
-        List<Technician> exTechs =  QueryUtil.findTechniciansByIsExternal(true);
+        List<Technician> exTechs =  Technician.findTechniciansByIsExternal(true);
         assertNotNull(exTechs);
 
-         exTechs = QueryUtil.findTechniciansByRepair(exTechs, "iphone6", "screen2");
+         exTechs = Technician.findTechniciansByRepair(exTechs, "iphone6", "screen2");
         assertNotNull(exTechs);
     }
     

@@ -1,7 +1,5 @@
 package controllers;
 
-import java.sql.Date;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -10,12 +8,7 @@ import java.util.List;
 import models.device.DeviceModel;
 import models.device.DeviceRepair;
 import models.device.Manufacturer;
-import models.technician.Technician;
-
-import org.joda.time.DateTime;
-
 import play.mvc.Controller;
-import utility.QueryUtil;
 
 public class Repair extends Controller {
 

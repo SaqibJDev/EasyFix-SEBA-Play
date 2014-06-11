@@ -8,7 +8,6 @@ import models.device.DeviceModel;
 import models.technician.Technician;
 import play.data.validation.Required;
 import play.mvc.Controller;
-import utility.QueryUtil;
 
 /**
  * 
@@ -31,8 +30,8 @@ public class BookRepair extends Controller {
     }
     // TODO we need static page for mock-up with map
     public static void checkTechniciansAvailability(String deviceModel, String repair) {
-        List<Technician> inTechnicians = QueryUtil.findTechniciansByRepair(
-                QueryUtil.findTechniciansByIsExternal(false), deviceModel,
+        List<Technician> inTechnicians = Technician.findTechniciansByRepair(
+                Technician.findTechniciansByIsExternal(false), deviceModel,
                 repair);
         if (inTechnicians != null) {
             Collections.sort(inTechnicians, new Comparator<Technician>() {
@@ -58,9 +57,9 @@ public class BookRepair extends Controller {
      */
     public static void modelRepairTechnicianByLocation(String model,
             String repair, @Required String location) {
-        List<Technician> techs = QueryUtil.findByAddress(location);
+        List<Technician> techs = Technician.findByAddress(location);
         DeviceModel dm = DeviceModel.find("byName", model).first();
-        techs = QueryUtil.findTechniciansByRepair(techs, dm.name, repair);
+        techs = Technician.findTechniciansByRepair(techs, dm.name, repair);
         if (techs != null) {
             Collections.sort(techs, new Comparator<Technician>() {
 

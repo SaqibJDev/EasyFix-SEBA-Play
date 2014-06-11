@@ -21,23 +21,6 @@ public class ContactInformation extends Model{
     @OneToOne
     //@Embedded
     public Location address;
-
-    /**
-     * 
-     * @param telephone
-     * @param mobile
-     * @param email
-     * @param addresses
-     * @param website
-     */
-    public ContactInformation(String telephone, String mobile, String email,
-        List<Location> addresses) {
-        super();
-        this.telephone = telephone;
-        this.mobile = mobile;
-        this.email = email;
-        this.addresses = addresses;
-    }
     /**
      * For external
      * @param telephone
@@ -98,7 +81,7 @@ public class ContactInformation extends Model{
      * The location of actor, for technician it is the location he/she can serve and for customer the
      * desirable meeting place
      */
-    @Expose
+    //@Expose
     @OneToMany
     public List<Location> addresses;
 
