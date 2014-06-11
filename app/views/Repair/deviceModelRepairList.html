@@ -1,19 +1,53 @@
-#{extends 'main.html' /} #{set title:'Maker' /}
+#{extends 'master.html' /} #{set title:'EasyFix - Choose repair' /}
+#{set menu_item:'menu_repair' /} 
+#{set moreScripts:'bootstrap.min.js' /}
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".tooltips button").tooltip({
+			placement : 'top'
+		});
+	});
+</script>
 
-<div class="middlePageContentContainer">
 #{include 'breadcrumbs.html'/}
-	<div style="margin: 0 auto; width: 750px;">
-		#{list items:deviceRepairList, as:"deviceRepair"}
-		<div class="repairListItem">
-			<img src="${'/public/images/repairs/'+deviceRepair.image}"
-				class="repairLogo" />
-			<p class="repairHeading">${deviceRepair.displayName}</p>
-			<br />
-			<p class="details">${deviceRepair.description}</p>
-			<a href="/repair/${maker+'/'+deviceModel+'/'+deviceRepair.name}">
-				<div class="priceButton">${deviceRepair.price} &#8364;</div>
-			</a>
-		</div>
-		#{/list}
+<div class="container">
+	<div class="row">
+		<center>
+			<h3>Choose the repairservice you need!</h3>
+		</center>
 	</div>
+	</br> #{list items:deviceRepairList, as:"deviceRepair"}
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h2 class="panel-title">${deviceRepair.displayName}</h2>
+		</div>
+		<div class="panel-body">
+			<div class="col-md-3">
+				<img src="${'/public/images/repairs/'+deviceRepair.image}"
+					width="30%" border="0" alt="Home">
+
+			</div>
+			<div class="col-md-7">
+				<h4>${deviceRepair.description}</h4>
+				<p></p>
+				<h6>Repair Time: ${deviceRepair.repairTime} Min</h6>
+			</div>
+			<div class="col-md-2" align="center">
+				<ul class="tooltips">
+					<a href="/repair/${maker+'/'+deviceModel+'/'+deviceRepair.name}"><button class="btn btn-primary btn-lg"
+						data-toggle="tooltip"
+						data-original-title="Click here to book the repair!">${deviceRepair.price}
+						&#8364;</button></a>
+				</ul>
+			</div>
+		</div>
+	</div>
+	#{/list}
+
 </div>
+
+
+
+
+
+
