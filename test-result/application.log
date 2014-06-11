@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 11 Jun 2014 08:05:49,983 INFO  ~ Starting C:\Users\User\Documents\GitHub\EasyFix-SEBA-Play\.
 11 Jun 2014 08:05:51,002 WARN  ~ You're running Play! in DEV mode
 11 Jun 2014 08:05:52,727 WARN  ~ Ignoring maker (static params must be specified as key:'value',...)
@@ -26,3 +27,20 @@
 11 Jun 2014 08:06:12,565 INFO  ~ teeeech4Marcus
 11 Jun 2014 08:06:12,565 INFO  ~ teeeech4Marcus
 11 Jun 2014 08:06:12,565 INFO  ~ teeeech4Marcus
+=======
+10 Jun 2014 00:42:58,543 INFO  ~ Starting E:\Work\JAVA\Play\EasyFix\.
+10 Jun 2014 00:42:59,512 WARN  ~ You're running Play! in DEV mode
+10 Jun 2014 00:43:01,035 WARN  ~ Ignoring maker (static params must be specified as key:'value',...)
+10 Jun 2014 00:43:01,037 WARN  ~ Ignoring maker (static params must be specified as key:'value',...)
+10 Jun 2014 00:43:01,041 WARN  ~ Ignoring maker,deviceModel (static params must be specified as key:'value',...)
+10 Jun 2014 00:43:01,041 WARN  ~ Ignoring maker,deviceModel (static params must be specified as key:'value',...)
+10 Jun 2014 00:43:01,042 WARN  ~ Ignoring maker,deviceModel (static params must be specified as key:'value',...)
+10 Jun 2014 00:43:01,043 WARN  ~ Ignoring maker,deviceModel (static params must be specified as key:'value',...)
+10 Jun 2014 00:43:01,045 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
+10 Jun 2014 00:43:01,045 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
+10 Jun 2014 00:43:01,045 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
+10 Jun 2014 00:43:01,047 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
+10 Jun 2014 00:43:01,047 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
+10 Jun 2014 00:43:01,047 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
+10 Jun 2014 00:43:02,024 INFO  ~ Connected to jdbc:mysql://127.0.0.1/playdb?useUnicode=yes&characterEncoding=UTF-8&connectionCollation=utf8_general_ci
+>>>>>>> 7ede2bf8638b2e6f839a70bcae5a62d77a922320

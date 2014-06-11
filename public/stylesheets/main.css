@@ -7,6 +7,8 @@ body {
 
 /* Navbar */
 
+.mittig  { vertical-align:middle;}
+
 
 .navbar-brand {
 	    float:none;
@@ -73,6 +75,24 @@ body {
 	font-weight: bold;
 }
 
+h6 {
+	font-size: 1.2em;
+	color: #009933;
+	font-family: 'Open Sans', sans-serif;
+
+	font-weight: bold;
+}
+
+h5 {
+	font-size: 1.2em;
+	
+	font-family: 'Open Sans', sans-serif;
+
+	font-weight: bold;
+}
+
+
+
 #home h2 {
 	font-size: 1.6em;
 	font-family: 'Open Sans', sans-serif;
@@ -109,12 +129,6 @@ body {
 }
 .icon-about a i.fa-linkedin:hover {
 	color: #017eb4;
-}
-
-h6 {
-	font-family: 'Montserrat', sans-serif;
-	font-size: 1.6em;
-	font-weight: bold;
 }
 
 
