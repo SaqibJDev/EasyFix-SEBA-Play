@@ -1,0 +1,21 @@
+#{extends 'main.html' /} #{set title:'Maker' /}
+
+<div class="middlePageContentContainer">
+	<div style="margin: 0 auto; width: 750px;">
+<h3>External Partners</h3>
+		#{list items:exTechnicians, as:"technician"}
+		<div class="repairListItem">
+			<img src="${'/public/images/technicians/'+technician.image}"
+				class="repairLogo" />
+			<p class="repairHeading">${technician.lastName}</p>
+			<p class="repairHeading">${technician.title}</p>
+			<br />
+			<p class="details">${technician.description}</p>
+			<p class="details">${technician.contactInformation.address.city},${technician.contactInformation.address.zip},${technician.contactInformation.address.street}
+				${technician.contactInformation.address.streetNo}</p>
+			<p class="details">${technician.contactInformation.website}</p>
+
+		</div>
+		#{/list}
+	</div>
+</div>

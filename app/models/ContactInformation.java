@@ -2,8 +2,7 @@ package models;
 
 import java.util.List;
 
-import javax.persistence.Embeddable;
-import javax.persistence.Embedded;
+import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -16,8 +15,8 @@ import com.google.gson.annotations.Expose;
  * @author Chrysa Papadaki - papadaki.chr@gmail.com
  * 
  */
-@Embeddable
-public class ContactInformation{
+@Entity
+public class ContactInformation extends Model{
 
     @OneToOne
     //@Embedded

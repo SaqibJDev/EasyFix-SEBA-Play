@@ -138,8 +138,27 @@ float: left;
 	margin: 10px;
 }
 
+.externalTechnicians
+{
+	float: left;
+	background: #2b78e4;
+	border-radius: 5px;
+	line-height: 30px;
+	width: 280px; 
+	text-align: center;
+	color: #FFF;
+	font-weight: bold;
+	margin: 10px;
+}
 
 
+.simpleText{
+	float: left;
+	font-size: 18px;
+	color: #000;
+	font-weight: bold;
+	margin: 10px 0 10px 0;
+}
 
 
 

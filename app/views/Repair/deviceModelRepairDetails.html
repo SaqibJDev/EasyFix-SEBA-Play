@@ -9,7 +9,9 @@
 		<span class="repairCost">Repair Cost:</span><span class="repairCost" style="color:#2b78e4;width:50%;">${deviceRepair.price} &#8364;</span><br />
 		<span class="repairTime">Repair Time:  ${deviceRepair.repairTime}</span>
 		<div class="details">${deviceRepair.description}</div>
-		<div class= "bookButton">Book</div>
+		<a href="@{BookRepair.index(deviceModel,deviceRepair.name)}"><div class= "bookButton">Book</div></a>
+		<span class="simpleText">Or</span><br />	
+		<a href="@{ExternalTechnicians.show(deviceModel,deviceRepair.name)}"><div class= "externalTechnicians">Check External Technicians</div></a>
 	</div>
 </div>
 </div>

@@ -12,6 +12,7 @@ import models.technician.WorkingHours;
 import org.joda.time.DateTime;
 import org.junit.Test;
 
+import play.db.jpa.JPABase;
 import play.test.UnitTest;
 import utility.QueryUtil;
 
@@ -24,7 +25,7 @@ public class ExternalTechniciansTest extends UnitTest {
         List<Technician> exTechs =  QueryUtil.findTechniciansByIsExternal(true);
         assertNotNull(exTechs);
 
-         exTechs = QueryUtil.findInTechniciansByRepair(exTechs, "iphone6", "screen2");
+         exTechs = QueryUtil.findTechniciansByRepair(exTechs, "iphone6", "screen2");
         assertNotNull(exTechs);
     }
     
@@ -55,9 +56,10 @@ public class ExternalTechniciansTest extends UnitTest {
         new WorkingHours(5, hours);
 
         weekHours = WorkingHours.findAll();
-        new Technician("Johny", "Smith", new ContactInformation("010394344",
-                "w487937", "john@example.com", l, "s"), "smartphone expert",
-                "broken screens", weekHours, "logo1.jpeg", true,  createDeviceModelList()).save();
+       ContactInformation ci = new ContactInformation("010394344",
+                "w487937", "john@example.com", l, "s").save();
+        new Technician("Marcus", "Dim",ci , "smartphone expert",
+                "broken screens", weekHours, "tech1.jpeg", true,  createDeviceModelList()).save();
 
         // Retrieve the user with title address expert
         Technician t = Technician.find("byTitle", "smartphone expert")

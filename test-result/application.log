@@ -1,49 +1,28 @@
-09 Jun 2014 23:23:11,668 INFO  ~ Starting E:\Work\JAVA\Play\EasyFix\.
-09 Jun 2014 23:23:12,827 WARN  ~ You're running Play! in DEV mode
-09 Jun 2014 23:23:14,774 WARN  ~ Ignoring maker (static params must be specified as key:'value',...)
-09 Jun 2014 23:23:14,777 WARN  ~ Ignoring maker (static params must be specified as key:'value',...)
-09 Jun 2014 23:23:14,780 WARN  ~ Ignoring maker,deviceModel (static params must be specified as key:'value',...)
-09 Jun 2014 23:23:14,780 WARN  ~ Ignoring maker,deviceModel (static params must be specified as key:'value',...)
-09 Jun 2014 23:23:14,782 WARN  ~ Ignoring maker,deviceModel (static params must be specified as key:'value',...)
-09 Jun 2014 23:23:14,782 WARN  ~ Ignoring maker,deviceModel (static params must be specified as key:'value',...)
-09 Jun 2014 23:23:14,784 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
-09 Jun 2014 23:23:14,784 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
-09 Jun 2014 23:23:14,784 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
-09 Jun 2014 23:23:14,786 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
-09 Jun 2014 23:23:14,786 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
-09 Jun 2014 23:23:14,787 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
-09 Jun 2014 23:23:15,794 INFO  ~ Connected to jdbc:mysql://127.0.0.1/playdb?useUnicode=yes&characterEncoding=UTF-8&connectionCollation=utf8_general_ci
-09 Jun 2014 23:23:24,138 ERROR ~ Unsuccessful: create table DeviceModel (id bigint not null auto_increment, createdOn datetime, description varchar(255), displayName varchar(255), image varchar(255), lastUpdated datetime, name varchar(255), primary key (id)) ENGINE=InnoDB DEFAULT CHARSET=utf8
-09 Jun 2014 23:23:24,138 ERROR ~ Table 'devicemodel' already exists
-09 Jun 2014 23:23:25,125 ERROR ~ Unsuccessful: create table Manufacturer (id bigint not null auto_increment, createdOn datetime, description varchar(255), displayName varchar(255), image varchar(255), lastUpdated datetime, name varchar(255), primary key (id)) ENGINE=InnoDB DEFAULT CHARSET=utf8
-09 Jun 2014 23:23:25,125 ERROR ~ Table 'manufacturer' already exists
-09 Jun 2014 23:23:41,497 INFO  ~ Application 'EasyFix' is now started !
-09 Jun 2014 23:23:44,133 INFO  ~ guery parms for  findInTechniciansByRepairiphone6 screen2
-09 Jun 2014 23:23:44,133 INFO  ~ teeeech1Johny
-09 Jun 2014 23:23:44,134 INFO  ~ teeeech2 Johny model iphone6=iphone6
-09 Jun 2014 23:23:44,137 INFO  ~ teeeech3Johny rscreen2
-09 Jun 2014 23:23:44,137 INFO  ~ teeeech4Johny
-09 Jun 2014 23:23:44,137 INFO  ~ teeeech1Johny
-09 Jun 2014 23:23:44,137 INFO  ~ teeeech2 Johny model iphone6=iphone6
-09 Jun 2014 23:23:44,137 INFO  ~ teeeech3Johny rscreen2
-09 Jun 2014 23:23:44,137 INFO  ~ teeeech4Johny
-09 Jun 2014 23:23:44,321 INFO  ~ sizeeee6
-09 Jun 2014 23:23:44,331 INFO  ~ guery parms for  findInTechniciansByRepairiphone6 screen2
-09 Jun 2014 23:23:44,331 INFO  ~ teeeech1John
-09 Jun 2014 23:23:44,339 INFO  ~ teeeech2 John model iphone6=iphone6
-09 Jun 2014 23:23:44,339 INFO  ~ teeeech1John
-09 Jun 2014 23:23:44,339 INFO  ~ teeeech2 John model iphone6=iphone6
-09 Jun 2014 23:23:44,339 INFO  ~ teeeech1John
-09 Jun 2014 23:23:44,341 INFO  ~ teeeech2 John model iphone6=iphone6
-09 Jun 2014 23:23:44,341 INFO  ~ teeeech1chrysa
-09 Jun 2014 23:23:44,341 INFO  ~ teeeech2 chrysa model iphone6=iphone6
-09 Jun 2014 23:23:44,341 INFO  ~ teeeech3chrysa rscreen2
-09 Jun 2014 23:23:44,342 INFO  ~ teeeech4chrysa
-09 Jun 2014 23:23:44,342 INFO  ~ teeeech1chrysa
-09 Jun 2014 23:23:44,342 INFO  ~ teeeech2 chrysa model iphone6=iphone6
-09 Jun 2014 23:23:44,342 INFO  ~ teeeech3chrysa rscreen2
-09 Jun 2014 23:23:44,342 INFO  ~ teeeech4chrysa
-09 Jun 2014 23:23:44,342 INFO  ~ teeeech1chrysa
-09 Jun 2014 23:23:44,343 INFO  ~ teeeech2 chrysa model iphone6=iphone6
-09 Jun 2014 23:23:44,343 INFO  ~ teeeech3chrysa rscreen2
-09 Jun 2014 23:23:44,343 INFO  ~ teeeech4chrysa
+11 Jun 2014 08:05:49,983 INFO  ~ Starting C:\Users\User\Documents\GitHub\EasyFix-SEBA-Play\.
+11 Jun 2014 08:05:51,002 WARN  ~ You're running Play! in DEV mode
+11 Jun 2014 08:05:52,727 WARN  ~ Ignoring maker (static params must be specified as key:'value',...)
+11 Jun 2014 08:05:52,729 WARN  ~ Ignoring maker (static params must be specified as key:'value',...)
+11 Jun 2014 08:05:52,730 WARN  ~ Ignoring maker,deviceModel (static params must be specified as key:'value',...)
+11 Jun 2014 08:05:52,731 WARN  ~ Ignoring maker,deviceModel (static params must be specified as key:'value',...)
+11 Jun 2014 08:05:52,732 WARN  ~ Ignoring maker,deviceModel (static params must be specified as key:'value',...)
+11 Jun 2014 08:05:52,732 WARN  ~ Ignoring maker,deviceModel (static params must be specified as key:'value',...)
+11 Jun 2014 08:05:52,733 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
+11 Jun 2014 08:05:52,733 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
+11 Jun 2014 08:05:52,733 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
+11 Jun 2014 08:05:52,734 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
+11 Jun 2014 08:05:52,734 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
+11 Jun 2014 08:05:52,734 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
+11 Jun 2014 08:05:53,467 INFO  ~ Connected to jdbc:mysql://127.0.0.1/playdb_chrysa?useUnicode=yes&characterEncoding=UTF-8&connectionCollation=utf8_general_ci
+11 Jun 2014 08:05:58,306 ERROR ~ Unsuccessful: create table Actor (id bigint not null auto_increment, createdOn datetime, firstName varchar(255), lastName varchar(255), lastUpdated datetime, contactInformation_id bigint, primary key (id)) ENGINE=InnoDB DEFAULT CHARSET=utf8
+11 Jun 2014 08:05:58,307 ERROR ~ Table 'actor' already exists
+11 Jun 2014 08:05:59,993 ERROR ~ Unsuccessful: create table Location (id bigint not null auto_increment, city varchar(255), country varchar(255), geoPoint tinyblob, street varchar(255), streetNo varchar(255), zip varchar(255), primary key (id)) ENGINE=InnoDB DEFAULT CHARSET=utf8
+11 Jun 2014 08:05:59,993 ERROR ~ Table 'location' already exists
+11 Jun 2014 08:06:01,350 ERROR ~ Unsuccessful: create table WorkingHours (id bigint not null auto_increment, day integer not null, primary key (id)) ENGINE=InnoDB DEFAULT CHARSET=utf8
+11 Jun 2014 08:06:01,351 ERROR ~ Table 'workinghours' already exists
+11 Jun 2014 08:06:01,661 ERROR ~ Unsuccessful: alter table Actor add index FK3C2B9D5201FD43E (contactInformation_id), add constraint FK3C2B9D5201FD43E foreign key (contactInformation_id) references ContactInformation (id)
+11 Jun 2014 08:06:01,661 ERROR ~ Duplicate key name 'FK3C2B9D5201FD43E'
+11 Jun 2014 08:06:11,974 INFO  ~ Application 'EasyFix' is now started !
+11 Jun 2014 08:06:12,564 INFO  ~ guery parms for  findInTechniciansByRepairiphone6 screen2
+11 Jun 2014 08:06:12,565 INFO  ~ teeeech4Marcus
+11 Jun 2014 08:06:12,565 INFO  ~ teeeech4Marcus
+11 Jun 2014 08:06:12,565 INFO  ~ teeeech4Marcus

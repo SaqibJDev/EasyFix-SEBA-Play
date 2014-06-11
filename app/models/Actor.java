@@ -49,8 +49,8 @@ public class Actor extends Model{
      */
     @Expose
     //@ManyToOne
-    //@OneToOne
-    @Embedded
+    @OneToOne
+   // @Embedded
     public ContactInformation contactInformation;
 
     public Actor(String firstName, String lastName,

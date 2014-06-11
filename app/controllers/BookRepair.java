@@ -6,6 +6,7 @@ import java.util.List;
 
 import models.device.DeviceModel;
 import models.technician.Technician;
+import play.data.validation.Required;
 import play.mvc.Controller;
 import utility.QueryUtil;
 
@@ -15,27 +16,32 @@ import utility.QueryUtil;
  * 
  */
 public class BookRepair extends Controller {
-    
- // EXTERNAL TECHNICIANS
-    /**
-     * 
-     * @param maker
-     * @param deviceModel
-     * @param repair
-     */
-    public static void deviceModelExternalTechnicians(String maker, String deviceModel, String repair) {
-       List<Technician> exTechnicians = QueryUtil.findInTechniciansByRepair(QueryUtil.findTechniciansByIsExternal(true), deviceModel, repair);
-        if(exTechnicians != null){
-            Collections.sort(exTechnicians, new Comparator<Technician>() {
+
+    /********************* BOOK REPAIR CODE START **********************************/
+
+    // Internal Technicians
+
+    // TODO we need static page for mock-up with map
+    public static void index(String deviceModel, String repair) {
+        
+            render(deviceModel,repair);
+    }
+    // TODO we need static page for mock-up with map
+    public static void checkTechniciansAvailability(String deviceModel, String repair) {
+        List<Technician> inTechnicians = QueryUtil.findTechniciansByRepair(
+                QueryUtil.findTechniciansByIsExternal(false), deviceModel,
+                repair);
+        if (inTechnicians != null) {
+            Collections.sort(inTechnicians, new Comparator<Technician>() {
                 public int compare(Technician o1, Technician o2) {
                     return o1.lastName.compareTo(o2.lastName);
                 }
             });
-            render(exTechnicians);
+            render(inTechnicians);
         } else
-            render("No external technician on our system for "+repair+" repair");
+            render();
     }
-//Internal Technicians
+
     /**
      * Step1/3 check technicians availability. to get the internal technicians
      * who can repair the damage and go to the given location
@@ -48,10 +54,10 @@ public class BookRepair extends Controller {
      * @param location
      */
     public static void modelRepairTechnicianByLocation(String model,
-            String repair, String location) {
-        List<Technician> techs = QueryUtil.findByLocationQuery(location);
+            String repair, @Required String location) {
+        List<Technician> techs = QueryUtil.findByAddress(location);
         DeviceModel dm = DeviceModel.find("byName", model).first();
-        techs = QueryUtil.findInTechniciansByRepair(techs, dm.name, repair);
+        techs = QueryUtil.findTechniciansByRepair(techs, dm.name, repair);
         if (techs != null) {
             Collections.sort(techs, new Comparator<Technician>() {
 
@@ -61,7 +67,8 @@ public class BookRepair extends Controller {
             });
             render(techs);
         } else
-            render("No technician for "+repair+" repair available for this location");
+            render("No technician for " + repair
+                    + " repair available for this location");
     }
 
     /**
@@ -77,7 +84,7 @@ public class BookRepair extends Controller {
      */
     public static void modelRepairTechnicianAvailability(String date,
             String time) {
-//TODO currently not working 
+        // TODO currently not working
     }
 
     /**
@@ -96,7 +103,7 @@ public class BookRepair extends Controller {
     public static void modelRepairTechnicianAppointment(String firstname,
             String lastname, String street, String city, String plz,
             String tel, String notes) {
-      //TODO currently not working 
+        // TODO currently not working
     }
 
     /**
@@ -105,6 +112,6 @@ public class BookRepair extends Controller {
      * @param appointmentId
      */
     public static void appointmentConfirmation(String appointmentId) {
-//TODO currently not working
+        // TODO currently not working
     }
 }

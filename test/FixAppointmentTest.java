@@ -4,6 +4,7 @@ import java.util.List;
 
 import models.Appointment;
 import models.ContactInformation;
+import models.GeoPoint;
 import models.Interval;
 import models.Location;
 import models.customer.Customer;
@@ -33,9 +34,7 @@ public class FixAppointmentTest extends UnitTest {
         new DeviceRepair("screen2", "screen", "", "", 80, 600000000).save();
         Technician john = Technician.find("byLastName", "Smith").first();
         DeviceRepair d = DeviceRepair.find("byDisplayName", "screen").first();
-
         Customer c = (Customer) Customer.findAll().get(0);
-
         Appointment app = new Appointment(new Date(new DateTime().getMillis()),
                 d.repairTime, c.contactInformation.address, c.id, john.id, d.id)
                 .save();
@@ -50,9 +49,7 @@ public class FixAppointmentTest extends UnitTest {
         repairs.add(r);
         DeviceModel model = new DeviceModel("iphone6", "iphone6",
                 "description", "image", repairs).save();
-
         models.add(model);
-
         return models;
     }
 
@@ -60,11 +57,11 @@ public class FixAppointmentTest extends UnitTest {
     public void modelRepairExTechnicianByRepairAndLocationTest() {
 
         createAndRetrieveTechnician("chrysa");
-        List<Technician> techs = QueryUtil.findByLocationQuery("garching");
+        List<Technician> techs = QueryUtil.findByGeoPoint(122,123);//QueryUtil.findByAddressQuery("garching");
 
         assertNotSame(techs.size(), 0);
         Logger.info("sizeeee"+techs.size());
-        techs = QueryUtil.findInTechniciansByRepair(techs,
+        techs = QueryUtil.findTechniciansByRepair(techs,
                 createDeviceModelList().get(0).name, "screen2");
 
         // Test
@@ -75,7 +72,7 @@ public class FixAppointmentTest extends UnitTest {
     public void createAndRetrieveTechnician(String fname) {
 
         // location
-        Location l = new Location("garching", "82333").save();
+        Location l = new Location(new GeoPoint(122,123)).save();
 
         // 0 to 6, where 0 is Sunday, 1 is Monday,
         List<Interval> hours = new ArrayList<Interval>();
