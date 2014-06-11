@@ -1,46 +1,36 @@
-<<<<<<< HEAD
-11 Jun 2014 08:05:49,983 INFO  ~ Starting C:\Users\User\Documents\GitHub\EasyFix-SEBA-Play\.
-11 Jun 2014 08:05:51,002 WARN  ~ You're running Play! in DEV mode
-11 Jun 2014 08:05:52,727 WARN  ~ Ignoring maker (static params must be specified as key:'value',...)
-11 Jun 2014 08:05:52,729 WARN  ~ Ignoring maker (static params must be specified as key:'value',...)
-11 Jun 2014 08:05:52,730 WARN  ~ Ignoring maker,deviceModel (static params must be specified as key:'value',...)
-11 Jun 2014 08:05:52,731 WARN  ~ Ignoring maker,deviceModel (static params must be specified as key:'value',...)
-11 Jun 2014 08:05:52,732 WARN  ~ Ignoring maker,deviceModel (static params must be specified as key:'value',...)
-11 Jun 2014 08:05:52,732 WARN  ~ Ignoring maker,deviceModel (static params must be specified as key:'value',...)
-11 Jun 2014 08:05:52,733 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
-11 Jun 2014 08:05:52,733 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
-11 Jun 2014 08:05:52,733 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
-11 Jun 2014 08:05:52,734 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
-11 Jun 2014 08:05:52,734 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
-11 Jun 2014 08:05:52,734 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
-11 Jun 2014 08:05:53,467 INFO  ~ Connected to jdbc:mysql://127.0.0.1/playdb_chrysa?useUnicode=yes&characterEncoding=UTF-8&connectionCollation=utf8_general_ci
-11 Jun 2014 08:05:58,306 ERROR ~ Unsuccessful: create table Actor (id bigint not null auto_increment, createdOn datetime, firstName varchar(255), lastName varchar(255), lastUpdated datetime, contactInformation_id bigint, primary key (id)) ENGINE=InnoDB DEFAULT CHARSET=utf8
-11 Jun 2014 08:05:58,307 ERROR ~ Table 'actor' already exists
-11 Jun 2014 08:05:59,993 ERROR ~ Unsuccessful: create table Location (id bigint not null auto_increment, city varchar(255), country varchar(255), geoPoint tinyblob, street varchar(255), streetNo varchar(255), zip varchar(255), primary key (id)) ENGINE=InnoDB DEFAULT CHARSET=utf8
-11 Jun 2014 08:05:59,993 ERROR ~ Table 'location' already exists
-11 Jun 2014 08:06:01,350 ERROR ~ Unsuccessful: create table WorkingHours (id bigint not null auto_increment, day integer not null, primary key (id)) ENGINE=InnoDB DEFAULT CHARSET=utf8
-11 Jun 2014 08:06:01,351 ERROR ~ Table 'workinghours' already exists
-11 Jun 2014 08:06:01,661 ERROR ~ Unsuccessful: alter table Actor add index FK3C2B9D5201FD43E (contactInformation_id), add constraint FK3C2B9D5201FD43E foreign key (contactInformation_id) references ContactInformation (id)
-11 Jun 2014 08:06:01,661 ERROR ~ Duplicate key name 'FK3C2B9D5201FD43E'
-11 Jun 2014 08:06:11,974 INFO  ~ Application 'EasyFix' is now started !
-11 Jun 2014 08:06:12,564 INFO  ~ guery parms for  findInTechniciansByRepairiphone6 screen2
-11 Jun 2014 08:06:12,565 INFO  ~ teeeech4Marcus
-11 Jun 2014 08:06:12,565 INFO  ~ teeeech4Marcus
-11 Jun 2014 08:06:12,565 INFO  ~ teeeech4Marcus
-=======
-10 Jun 2014 00:42:58,543 INFO  ~ Starting E:\Work\JAVA\Play\EasyFix\.
-10 Jun 2014 00:42:59,512 WARN  ~ You're running Play! in DEV mode
-10 Jun 2014 00:43:01,035 WARN  ~ Ignoring maker (static params must be specified as key:'value',...)
-10 Jun 2014 00:43:01,037 WARN  ~ Ignoring maker (static params must be specified as key:'value',...)
-10 Jun 2014 00:43:01,041 WARN  ~ Ignoring maker,deviceModel (static params must be specified as key:'value',...)
-10 Jun 2014 00:43:01,041 WARN  ~ Ignoring maker,deviceModel (static params must be specified as key:'value',...)
-10 Jun 2014 00:43:01,042 WARN  ~ Ignoring maker,deviceModel (static params must be specified as key:'value',...)
-10 Jun 2014 00:43:01,043 WARN  ~ Ignoring maker,deviceModel (static params must be specified as key:'value',...)
-10 Jun 2014 00:43:01,045 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
-10 Jun 2014 00:43:01,045 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
-10 Jun 2014 00:43:01,045 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
-10 Jun 2014 00:43:01,047 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
-10 Jun 2014 00:43:01,047 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
-10 Jun 2014 00:43:01,047 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
-10 Jun 2014 00:43:02,024 INFO  ~ Connected to jdbc:mysql://127.0.0.1/playdb?useUnicode=yes&characterEncoding=UTF-8&connectionCollation=utf8_general_ci
->>>>>>> 7ede2bf8638b2e6f839a70bcae5a62d77a922320
+11 Jun 2014 12:24:39,653 INFO  ~ Starting E:\Work\JAVA\Play\EasyFix\.
+11 Jun 2014 12:24:40,789 WARN  ~ You're running Play! in DEV mode
+11 Jun 2014 12:24:42,422 WARN  ~ Ignoring maker (static params must be specified as key:'value',...)
+11 Jun 2014 12:24:42,424 WARN  ~ Ignoring maker (static params must be specified as key:'value',...)
+11 Jun 2014 12:24:42,426 WARN  ~ Ignoring maker,deviceModel (static params must be specified as key:'value',...)
+11 Jun 2014 12:24:42,426 WARN  ~ Ignoring maker,deviceModel (static params must be specified as key:'value',...)
+11 Jun 2014 12:24:42,428 WARN  ~ Ignoring maker,deviceModel (static params must be specified as key:'value',...)
+11 Jun 2014 12:24:42,428 WARN  ~ Ignoring maker,deviceModel (static params must be specified as key:'value',...)
+11 Jun 2014 12:24:42,430 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
+11 Jun 2014 12:24:42,430 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
+11 Jun 2014 12:24:42,430 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
+11 Jun 2014 12:24:42,432 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
+11 Jun 2014 12:24:42,432 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
+11 Jun 2014 12:24:42,432 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
+11 Jun 2014 12:24:43,457 INFO  ~ Connected to jdbc:mysql://127.0.0.1/playdb_chrysa?useUnicode=yes&characterEncoding=UTF-8&connectionCollation=utf8_general_ci
+11 Jun 2014 12:24:49,247 ERROR ~ Unsuccessful: create table Actor (id bigint not null auto_increment, createdOn datetime, firstName varchar(255), lastName varchar(255), lastUpdated datetime, contactInformation_id bigint, primary key (id)) ENGINE=InnoDB DEFAULT CHARSET=utf8
+11 Jun 2014 12:24:49,247 ERROR ~ Table 'actor' already exists
+11 Jun 2014 12:24:49,365 ERROR ~ Unsuccessful: create table Appointment (id bigint not null auto_increment, customerId bigint not null, dateTimeStart date, deviceRepairId bigint not null, duration bigint not null, technicianId bigint not null, meetingPlace_id bigint, primary key (id)) ENGINE=InnoDB DEFAULT CHARSET=utf8
+11 Jun 2014 12:24:49,365 ERROR ~ Table 'appointment' already exists
+11 Jun 2014 12:24:50,675 ERROR ~ Unsuccessful: create table DeviceRepair (id bigint not null auto_increment, createdOn datetime, description varchar(255), displayName varchar(255), image varchar(255), lastUpdated datetime, name varchar(255), price float not null, repairTime bigint not null, primary key (id)) ENGINE=InnoDB DEFAULT CHARSET=utf8
+11 Jun 2014 12:24:50,676 ERROR ~ Table 'devicerepair' already exists
+11 Jun 2014 12:24:51,210 ERROR ~ Unsuccessful: create table Location (id bigint not null auto_increment, city varchar(255), country varchar(255), geoPoint tinyblob, street varchar(255), streetNo varchar(255), zip varchar(255), primary key (id)) ENGINE=InnoDB DEFAULT CHARSET=utf8
+11 Jun 2014 12:24:51,210 ERROR ~ Table 'location' already exists
+11 Jun 2014 12:24:51,930 ERROR ~ Unsuccessful: create table Technician (description varchar(255), image varchar(255), isExternal bit not null, title varchar(255), id bigint not null, primary key (id)) ENGINE=InnoDB DEFAULT CHARSET=utf8
+11 Jun 2014 12:24:51,931 ERROR ~ Table 'technician' already exists
+11 Jun 2014 12:24:52,993 ERROR ~ Unsuccessful: create table customer (id bigint not null, primary key (id)) ENGINE=InnoDB DEFAULT CHARSET=utf8
+11 Jun 2014 12:24:52,993 ERROR ~ Table 'customer' already exists
+11 Jun 2014 12:24:52,996 ERROR ~ Unsuccessful: alter table Actor add index FK3C2B9D5201FD43E (contactInformation_id), add constraint FK3C2B9D5201FD43E foreign key (contactInformation_id) references ContactInformation (id)
+11 Jun 2014 12:24:52,997 ERROR ~ Duplicate key name 'FK3C2B9D5201FD43E'
+11 Jun 2014 12:24:53,000 ERROR ~ Unsuccessful: alter table Appointment add index FKB7F037F2199A967 (meetingPlace_id), add constraint FKB7F037F2199A967 foreign key (meetingPlace_id) references Location (id)
+11 Jun 2014 12:24:53,000 ERROR ~ Duplicate key name 'FKB7F037F2199A967'
+11 Jun 2014 12:24:59,333 ERROR ~ Unsuccessful: alter table Technician add index FK1260A584AA2A266C (id), add constraint FK1260A584AA2A266C foreign key (id) references Actor (id)
+11 Jun 2014 12:24:59,333 ERROR ~ Duplicate key name 'FK1260A584AA2A266C'
+11 Jun 2014 12:25:03,151 ERROR ~ Unsuccessful: alter table customer add index FK24217FDEAA2A266C (id), add constraint FK24217FDEAA2A266C foreign key (id) references Actor (id)
+11 Jun 2014 12:25:03,151 ERROR ~ Duplicate key name 'FK24217FDEAA2A266C'
+11 Jun 2014 12:25:03,257 INFO  ~ Application 'EasyFix' is now started !

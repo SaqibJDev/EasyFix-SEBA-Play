@@ -33,8 +33,8 @@ public class ExternalTechnicians extends Controller {
     public static void showAll() {
         List<Technician> exTechnicians = QueryUtil.findTechniciansByIsExternal(true);
         
-        if (exTechnicians != null) {
-
+        if (exTechnicians != null && exTechnicians.size() > 0) {
+        	System.out.println(exTechnicians.size());
             Logger.info(exTechnicians.get(0).description);
             Collections.sort(exTechnicians, new Comparator<Technician>() {
                 public int compare(Technician o1, Technician o2) {

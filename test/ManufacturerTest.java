@@ -17,7 +17,7 @@ import play.test.UnitTest;
 import utility.QueryUtil;
 
 
-public class ExternalTechniciansTest extends UnitTest {
+public class ManufacturerTest extends UnitTest {
 
     @Test
     public void retrieveExternalTechnician() {

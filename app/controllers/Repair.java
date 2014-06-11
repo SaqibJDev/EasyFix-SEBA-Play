@@ -19,6 +19,9 @@ import utility.QueryUtil;
 
 public class Repair extends Controller {
 
+	/*
+	 * Shows list of all manufacturer from database
+	 */
     public static void index() {
         List<Manufacturer> manufacturers = Manufacturer.findAll();
         Collections.sort(manufacturers, new Comparator<Manufacturer>() {
@@ -35,17 +38,13 @@ public class Repair extends Controller {
         Manufacturer manufacturer = (Manufacturer) Manufacturer
                 .find("byName", maker).fetch().get(0);
         if (manufacturer != null) {
-            System.out.println("Manufacturer exists : " + maker);
             List<DeviceModel> devices = manufacturer.deviceModels;
-            System.out.println("List of models count : " + devices.size());
             Collections.sort(devices, new Comparator<DeviceModel>() {
 
                 public int compare(DeviceModel o1, DeviceModel o2) {
                     return o1.name.compareTo(o2.name);
                 }
             });
-            // renderArgs.put("device", devices);
-            // renderArgs.put("maker", maker);
             render(maker, devices);
         } else {
             render();
@@ -55,9 +54,6 @@ public class Repair extends Controller {
 
     public static void deviceModelRepairList(String maker, String deviceModel) {
 
-        System.out
-                .println("Manufacturer : " + maker + "| Model:" + deviceModel);
-        // DeviceModel device = new DeviceModel("iPhone 4");
         Manufacturer manufacturer = (Manufacturer) Manufacturer
                 .find("byName", maker).fetch().get(0);
         List<DeviceRepair> deviceRepairList = new ArrayList<DeviceRepair>();
@@ -66,8 +62,6 @@ public class Repair extends Controller {
             List<DeviceModel> devices = manufacturer.deviceModels;
             for (DeviceModel deviceModelLocal : devices) {
                 if (deviceModelLocal.name.equals(deviceModel)) {
-                    System.out.println("Manufacturer exists : " + maker
-                            + "| Model exists:" + deviceModel);
                     deviceRepairList = deviceModelLocal.deviceRepairList;
                 }
             }
@@ -86,8 +80,6 @@ public class Repair extends Controller {
 
     public static void deviceModelRepairDetails(String maker,
             String deviceModel, String repair) {
-
-        // String []breadcrumbs = request.get().url.split("/");
         DeviceRepair deviceRepair = (DeviceRepair) DeviceRepair
                 .find("byName", repair).fetch(1).get(0);
         if (deviceRepair != null) {
