@@ -9,6 +9,9 @@ import models.*;
 
 public class Application extends Controller {
 
+	/*
+	 * Render Home page
+	 */
     public static void index() {
         render();
     }

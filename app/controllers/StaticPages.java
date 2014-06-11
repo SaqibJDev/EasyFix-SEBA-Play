@@ -13,10 +13,16 @@ import play.mvc.Controller;
 
 public class StaticPages extends Controller {
 
+	/*
+	 * Shows Q&A page
+	 */
 	public static void QandA() {
 		render();
 	}
 	
+	/*
+	 * Shows About Us page
+	 */
 	public static void AboutUs() {
 		render();
 	}

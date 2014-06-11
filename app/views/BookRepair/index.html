@@ -1,27 +1,159 @@
-#{extends 'main.html' /} #{set title:'Maker' /}
+#{extends 'master.html' /} #{set title:'EasyFix - Technicians Availability' /}
+#{set menu_item:'menu_repair' /} #{set moreScripts:'bootstrap.min.js' /}
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".tooltips button").tooltip({
+			placement : 'top'
+		});
+	});
+</script>
+#{include 'breadcrumbs.html'/}
 
-<div class="middlePageContentContainer">
-	<div style="margin: 0 auto; width: 750px;">
-		<div class="form-group">
-			<form role="search">
-				<div class="col-md-4"></div>
-				<div class="text-right">
+       <div class="container"><p>
+	   </p>
 
-					#{form @BookRepair.modelRepairTechnicianByLocation(deviceModel,repair)}
-					<div>
-						Enter your location* <input type="text" name="location"
-							value="" placeholder="Your Location"/> <span class="error">#{error
-							'name' /}</span>
-					</div>
-					<div>
-						<input type="submit" value="Submit" />
-					</div>
-					#{/form}
-				</div>
-				
-				</div>
-			</form>
 
+ <div class="col-md-1">
+ </div>
+ <div class="col-md-10">
+	 
+				 
+ 		<div class="panel panel-default">
+ 		  <div class="panel-body">
+ 			  <center>
+ 		    <h3>Check technicians availability</h3>
+		</center>
+	</br>
+		
+		 <center>
+		<div class="progress" style='margin-left:50px; margin-right:50px;'>
+		  <div class="progress-bar" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">
+		    Step 1/3
+		  </div>
 		</div>
-	</div>
-</div>
+	</center>
+			<form class="form-horizontal">
+			<fieldset>
+
+			<!-- Button Drop Down -->
+			
+			 <div class="col-md-5">
+				 <center>
+			<div class="control-group">
+			  <label class="control-label" for="buttondropdown">Enter your location</label>
+			  <div class="controls">
+			    <div class="input-append">
+			      <input id="buttondropdown" name="buttondropdown" class="input-xlarge" placeholder="your location" type="text" required="">
+			      <div class="btn-group">
+			        <button class="btn dropdown-toggle" data-toggle="dropdown">
+          
+			          <span class="caret"></span>
+			        </button>
+			        <ul class="dropdown-menu">
+			          <li><a href="#">Option one</a></li>
+			          <li><a href="#">Option two</a></li>
+			          <li><a href="#">Option three</a></li>
+			        </ul>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+
+			<!-- Button Drop Down -->
+			<div class="control-group">
+			  <label class="control-label" for="buttondropdown">Choose technician</label>
+			  <div class="controls">
+			    <div class="input-append">
+			      <input id="buttondropdown" name="buttondropdown" class="input-xlarge" placeholder="technician" type="text" required="">
+			      <div class="btn-group">
+			        <button class="btn dropdown-toggle" data-toggle="dropdown">
+          
+			          <span class="caret"></span>
+			        </button>
+			        <ul class="dropdown-menu">
+			          <li><a href="#">Option one</a></li>
+			          <li><a href="#">Option two</a></li>
+			          <li><a href="#">Option three</a></li>
+			        </ul>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+		</center>
+			 </div>
+			  <div class="col-md-2"> </div>
+			 
+			 <div class="col-md-5">
+				 <center>
+
+			<!-- Text input-->
+			<div class="control-group">
+			  <label class="control-label" for="Date">Date</label>
+			  <div class="controls">
+			    <input id="Date" name="Date" type="text" placeholder="Date" class="input-xlarge">
+    
+			  </div>
+			</div>
+
+			<!-- Text input-->
+			<div class="control-group">
+			  <label class="control-label" for="Time">Time</label>
+			  <div class="controls">
+			    <input id="Time" name="Time" type="text" placeholder="Time" class="input-xlarge" required="">
+    
+			  </div>
+			</div>
+		</center>
+			 </div>
+			
+			
+
+			</fieldset>
+			</form>
+		</br>
+			<center>
+			<iframe src="https://www.google.com/maps/embed/v1/place?q=Tu%20M%C3%BCnchen%2C%20Munich%2C%20Allemagne&key=AIzaSyDQCZq4LTDm1WF7nZYcYoqD9NJkS8l7Xps" width="850" height="400" frameborder="0" style="border:0"></iframe></center>
+			
+		    <div class="col-md-1">
+				</div>
+			
+		    <div class="col-md-2">
+			<!-- Button -->
+			<div class="control-group">
+			  <label class="control-label" for="back"></label>
+			  <div class="controls">
+			    <button id="back" name="back" class="btn btn-primary">Back</button>
+			  </div>
+			</div>
+			
+			</div>
+			
+		    <div class="col-md-6">
+				</div>
+				<div class="col-md-2" align="right">
+					
+
+			<!-- Button -->
+			<div class="control-group">
+			  <label class="control-label" for="singlebutton"></label>
+			  <div class="controls">
+			    <a href="${'/Repair/'+maker+'/'+deviceModel+'/'+repair+'/Technicians Availability/Personal Information'}"><button id="singlebutton" name="singlebutton" class="btn btn-primary">Continue</button></a>
+			  </div>
+			  
+			</div>
+		    <div class="col-md-1">
+				</div>
+			
+			
+			</div>
+	
+			
+			
+			
+ 		  </div>
+ 		</div>
+	 			 </div>
+	
+				 
+			 
+   </div>

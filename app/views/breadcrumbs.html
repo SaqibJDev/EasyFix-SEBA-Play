@@ -4,5 +4,5 @@
 %{breadcrumbs = request.get().url.split("/");
 breadcrumbURL = ""}%
 #{list items:breadcrumbs, as:"breadcrumb"}
-		#{if breadcrumb!=""}%{breadcrumbURL+= "/"+breadcrumb;}%<li><a href="${breadcrumbURL}">${breadcrumb}</a></li>#{/if}
+		#{if breadcrumb!=""}%{breadcrumbURL+= "/"+breadcrumb;}%<li><a href="${breadcrumbURL}">${breadcrumb.replace("%20", " ")}</a></li>#{/if}
 		#{/list}</ul></div>

@@ -20,11 +20,14 @@ public class BookRepair extends Controller {
     /********************* BOOK REPAIR CODE START **********************************/
 
     // Internal Technicians
-
-    // TODO we need static page for mock-up with map
-    public static void index(String deviceModel, String repair) {
+	/*
+	 * Show map where user can select its location
+	 * Show list of available technicians according to User selected location
+	 * User selects Date and time
+	 */
+    public static void index(String maker, String deviceModel, String repair) {
         
-            render(deviceModel,repair);
+            render(deviceModel,repair, maker);
     }
     // TODO we need static page for mock-up with map
     public static void checkTechniciansAvailability(String deviceModel, String repair) {
@@ -82,9 +85,14 @@ public class BookRepair extends Controller {
      * @param date
      * @param time
      */
-    public static void modelRepairTechnicianAvailability(String date,
-            String time) {
-        // TODO currently not working
+//    public static void modelRepairTechnicianAvailability(String date,
+//            String time) {
+//        // TODO currently not working
+//    }
+//    
+    public static void personalInformationForBookRepair(String maker, String deviceModel, String repair) {
+    	
+    	render(maker, deviceModel, repair);
     }
 
     /**
@@ -105,6 +113,11 @@ public class BookRepair extends Controller {
             String tel, String notes) {
         // TODO currently not working
     }
+    
+    public static void reviewAppointment(String maker, String deviceModel, String repair) {
+        
+        render(deviceModel,repair, maker);
+}
 
     /**
      * Step3/3 appointment confirmation

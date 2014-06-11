@@ -73,9 +73,9 @@ public class CreateRetrieveActorTest extends UnitTest {
     private List<DeviceModel> createDeviceModelList() {
         List<DeviceModel> models = new ArrayList<DeviceModel>();
         List<DeviceRepair> repairs = new ArrayList<DeviceRepair>();
-        DeviceRepair r = new DeviceRepair("screen2", "screen", "", "", 50, 600000000).save();
+        DeviceRepair r = new DeviceRepair("screen2", "screen", "", "", 50, 600000000, null,null).save();
         repairs.add(r);
-        DeviceModel model = new DeviceModel("iphone6", "iphone6", "description", "image", repairs).save();
+        DeviceModel model = new DeviceModel("iphone6", "iphone6", "description", "image", null, null, repairs).save();
 
         models.add(model);
         

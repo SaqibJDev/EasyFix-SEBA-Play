@@ -1,0 +1,57 @@
+#{extends 'master.html' /} #{set title:'EasyFix - External Technician Details' /}
+#{set menu_item:'menu_repair' /} #{set moreScripts:'bootstrap.min.js' /}
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".tooltips button").tooltip({
+			placement : 'top'
+		});
+	});
+</script>
+#{include 'breadcrumbs.html'/}
+<div class="container">
+		 <div class="col-md-1">
+		 </div>
+		 <div class="col-md-10">
+    
+		 </br>
+		
+			 <div class="panel panel-default">
+			   <div class="panel-heading">
+			     <h4 class="panel-title">Technician Details</h2>
+			   </div>
+			   <div class="panel-body">
+		 		     <div class="col-md-3"></br>
+		 		<img src="${'/public/images/technicians/'+technician.image}" width="100%"  border="0" alt="Home">
+		 	    
+		 			 </div>
+	  		 		     <div class="col-md-6">
+	  		 		<h2>${technician.title}</h2>
+					<n><h7>${technician.contactInformation.address.street} ${technician.contactInformation.address.streetNo}, ${technician.contactInformation.address.zip}, ${technician.contactInformation.address.city}
+						</h7><h5>Opening hours: </br>
+Monday - Friday : 09.00-17.00 </h4></br>
+					<h4>User Rating:</br><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i></h6><br>
+				</b></br></br>
+					
+	  		 			 </div>
+										<div class="col-md-3">
+										</br>
+							 				<ul class="tooltips">
+							 				<button type="submit" class="btn btn-primary btn-lg" data-toggle="tooltip" data-original-title="Click here to contact the repair with the external technician!">Contact</button>
+										</ul>
+											
+											
+				
+											
+											
+												 												
+										 </div>					
+			 				  	 	  		 			
+														 </div>
+													
+														 
+		 <div class="col-md-1">
+		 </div>
+
+   </div>
+   </div>
+	 </div>

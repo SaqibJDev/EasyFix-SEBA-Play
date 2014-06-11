@@ -21,6 +21,7 @@ public class Repair extends Controller {
 
 	/*
 	 * Shows list of all manufacturer from database
+	 * Sorted on Name
 	 */
     public static void index() {
         List<Manufacturer> manufacturers = Manufacturer.findAll();
@@ -33,14 +34,15 @@ public class Repair extends Controller {
         render(manufacturers);
     }
 
+    /*
+     * Show All available device for a given Manufacturer
+     */
     public static void manufacturer(String maker) {
-        // DeviceModel device = new DeviceModel("iPhone 4");
         Manufacturer manufacturer = (Manufacturer) Manufacturer
                 .find("byName", maker).fetch().get(0);
         if (manufacturer != null) {
             List<DeviceModel> devices = manufacturer.deviceModels;
             Collections.sort(devices, new Comparator<DeviceModel>() {
-
                 public int compare(DeviceModel o1, DeviceModel o2) {
                     return o1.name.compareTo(o2.name);
                 }
@@ -49,9 +51,11 @@ public class Repair extends Controller {
         } else {
             render();
         }
-
     }
 
+    /*
+     * Show list of all available repairs against given Manufacturer's device Model
+     */
     public static void deviceModelRepairList(String maker, String deviceModel) {
 
         Manufacturer manufacturer = (Manufacturer) Manufacturer
@@ -66,7 +70,6 @@ public class Repair extends Controller {
                 }
             }
             Collections.sort(deviceRepairList, new Comparator<DeviceRepair>() {
-
                 public int compare(DeviceRepair arg0, DeviceRepair arg1) {
                     return arg0.name.compareTo(arg1.name);
                 }
@@ -75,15 +78,17 @@ public class Repair extends Controller {
         } else {
             render();
         }
-
     }
 
+    /*
+     * Shows details of selected device repair
+     */
     public static void deviceModelRepairDetails(String maker,
             String deviceModel, String repair) {
         DeviceRepair deviceRepair = (DeviceRepair) DeviceRepair
                 .find("byName", repair).fetch(1).get(0);
         if (deviceRepair != null) {
-            render(maker, deviceModel, deviceRepair);
+            render(maker, deviceModel, deviceRepair, repair);
         } else {
             render();
         }

@@ -75,6 +75,25 @@ body {
 	font-weight: bold;
 }
 
+h7 {
+	font-size: 1.4em;
+	color: #235794;
+	font-family: 'Open Sans', sans-serif;
+	line-height: 150%;
+
+	font-weight: bold;
+}
+
+h8 {
+	font-size: 1.4em;
+	color: #009933;
+	font-family: 'Open Sans', sans-serif;
+	line-height: 150%;
+
+	font-weight: normal;
+}
+
+
 h6 {
 	font-size: 1.2em;
 	color: #009933;

@@ -1,0 +1,182 @@
+#{extends 'master.html' /} #{set title:'EasyFix - Personal Information' /}
+#{set menu_item:'menu_repair' /} #{set moreScripts:'bootstrap.min.js' /}
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".tooltips button").tooltip({
+			placement : 'top'
+		});
+	});
+</script>
+#{include 'breadcrumbs.html'/}
+
+       <div class="container"><p>
+	   </p>
+
+
+ <div class="col-md-1">
+ </div>
+ <div class="col-md-10">
+	 
+				 
+ 		<div class="panel panel-default">
+ 		  <div class="panel-body">
+ 			  <center>
+ 		    <h3>Enter your personal data</h3>
+		</center>
+	</br>
+		
+		 <center>
+		<div class="progress" style='margin-left:50px; margin-right:50px;'>
+		  <div class="progress-bar" role="progressbar" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100" style="width: 66%;">
+		    Step 2/3
+		  </div>
+		</div>
+	</center>
+			<form class="form-horizontal">
+			<fieldset>
+</br>
+			<!-- Button Drop Down -->
+		  <div class="col-md-2"> </div>
+			
+			
+			 <div class="col-md-4">
+				 <center>
+<div class="control-group">
+  <label class="control-label" for="textinput">First Name</label>
+  <div class="controls">
+    <input id="textinput" name="textinput" type="text" placeholder="First Name" class="input-xlarge" required="">
+    
+  </div>
+</div>
+</br>
+			<!-- Button Drop Down -->
+<!-- Text input-->
+<div class="control-group">
+  <label class="control-label" for="street">Street</label>
+  <div class="controls">
+    <input id="street" name="street" type="text" placeholder="Street" class="input-xlarge" required="">
+    
+  </div>
+</div>
+
+</br>
+<!-- Text input-->
+<div class="control-group">
+  <label class="control-label" for="postal">Postalcode</label>
+  <div class="controls">
+    <input id="postal" name="postal" type="text" placeholder="Postalcode" class="input-xlarge" required="">
+    
+  </div>
+</div>
+
+</br>
+<!-- Text input-->
+<div class="control-group">
+  <label class="control-label" for="postal">Phone</label>
+  <div class="controls">
+    <input id="postal" name="phone" type="text" placeholder="Phone" class="input-xlarge" required="">
+    
+  </div>
+</div>
+
+</center>
+			 </div>
+			  
+			 <div class="col-md-4">
+				
+
+			<!-- Text input-->
+			<center>
+			<div class="control-group">
+			  <label class="control-label" for="lastname">Last Name</label>
+			  <div class="controls">
+			    <input id="lastname" name="lastname" type="text" placeholder="Last Name" class="input-xlarge" required="">
+    
+			  </div>
+			</div>
+			
+</br>
+			<!-- Text input-->
+			<div class="control-group">
+			  <label class="control-label" for="Number">No.</label>
+			  <div class="controls">
+			    <input id="Time" name="Time" type="text" placeholder="No." class="mini" required="">
+    
+			  </div>
+			</div>
+			</br>
+			
+			<!-- Text input-->
+			<div class="control-group">
+			  <label class="control-label" for="postal">City</label>
+			  <div class="controls">
+			    <input id="postal" name="city" type="text" placeholder="City" class="input-xlarge" required="">
+    
+			  </div>
+			</div>
+		</br>
+			
+			<!-- Text input-->
+			<div class="control-group">
+			  <label class="control-label" for="postal">Mobile</label>
+			  <div class="controls">
+			    <input id="mobile" name="mobile" type="text" placeholder="Mobile" class="input-xlarge" required="">
+    
+			  </div>
+			</div>
+		</center>
+			
+			</br>
+		
+			 </div>
+			 
+			 </br>
+  		  <div class="col-md-2"> </div>
+			<center>
+			<div class="control-group">
+			  <label class="control-label" for="notes">Additional Information</label>
+			  <div class="controls">                     
+			    <textarea id="notes" name="notes"></textarea>
+			  </div>
+			</div>
+		</center>
+
+			</fieldset>
+			</form>
+		</br>
+		
+			
+		    <div class="col-md-2">
+				</div>
+			
+		    <div class="col-md-2">
+			<!-- Button -->
+			<div class="control-group">
+			  <label class="control-label" for="back"></label>
+			  <div class="controls">
+			    <button id="back" name="back" class="btn btn-primary">Back</button>
+			  </div>
+			</div>
+			
+			</div>
+			
+		    <div class="col-md-4">
+				</div>
+				<div class="col-md-2" align="right">
+					
+
+			<!-- Button -->
+			<div class="control-group">
+			  <label class="control-label" for="singlebutton"></label>
+			  <div class="controls">
+			    <a href="${'/Repair/'+maker+'/'+deviceModel+'/'+repair+'/Technicians Availability/Personal Information/Review%20Appointment'}"><button id="singlebutton" name="singlebutton" class="btn btn-primary">Review your booking</button></a>
+			  </div>
+			  
+			</div>
+		    <div class="col-md-2">
+				</div>
+			 
+			     </div>
+			 
+   </div>
+     </div></div></div>

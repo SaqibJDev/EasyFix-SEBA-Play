@@ -1,22 +1,70 @@
-#{extends 'main.html' /} #{set title:'Maker' /}
-
-<div class="middlePageContentContainer">
-
-	<div style="margin: 0 auto; width: 750px;">
-<h3>External Partners for <span class="repairCost" style="color:#2b78e4;width:50%;">${deviceRepair.name}</span></h3>
-		#{list items:exTechnicians, as:"technician"}
-		<div class="repairListItem">
-			<img src="${'/public/images/technicians/'+technician.image}"
-				class="repairLogo" />
-			<p class="repairHeading">${technician.lastName}</p>
-			<p class="repairHeading">${technician.title}</p>
-			<br />
-			<p class="details">${technician.description}</p>
-			<p class="details">${technician.contactInformation.address.city},${technician.contactInformation.address.zip},${technician.contactInformation.address.street}
-				${technician.contactInformation.address.streetNo}</p>
-			<p class="details">${technician.contactInformation.website}</p>
-
-		</div>
-		#{/list}
+#{extends 'master.html' /} #{set title:'EasyFix - External Technicians' /}
+#{set menu_item:'menu_repair' /} #{set moreScripts:'bootstrap.min.js' /}
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".tooltips button").tooltip({
+			placement : 'top'
+		});
+	});
+</script>
+#{include 'breadcrumbs.html'/}
+<div class="container">
+	<div class="row">
+		<center>
+			<h3>Choose one of your listed external technicians!</h3>
+		</center>
 	</div>
+	</br>
+
+	<div class="col-md-1"></div>
+	<div class="col-md-10">
+
+		<div class="panel panel-default">
+			<!-- Default panel contents -->
+
+			<div class="panel-body">
+				<center>
+					<b>Please note:</b> We can not guarentee for the quality of the
+					repair services from external technicians. </br>If you want to the
+					Easyfix repair service with high-quality parts and highly-skilled
+					technicians <a href="${'/Repair/'+maker+'/'+deviceModel+'/'+repair+'/BookRepair'}">click here</a>.
+				</center>
+			</div>
+
+			<!-- Table -->
+			<table class="table">
+				<tr>
+					<th>Name</th>
+					<th>Adress</th>
+
+					<th>Rating</th>
+					<th>Type</th>
+					<th></th>
+				</tr>
+				#{list items:exTechnicians, as:"technician"}
+				<tr>
+					<td>${technician.firstName} ${technician.lastName}</td>
+					<td>${technician.contactInformation.address.city},${technician.contactInformation.address.zip},${technician.contactInformation.address.street}
+						${technician.contactInformation.address.streetNo}</td>
+
+					<td><i class="glyphicon glyphicon-star"></i><i
+						class="glyphicon glyphicon-star"></i><i
+						class="glyphicon glyphicon-star"></i><i
+						class="glyphicon glyphicon-star"></i></td>
+
+					<td>Repairshop</td>
+					<td><ul class="tooltips">
+							<a href="${'/Repair/'+maker+'/'+deviceModel+'/'+deviceRepair.name+'/ExternalTechnicians/'+technician.title}"><button class="btn btn-primary btn-sm"
+								data-toggle="tooltip"
+								data-original-title="Click here to choose this external technican">Choose</button></a>
+						</ul></td>
+				</tr>
+				#{/list}
+			</table>
+		</div>
+
+	</div>
+
+
 </div>
+<div class="col-md-1"></div>

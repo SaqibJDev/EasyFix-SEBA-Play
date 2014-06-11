@@ -30,6 +30,9 @@ import org.joda.time.DateTime;
 import play.libs.Time;
 import play.mvc.Controller;
 
+/*
+ * Test controller for experimenting different functions before implementing them in the real code
+ */
 public class Say extends Controller{
 
 	public static void hello(){
@@ -57,22 +60,6 @@ public class Say extends Controller{
 	}
 	
 	public static void bye(){
-//		Employee emp = new Employee();
-//		emp.name = "Saqib123";
-//		//emp.create();
-//		
-//		List<Phone> phones = Phone.find("byId", 3L).fetch();
-////		Phone ph = new Phone();
-////		ph.number = "asdasda";
-////		phones.add(ph);
-//		emp.phones = phones;
-//		emp.create();
-//
-////		Phone ph = new Phone();
-////		ph.number = "asdsadasd";
-////		ph.create();
-		
-		
 		render();
 	}
 	
@@ -82,19 +69,6 @@ public class Say extends Controller{
 		device.description = "Testing 5S";
 		device.lastUpdated = device.createdOn = new Timestamp(System.currentTimeMillis());
 		device.create();
-		//emp.create();
-		
-//		List<Phone> phones = Phone.find("byId", 3L).fetch();
-////		Phone ph = new Phone();
-////		ph.number = "asdasda";
-////		phones.add(ph);
-//		emp.phones = phones;
-//		emp.create();
-
-//		Phone ph = new Phone();
-//		ph.number = "asdsadasd";
-//		ph.create();
-		
 		
 		render();
 	}

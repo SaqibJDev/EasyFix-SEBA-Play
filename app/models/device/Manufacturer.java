@@ -19,6 +19,9 @@ import org.joda.time.DateTime;
 
 import play.db.jpa.Model;
 
+/*
+ * Manufaturer Entity represents companies who produce mobile phones and for which we provide services to repair
+ */
 @Entity
 public class Manufacturer extends Model{
 
@@ -31,4 +34,20 @@ public class Manufacturer extends Model{
 	
 	@OneToMany
 	public List<DeviceModel> deviceModels;
+
+	public Manufacturer() {}
+	
+	public Manufacturer(String name, String displayName, String description,
+			String image, Timestamp createdOn, Timestamp lastUpdated,
+			List<DeviceModel> deviceModels) {
+		super();
+		this.name = name;
+		this.displayName = displayName;
+		this.description = description;
+		this.image = image;
+		this.createdOn = createdOn;
+		this.lastUpdated = lastUpdated;
+		this.deviceModels = deviceModels;
+	}
+
 }

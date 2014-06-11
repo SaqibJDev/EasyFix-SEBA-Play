@@ -1,5 +1,5 @@
 #{extends 'master.html' /} 
-#{set title:'EasyFix - Choose model'/}
+#{set title:'EasyFix - Choose Your Device Model'/}
 #{set menu_item:'menu_repair' /}  
 #{include 'breadcrumbs.html'/}
 
@@ -25,8 +25,8 @@
 	<center>		 
 			
 		     <div class="col-md-3">
-		<p>	<a href="/repair/${maker+'/'+device.name}"><img src="${'/public/images/'+device.image}" width="150" height="112.5" border="0" alt="Home"></a></p>
-	     <a href="/repair/${maker+'/'+device.name}">${device.displayName}</a> 
+		<p>	<a href="/Repair/${maker+'/'+device.name}"><img src="${'/public/images/'+device.image}" width="150" height="112.5" border="0" alt="Home"></a></p>
+	     <a href="/Repair/${maker+'/'+device.name}">${device.displayName}</a> 
 			 </div>
 			 </center>
 			 </p>

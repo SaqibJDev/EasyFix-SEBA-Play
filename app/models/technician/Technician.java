@@ -67,7 +67,7 @@ public class Technician extends Actor {
     /**
      * The specified working hours of technician
      */
-    @OneToMany//(cascade=CascadeType.ALL)
+    @OneToMany
     public List<WorkingHours> workingHours;
 
     /**
@@ -76,18 +76,6 @@ public class Technician extends Actor {
     @Expose
     public String image;
 
-    /**
-     * The schedule of technician
-     */
-    // @Expose
-    // @Embedded
-    // @OneToOne
-    // public Schedule schedule;
-    /*
-     * @ElementCollection
-     * @Expose
-     * @OneToMany public List<Appointment> appointments;
-     */
     /**
      * It defines whether the technician is external or internal
      */

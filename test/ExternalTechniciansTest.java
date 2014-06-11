@@ -58,11 +58,11 @@ public class ExternalTechniciansTest extends UnitTest {
         weekHours = WorkingHours.findAll();
        ContactInformation ci = new ContactInformation("010394344",
                 "w487937", "john@example.com", l, "s").save();
-        new Technician("Marcus", "Dim",ci , "smartphone expert",
+        new Technician("Marcus", "Dim",ci , "NexTouch",
                 "broken screens", weekHours, "tech1.jpg", true,  createDeviceModelList()).save();
 
         // Retrieve the user with title address expert
-        Technician t = Technician.find("byTitle", "smartphone expert")
+        Technician t = Technician.find("byTitle", "NexTouch")
                 .first();
     }
     
@@ -70,17 +70,12 @@ public class ExternalTechniciansTest extends UnitTest {
     private List<DeviceModel> createDeviceModelList() {
         List<DeviceModel> models = new ArrayList<DeviceModel>();
         List<DeviceRepair> repairs = new ArrayList<DeviceRepair>();
-        DeviceRepair r = new DeviceRepair("screen2", "screen", "", "", 50, 600000000);
-        r.create();
-        repairs.add((DeviceRepair) DeviceRepair.find("byName", "screen2").fetch().get(0));
-        System.out.println("Repairs size"+repairs.size());
-        DeviceModel model = new DeviceModel("iphone6", "iphone6", "description", "image", repairs);
-        //model.deviceRepairList = repairs;
-        System.out.println("model.create = "+model.create());
-        model=(DeviceModel) DeviceModel.find("byName", "iphone6").fetch().get(0);
-        
+        DeviceRepair r = new DeviceRepair("screen2", "screen", "", "", 50, 600000000, null,null).save();
+        repairs.add(r);
+        DeviceModel model = new DeviceModel("iphone6", "iphone6", "description", "image", null,null, repairs).save();
+
         models.add(model);
-        System.out.println("Models size"+models.size());
+        
         return models;
     }
 

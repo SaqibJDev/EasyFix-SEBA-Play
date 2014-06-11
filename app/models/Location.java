@@ -14,7 +14,6 @@ import com.google.gson.annotations.Expose;
  * @author Chrysa Papadaki - papadaki.chr@gmail.com
  * 
  */
-// @Embeddable
 @Entity
 public class Location extends Model {
     /**

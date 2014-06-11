@@ -7,23 +7,26 @@ GET     /                                       Application.index
 
 # Manufacturer page
 	# Index Page: Manufacturer List Page
-		GET     /Repair                                      controllers.Repair.index
-		GET     /repair                                       controllers.Repair.index
-		
-		GET     /Repair/                                      controllers.Repair.index
-		GET     /repair/                                       controllers.Repair.index
+		GET     /Repair                                      		controllers.Repair.index
+		GET     /Repair/                                      		controllers.Repair.index
 	
 	# Device Model List of selected Manufacturer 
-		GET     /Repair/{maker}                   controllers.Repair.manufacturer(maker)
-		GET     /repair/{maker}                   controllers.Repair.manufacturer(maker)
+		GET     /Repair/{maker}                   					controllers.Repair.manufacturer(maker)
 	
 	# Repair list of selected device
-		GET     /Repair/{maker}/{deviceModel}                   controllers.Repair.deviceModelRepairList(maker,deviceModel)
-		GET     /repair/{maker}/{deviceModel}                   controllers.Repair.deviceModelRepairList(maker,deviceModel)
+		GET     /Repair/{maker}/{deviceModel}                   	controllers.Repair.deviceModelRepairList(maker,deviceModel)
 	
 	# Repair details of selected repair
-		GET     /Repair/{maker}/{deviceModel}/{repair}        controllers.Repair.deviceModelRepairDetails(maker,deviceModel,repair)
-		GET     /repair/{maker}/{deviceModel}/{repair}        controllers.Repair.deviceModelRepairDetails(maker,deviceModel,repair)
+		GET     /Repair/{maker}/{deviceModel}/{repair}        		controllers.Repair.deviceModelRepairDetails(maker,deviceModel,repair)
+
+	# Book Repair
+		GET     /Repair/{maker}/{deviceModel}/{repair}/Technicians%20Availability        												controllers.BookRepair.index(maker,deviceModel,repair)
+		GET     /Repair/{maker}/{deviceModel}/{repair}/Technicians%20Availability/Personal%20Information        						controllers.BookRepair.personalInformationForBookRepair(maker,deviceModel,repair)
+		GET     /Repair/{maker}/{deviceModel}/{repair}/Technicians%20Availability/Personal%20Information/Review%20Appointment        	controllers.BookRepair.reviewAppointment(maker,deviceModel,repair)
+
+	# External Technicians
+		GET     /Repair/{maker}/{deviceModel}/{repair}/ExternalTechnicians  			controllers.ExternalTechnicians.show(maker,deviceModel,repair)
+		GET     /Repair/{maker}/{deviceModel}/{repair}/ExternalTechnicians/{name}  		controllers.ExternalTechnicians.details(maker, deviceModel,repair,name)
 
 # Static Pages
 	# Q&A page

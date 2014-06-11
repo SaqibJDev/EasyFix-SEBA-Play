@@ -12,7 +12,10 @@ import models.technician.Technician;
 
 public class ExternalTechnicians extends Controller {
 
-    public static void show(String deviceModel, String repair) {
+	/*
+	 * Show external technicians who offer repair services for selected device model and repair
+	 */
+    public static void show(String maker, String deviceModel, String repair) {
         List<Technician> exTechnicians = QueryUtil.findTechniciansByRepair(
                 QueryUtil.findTechniciansByIsExternal(true), deviceModel,
                 repair);
@@ -24,24 +27,42 @@ public class ExternalTechnicians extends Controller {
                     return o1.lastName.compareTo(o2.lastName);
                 }
             });
-            render(exTechnicians, deviceRepair);
+            render(exTechnicians, deviceRepair, deviceModel, repair, maker);
         } else
             render();
     }
     
-
+	/*
+	 * Show list of all external technicians
+	 */
     public static void showAll() {
         List<Technician> exTechnicians = QueryUtil.findTechniciansByIsExternal(true);
         
         if (exTechnicians != null && exTechnicians.size() > 0) {
-        	System.out.println(exTechnicians.size());
-            Logger.info(exTechnicians.get(0).description);
             Collections.sort(exTechnicians, new Comparator<Technician>() {
                 public int compare(Technician o1, Technician o2) {
                     return o1.lastName.compareTo(o2.lastName);
                 }
             });
             render(exTechnicians);
+        } else
+            render();
+    }
+    
+    /*
+     * Show details of external technician company/show, address, Contact link
+     */
+    public static void details(String maker, String deviceModel, String repair, String name) {
+        List<Technician> exTechnicians = QueryUtil.findTechniciansByIsExternal(true);
+        
+        if (exTechnicians != null && exTechnicians.size() > 0) {
+            for (Technician technician : exTechnicians) {
+				if(technician.title.equals(name)){
+					render(technician, maker, deviceModel, repair, name);
+					break;
+				}
+			}
+            
         } else
             render();
     }

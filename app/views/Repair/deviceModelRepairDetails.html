@@ -1,17 +1,72 @@
-#{extends 'master.html' /} #{set title:'Maker' /}
-
-
-<div class="middlePageContentContainer">
+#{extends 'master.html' /} #{set title:'EasyFix - Choose Technician' /}
+#{set menu_item:'menu_repair' /} #{set moreScripts:'bootstrap.min.js' /}
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".tooltips button").tooltip({
+			placement : 'top'
+		});
+	});
+</script>
 #{include 'breadcrumbs.html'/}
-	<div style="margin: 0 auto; width: 750px; ">
-	<div class="repairItemDetails">
-		<img src="${'/public/images/repairs/'+deviceRepair.image}" class="repairItemImage" />
-		<span class="repairCost">Repair Cost:</span><span class="repairCost" style="color:#2b78e4;width:50%;">${deviceRepair.price} &#8364;</span><br />
-		<span class="repairTime">Repair Time:  ${deviceRepair.repairTime}</span>
-		<div class="details">${deviceRepair.description}</div>
-		<a href="@{BookRepair.index(deviceModel,deviceRepair.name)}"><div class= "bookButton">Book</div></a>
-		<span class="simpleText">Or</span><br />	
-		<a href="@{ExternalTechnicians.show(deviceModel,deviceRepair.name)}"><div class= "externalTechnicians">Check External Technicians</div></a>
+
+
+<div class="container">
+	<div class="col-md-1"></div>
+	<div class="col-md-10">
+
+		</br>
+
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					Repair Details
+					</h2>
+			</div>
+			<div class="panel-body">
+				<div class="col-md-3">
+					</br> <img src="${'/public/images/repairs/'+deviceRepair.image}"
+						width="60%" border="0" alt="Home">
+
+				</div>
+				<div class="col-md-6">
+					<h2>iPhone 4 Display Repair</h2>
+					<b><n>
+						<h7>Repair Cost: ${deviceRepair.price} &#8364;</h7>
+						<h4>VAT, Materials, Labour hours.</h4>
+						</br>
+						<h8>Repair Time: ${deviceRepair.repairTime/1000} Min</h8>
+						</br></b></br>
+					</br>
+
+				</div>
+				<div class="col-md-3">
+					</br>
+					<ul class="tooltips">
+						<a href="${'/Repair/'+maker+'/'+deviceModel+'/'+deviceRepair.name+'/Technicians Availability'}"><button type="submit" class="btn btn-primary btn-lg"
+							data-toggle="tooltip"
+							data-original-title="Click here to book the repair with our highly-skilled technicians!">Book
+							Repair</button></a>
+					</ul>
+					<p>
+					<center>
+						<h4>or</h4>
+					</center>
+
+					<ul class="tooltips">
+						<a href="${'/Repair/'+maker+'/'+deviceModel+'/'+deviceRepair.name+'/ExternalTechnicians'}"><button
+								class="btn btn-primary btn-sm"
+								data-toggle="tooltip"
+								data-original-title="Click here to the check for external repair shops or technicians!">
+								Check for external </br> repair options
+							</button></a>
+					</ul>
+
+				</div>
+
+			</div>
+
+			<div class="col-md-1"></div>
+
+		</div>
 	</div>
-</div>
 </div>

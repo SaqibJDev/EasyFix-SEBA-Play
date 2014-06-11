@@ -1,21 +1,64 @@
-#{extends 'main.html' /} #{set title:'Maker' /}
+#{extends 'master.html' /} 
+#{set title:'EasyFix - External Technicians'/}
+#{set menu_item:'menu_repair' /}
 
-<div class="middlePageContentContainer">
-	<div style="margin: 0 auto; width: 750px;">
-<h3>External Partners</h3>
-		#{list items:exTechnicians, as:"technician"}
-		<div class="repairListItem">
-			<img src="${'/public/images/technicians/'+technician.image}"
-				class="repairLogo" />
-			<p class="repairHeading">${technician.lastName}</p>
-			<p class="repairHeading">${technician.title}</p>
-			<br />
-			<p class="details">${technician.description}</p>
-			<p class="details">${technician.contactInformation.address.city},${technician.contactInformation.address.zip},${technician.contactInformation.address.street}
-				${technician.contactInformation.address.streetNo}</p>
-			<p class="details">${technician.contactInformation.website}</p>
-
-		</div>
-		#{/list}
+<div class="container">
+	<div class="row">
+		<center>
+			<h3>Choose one of your listed external technicians!</h3>
+		</center>
 	</div>
+	</br>
+
+	<div class="col-md-1"></div>
+	<div class="col-md-10">
+
+		<div class="panel panel-default">
+			<!-- Default panel contents -->
+
+			<div class="panel-body">
+				<center>
+					<b>Please note:</b> We can not guarentee for the quality of the
+					repair services from external technicians. </br>If you want to the
+					Easyfix repair service with high-quality parts and highly-skilled
+					technicians <a href="book1.html">click here</a>.
+				</center>
+			</div>
+
+			<!-- Table -->
+			<table class="table">
+				<tr>
+					<th>Name</th>
+					<th>Adress</th>
+
+					<th>Rating</th>
+					<th>Type</th>
+					<th></th>
+				</tr>
+				#{list items:exTechnicians, as:"technician"}
+				<tr>
+					<td>${technician.lastName}</td>
+					<td>${technician.contactInformation.address.city},${technician.contactInformation.address.zip},${technician.contactInformation.address.street}
+						${technician.contactInformation.address.streetNo}</td>
+
+					<td><i class="glyphicon glyphicon-star"></i><i
+						class="glyphicon glyphicon-star"></i><i
+						class="glyphicon glyphicon-star"></i><i
+						class="glyphicon glyphicon-star"></i></td>
+
+					<td>Repairshop</td>
+					<td><ul class="tooltips">
+							<button type="submit" class="btn btn-primary btn-sm"
+								data-toggle="tooltip"
+								data-original-title="Click here to choose this external technican">Choose</button>
+						</ul></td>
+				</tr>
+				#{/list}
+			</table>
+		</div>
+
+	</div>
+
+
 </div>
+<div class="col-md-1"></div>

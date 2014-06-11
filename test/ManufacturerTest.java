@@ -1,3 +1,4 @@
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -6,6 +7,7 @@ import models.Interval;
 import models.Location;
 import models.device.DeviceModel;
 import models.device.DeviceRepair;
+import models.device.Manufacturer;
 import models.technician.Technician;
 import models.technician.WorkingHours;
 
@@ -16,72 +18,117 @@ import play.db.jpa.JPABase;
 import play.test.UnitTest;
 import utility.QueryUtil;
 
+/**
+ * 
+ * @author Saqib - saqib.javed87@gmail.com
+ * 
+ */
 
 public class ManufacturerTest extends UnitTest {
 
-    @Test
-    public void retrieveExternalTechnician() {
-        createAndRetrieveTechnician();
-        List<Technician> exTechs =  QueryUtil.findTechniciansByIsExternal(true);
-        assertNotNull(exTechs);
-
-         exTechs = QueryUtil.findTechniciansByRepair(exTechs, "iphone6", "screen2");
-        assertNotNull(exTechs);
+	/*
+	 * To test if database is connected and table exits for Manufacturer
+	 */
+	@Test
+    public void retrieveManufacturerList() {
+        List<Manufacturer> manufacturer =  Manufacturer.findAll();
+        assertNotNull(manufacturer);
     }
-    
-
-    public void createAndRetrieveTechnician() {
-
-        // location
-        Location l = new Location("garching", "82333").save();
-
-        // 0 to 6, where 0 is Sunday, 1 is Monday,
-        List<Interval> hours = new ArrayList<Interval>();
-
-        List<WorkingHours> weekHours = new ArrayList<WorkingHours>();
-        // create model.interval using joda getmillies
-        Interval interval = new Interval(
-                new DateTime(2014, 1, 1, 10, 0).getMillis(), new DateTime(2014,
-                        1, 1, 16, 0).getMillis());
-        hours.add(interval);
-        interval = new Interval(new DateTime(2014, 1, 1, 18, 0).getMillis(),
-                new DateTime(2014, 1, 1, 20, 0).getMillis());
-        hours.add(interval);
-
-        // 0 to 6, where 0 is Sunday, 1 is Monday,
-        new WorkingHours(1, hours);
-        new WorkingHours(2, hours);
-        new WorkingHours(3, hours);
-        new WorkingHours(4, hours);
-        new WorkingHours(5, hours);
-
-        weekHours = WorkingHours.findAll();
-       ContactInformation ci = new ContactInformation("010394344",
-                "w487937", "john@example.com", l, "s").save();
-        new Technician("Marcus", "Dim",ci , "smartphone expert",
-                "broken screens", weekHours, "tech1.jpg", true,  createDeviceModelList()).save();
-
-        // Retrieve the user with title address expert
-        Technician t = Technician.find("byTitle", "smartphone expert")
-                .first();
+	
+	/*
+	 * Creating Manufacturer without any relationship with device models
+	 */
+	@Test
+    public void CreateSimpleManufacturer() {
+		long time = System.currentTimeMillis();
+		Manufacturer manufacturer = new Manufacturer("Apple", "Apple", "Apple manufacturer from testcase", "apple.png", new Timestamp(time), new Timestamp(time), null).save();
+        assertNotNull(manufacturer);
+        assertTrue(manufacturer.id > 0);
     }
-    
-
-    private List<DeviceModel> createDeviceModelList() {
-        List<DeviceModel> models = new ArrayList<DeviceModel>();
-        List<DeviceRepair> repairs = new ArrayList<DeviceRepair>();
-        DeviceRepair r = new DeviceRepair("screen2", "screen", "", "", 50, 600000000);
-        r.create();
-        repairs.add((DeviceRepair) DeviceRepair.find("byName", "screen2").fetch().get(0));
-        System.out.println("Repairs size"+repairs.size());
-        DeviceModel model = new DeviceModel("iphone6", "iphone6", "description", "image", repairs);
-        //model.deviceRepairList = repairs;
-        System.out.println("model.create = "+model.create());
-        model=(DeviceModel) DeviceModel.find("byName", "iphone6").fetch().get(0);
-        
-        models.add(model);
-        System.out.println("Models size"+models.size());
-        return models;
+	
+	/*
+	 * Creating Device Model without any relationship with repairs
+	 */
+	@Test
+    public void CreateSimpleDeviceModel() {
+		DeviceModel deviceModel = CreateSimpleDeviceModel("iPhone 7");
+        assertTrue(deviceModel.id > 0);
+    }
+	
+	private DeviceModel CreateSimpleDeviceModel(String name){
+		long time = System.currentTimeMillis();
+		return new DeviceModel(name, name, "Test case "+name+" description", name+".png", new Timestamp(time), new Timestamp(time), null).save();
+	}
+	
+	
+	/*
+	 * Create Device models and add them to Manufacturer object
+	 * Then save manufacturer object and verify relationships
+	 */
+	@Test
+    public void CreateManufacturerWithDeviceModels() {
+        List<DeviceModel> devices =  new ArrayList<DeviceModel>();
+        devices.add(CreateSimpleDeviceModel("Nexus4"));
+        devices.add(CreateSimpleDeviceModel("Nexus5"));
+		long time = System.currentTimeMillis();
+		Manufacturer manufacturer = new Manufacturer("LG", "LG", "LG manufacturer from testcase", "LG.jpg", new Timestamp(time), new Timestamp(time),devices ).save();
+        assertNotNull(manufacturer);
+        assertTrue(manufacturer.id > 0 && manufacturer.deviceModels.size()>0);
+    }
+	
+	/*
+	 * Creating Device Repair
+	 */
+	@Test
+    public void CreateDeviceRepair() {
+		DeviceRepair deviceRepair = CreateSimpleDeviceRepair("Display");//new DeviceRepair("Display", "Display", "Test desctiption of repair", "cracked.png", (float) 60.5, 60000).save();
+        assertTrue(deviceRepair.id > 0);
+    }
+	
+	private DeviceRepair CreateSimpleDeviceRepair(String name){
+		long time = System.currentTimeMillis();
+		return new DeviceRepair(name, name, "Test case "+name+" description", name+".png", (float)60.8, 60000, new Timestamp(time), new Timestamp(time)).save();
+	}
+	
+	
+	/*
+	 * Create Device repairs then create Device model
+	 * Add Device repairs to device model and save
+	 * 
+	 */
+	@Test
+    public void CreateDeviceModelWithRepairs() {
+        List<DeviceRepair> deviceRepairs =  new ArrayList<DeviceRepair>();
+        deviceRepairs.add(CreateSimpleDeviceRepair("Display"));
+        deviceRepairs.add(CreateSimpleDeviceRepair("PowerButton"));
+		DeviceModel deviceModel = CreateSimpleDeviceModel("HTC Evo");
+		deviceModel.deviceRepairList = deviceRepairs;
+		deviceModel.save();
+		assertTrue(deviceModel.deviceRepairList.size()>0);
+    }
+	
+	/*
+	 * Create Device repairs then create Device model
+	 * Add Device repairs to device model and save
+	 * Add device models to Manufacturer and create 
+	 * 
+	 */
+	@Test
+    public void CreateManufacturerWithDeviceModelAndWithRepairs() {
+		List<DeviceRepair> deviceRepairs =  new ArrayList<DeviceRepair>();
+		List<DeviceModel> deviceModels =  new ArrayList<DeviceModel>();
+        deviceRepairs.add(CreateSimpleDeviceRepair("Display"));
+        deviceRepairs.add(CreateSimpleDeviceRepair("PowerButton"));
+		DeviceModel deviceModel = CreateSimpleDeviceModel("HTC Evo");
+		deviceModel.deviceRepairList = deviceRepairs;
+		deviceModel.save();
+		deviceModels.add(deviceModel);
+        long time = System.currentTimeMillis();
+		Manufacturer manufacturer = new Manufacturer("HTC", "HTC", "HTC manufacturer from testcase", "htc.png", new Timestamp(time), new Timestamp(time),deviceModels ).save();
+		assertTrue(deviceModel.deviceRepairList.size()>0);
+		assertNotNull(manufacturer);
+        assertTrue(manufacturer.id > 0 && manufacturer.deviceModels.size()>0);
+		
     }
 
 }

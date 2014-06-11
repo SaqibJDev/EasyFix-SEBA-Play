@@ -31,7 +31,7 @@ public class FixAppointmentTest extends UnitTest {
     public void createAppointmentSimple() {
         createAndRetrieveCustomer();
         createAndRetrieveTechnician("Tim");
-        new DeviceRepair("screen2", "screen", "", "", 80, 600000000).save();
+        new DeviceRepair("screen2", "screen", "", "", 80, 600000000, null, null).save();
         Technician john = Technician.find("byLastName", "Smith").first();
         DeviceRepair d = DeviceRepair.find("byDisplayName", "screen").first();
         Customer c = (Customer) Customer.findAll().get(0);
@@ -45,10 +45,10 @@ public class FixAppointmentTest extends UnitTest {
         List<DeviceModel> models = new ArrayList<DeviceModel>();
         List<DeviceRepair> repairs = new ArrayList<DeviceRepair>();
         DeviceRepair r = new DeviceRepair("screen2", "screen", "", "", 50,
-                600000000).save();
+                600000000, null, null).save();
         repairs.add(r);
         DeviceModel model = new DeviceModel("iphone6", "iphone6",
-                "description", "image", repairs).save();
+                "description", "image", null, null, repairs).save();
         models.add(model);
         return models;
     }
