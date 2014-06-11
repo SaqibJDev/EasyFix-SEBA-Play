@@ -1,13 +1,38 @@
-#{extends 'main.html' /} #{set title:'Maker' /}
-
-<div class="middlePageContentContainer">
+#{extends 'master.html' /} 
+#{set title:'EasyFix - Choose model'/}
+#{set menu_item:'menu_repair' /}  
 #{include 'breadcrumbs.html'/}
-	<div style="margin: 0 auto; width: 750px; ">
+
+<div class="container">
+		   
+		   <div class="col-md-1">
+		   </div>
+		   <div class="col-md-10">
+			
+	 
+				 
+	    		<div class="panel panel-default">
+	    		  <div class="panel-body">
+		   
+        <center>
+           <h3>
+			   Pick you model!
+       </h3></center>
+
+<p>
 	#{list items:devices, as:"device"}
-	<div class="manufacturerListItem">
-		<img src="${'/public/images/'+device.image}" class="manufacturerLogo" />
-		<div class="manufacturerName"><a href="/repair/${maker+'/'+device.name}">${device.displayName}</a></div>
-	</div>
-	#{/list}
-</div>
-</div>
+	
+	<center>		 
+			
+		     <div class="col-md-3">
+		<p>	<a href="/repair/${maker+'/'+device.name}"><img src="${'/public/images/'+device.image}" width="150" height="112.5" border="0" alt="Home"></a></p>
+	     <a href="/repair/${maker+'/'+device.name}">${device.displayName}</a> 
+			 </div>
+			 </center>
+			 </p>
+		 #{/list}
+		 
+	    <div class="col-md-1">
+			</div>
+			</div>
+			</div></div></div>

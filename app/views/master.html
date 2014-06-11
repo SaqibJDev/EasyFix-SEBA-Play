@@ -18,6 +18,19 @@
     #{/if}
     <!-- font -->
     <link href="@{'/public/stylesheets/fonts.css'}" rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="${'/public/javascripts/jquery.min.js'}"></script>
+    #{if moreScripts!=null}
+    %{jsFiles = moreScripts.split(",") }%
+    #{list items:jsFiles, as:"jsFile"}
+    <script type="text/javascript" src="${'/public/javascripts/'+jsFile}"></script>
+    #{/list}
+    #{/if}
+    
+    <script type="text/javascript">
+	$(document).ready(function() {
+		$("##{get 'menu_item' /}").css( "background-color","#428bca" );
+	});
+</script>
   </head>
   <body>
 
@@ -33,15 +46,15 @@
 	            <span class="icon-bar"></span>
 	            <span class="icon-bar"></span>
 	            </button>
-	            <a class="navbar-brand" href="index.html"><img src="${'/public/images/logo.png'}" alt="Logo"></a>
+	            <a class="navbar-brand" href="/"><img src="${'/public/images/logo.png'}" alt="Logo"></a>
 	          </div>
 			
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-left">
 			  <li>spa</li>
-            <li><a href="/repair">Repairservices</a></li>
-            <li><a href="/QandA">Q&A </a></li>
-            <li><a href="/AboutUs">About Us</a></li>
+            <li id="menu_repair"><a href="/repair">Repairservices</a></li>
+            <li id="menu_QnA"><a href="/QandA">Q&A </a></li>
+            <li id="menu_aboutUs"><a href="/AboutUs">About Us</a></li>
           </ul>
 		  
 	      <form class="navbar-form navbar-right" role="search">
