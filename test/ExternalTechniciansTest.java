@@ -1,3 +1,4 @@
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,9 +13,7 @@ import models.technician.WorkingHours;
 import org.joda.time.DateTime;
 import org.junit.Test;
 
-import play.db.jpa.JPABase;
 import play.test.UnitTest;
-import utility.QueryUtil;
 
 
 public class ExternalTechniciansTest extends UnitTest {
@@ -22,18 +21,18 @@ public class ExternalTechniciansTest extends UnitTest {
     @Test
     public void retrieveExternalTechnician() {
         createAndRetrieveTechnician();
-        List<Technician> exTechs =  QueryUtil.findTechniciansByIsExternal(true);
+        List<Technician> exTechs =  Technician.findTechniciansByIsExternal(true);
         assertNotNull(exTechs);
 
-         exTechs = QueryUtil.findTechniciansByRepair(exTechs, "iphone6", "screen2");
+         exTechs = Technician.findTechniciansByRepair(exTechs, "iphone6", "screen2");
         assertNotNull(exTechs);
     }
     
 
-    public void createAndRetrieveTechnician() {
+    private void createAndRetrieveTechnician() {
 
         // location
-        Location l = new Location("garching", "82333").save();
+        Location l = new Location("Garching", "82333").save();
 
         // 0 to 6, where 0 is Sunday, 1 is Monday,
         List<Interval> hours = new ArrayList<Interval>();
@@ -57,13 +56,10 @@ public class ExternalTechniciansTest extends UnitTest {
 
         weekHours = WorkingHours.findAll();
        ContactInformation ci = new ContactInformation("010394344",
-                "w487937", "john@example.com", l, "s").save();
-        new Technician("Marcus", "Dim",ci , "NexTouch",
-                "broken screens", weekHours, "tech1.jpg", true,  createDeviceModelList()).save();
+                "w487937", "dim@fixrepairs.com", l, "s").save();
+        new Technician("Marcus", "Dim",ci , "FixRepairs",
+                "broken screens", weekHours, "tech2.jpg", true,  createDeviceModelList()).save();
 
-        // Retrieve the user with title address expert
-        Technician t = Technician.find("byTitle", "NexTouch")
-                .first();
     }
     
 
@@ -78,5 +74,43 @@ public class ExternalTechniciansTest extends UnitTest {
         
         return models;
     }
+    
+    
+    //////////////////////////////////////////////
+    @Test
+    public void createAndExternalTechnicianForiPhone4() {
 
+        // location
+        Location l = new Location("Marian Platz", "84533").save();
+
+        // 0 to 6, where 0 is Sunday, 1 is Monday,
+        List<Interval> hours = new ArrayList<Interval>();
+
+        List<WorkingHours> weekHours = new ArrayList<WorkingHours>();
+        // create model.interval using joda getmillies
+        Interval interval = new Interval(
+                new DateTime(2014, 1, 1, 10, 0).getMillis(), new DateTime(2014,
+                        1, 1, 16, 0).getMillis());
+        hours.add(interval);
+        interval = new Interval(new DateTime(2014, 1, 1, 18, 0).getMillis(),
+                new DateTime(2014, 1, 1, 20, 0).getMillis());
+        hours.add(interval);
+
+        // 0 to 6, where 0 is Sunday, 1 is Monday,
+        new WorkingHours(1, hours);
+        new WorkingHours(2, hours);
+        new WorkingHours(3, hours);
+        new WorkingHours(4, hours);
+        new WorkingHours(5, hours);
+
+        weekHours = WorkingHours.findAll();
+       ContactInformation ci = new ContactInformation("010394344",
+                "w487937", "Petter@nextouch.com", l, "s").save();
+       Technician t = new Technician("Marcus", "Petter",ci , "NexTouch",
+                "broken screens", weekHours, "tech1.jpg", true,  createDeviceModelList()).save();
+       t.deviceModelList = DeviceModel.find("byName", "iPhone4").fetch();
+       t.save();
+
+    }
+    
 }

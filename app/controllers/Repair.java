@@ -1,7 +1,5 @@
 package controllers;
 
-import java.sql.Date;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -10,14 +8,12 @@ import java.util.List;
 import models.device.DeviceModel;
 import models.device.DeviceRepair;
 import models.device.Manufacturer;
-import models.technician.Technician;
-
-import org.joda.time.DateTime;
-
+import play.mvc.Before;
 import play.mvc.Controller;
-import utility.QueryUtil;
+import play.mvc.With;
 
-public class Repair extends Controller {
+
+public class Repair extends Application {
 
 	/*
 	 * Shows list of all manufacturer from database

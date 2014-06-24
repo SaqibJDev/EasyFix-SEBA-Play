@@ -2,21 +2,13 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import models.ContactInformation;
-import models.Interval;
-import models.Location;
 import models.device.DeviceModel;
 import models.device.DeviceRepair;
 import models.device.Manufacturer;
-import models.technician.Technician;
-import models.technician.WorkingHours;
 
-import org.joda.time.DateTime;
 import org.junit.Test;
 
-import play.db.jpa.JPABase;
 import play.test.UnitTest;
-import utility.QueryUtil;
 
 /**
  * 
@@ -44,6 +36,7 @@ public class ManufacturerTest extends UnitTest {
 		Manufacturer manufacturer = new Manufacturer("Apple", "Apple", "Apple manufacturer from testcase", "apple.png", new Timestamp(time), new Timestamp(time), null).save();
         assertNotNull(manufacturer);
         assertTrue(manufacturer.id > 0);
+        CreateSimpleDeviceModelApple();
     }
 	
 	/*
@@ -53,6 +46,7 @@ public class ManufacturerTest extends UnitTest {
     public void CreateSimpleDeviceModel() {
 		DeviceModel deviceModel = CreateSimpleDeviceModel("iPhone 7");
         assertTrue(deviceModel.id > 0);
+        deviceModel._delete();
     }
 	
 	private DeviceModel CreateSimpleDeviceModel(String name){
@@ -77,11 +71,59 @@ public class ManufacturerTest extends UnitTest {
     }
 	
 	/*
+	 * Creating Device Model without any relationship with repairs
+	 */
+
+    public void CreateSimpleDeviceModelApple() {
+		DeviceModel deviceModel = CreateSimpleDeviceModel("iPhone4");
+        assertTrue(deviceModel.id > 0);
+        
+        deviceModel = CreateSimpleDeviceModel("iPhone4s");
+        assertTrue(deviceModel.id > 0);
+        
+        deviceModel = CreateSimpleDeviceModel("iPhone5s");
+        assertTrue(deviceModel.id > 0);
+        
+        deviceModel = CreateSimpleDeviceModel("iPhone5");
+        assertTrue(deviceModel.id > 0);
+        
+        deviceModel = CreateSimpleDeviceModel("iPhone5C");
+        assertTrue(deviceModel.id > 0);
+        
+        Manufacturer manufacturer = (Manufacturer) Manufacturer.find("byName", "Apple").fetch().get(0);
+        manufacturer.deviceModels = DeviceModel.find("byNameLike", "iPhone%").fetch();
+        manufacturer.save();
+        
+        assertTrue(manufacturer.deviceModels.size() > 0);
+    }
+	
+	/*
+	 * Creating Device Model without any relationship with repairs
+	 */
+	@Test
+    public void CreateSimpleDeviceModelSamsung() {
+		DeviceModel deviceModel = CreateSimpleDeviceModel("GalaxyS3");
+        assertTrue(deviceModel.id > 0);
+        
+        deviceModel = CreateSimpleDeviceModel("GalaxyS4");
+        assertTrue(deviceModel.id > 0);
+        
+        deviceModel = CreateSimpleDeviceModel("GalaxyS5");
+        assertTrue(deviceModel.id > 0);
+        
+        long time = System.currentTimeMillis();
+        List<DeviceModel> devices = DeviceModel.find("byNameLike", "Galaxy%").fetch();
+        Manufacturer manufacturer = new Manufacturer("Samsung", "Samsung", "Samsung manufacturer from testcase", "Samsung.png", new Timestamp(time), new Timestamp(time),devices ).save();
+        
+        assertTrue(manufacturer.deviceModels.size() > 0);
+    }
+	
+	/*
 	 * Creating Device Repair
 	 */
 	@Test
     public void CreateDeviceRepair() {
-		DeviceRepair deviceRepair = CreateSimpleDeviceRepair("Display");//new DeviceRepair("Display", "Display", "Test desctiption of repair", "cracked.png", (float) 60.5, 60000).save();
+		DeviceRepair deviceRepair = CreateSimpleDeviceRepair("Display");
         assertTrue(deviceRepair.id > 0);
     }
 	
@@ -97,14 +139,20 @@ public class ManufacturerTest extends UnitTest {
 	 * 
 	 */
 	@Test
-    public void CreateDeviceModelWithRepairs() {
+	public void CreateDeviceModelWithRepairs() {
+		assertTrue(_CreateDeviceModelWithRepairs("Nexus5"));
+		assertTrue(_CreateDeviceModelWithRepairs("iPhone4"));
+		assertTrue(_CreateDeviceModelWithRepairs("iPhone5s"));
+    }
+	
+	private boolean _CreateDeviceModelWithRepairs(String ModelName) {
         List<DeviceRepair> deviceRepairs =  new ArrayList<DeviceRepair>();
         deviceRepairs.add(CreateSimpleDeviceRepair("Display"));
         deviceRepairs.add(CreateSimpleDeviceRepair("PowerButton"));
-		DeviceModel deviceModel = CreateSimpleDeviceModel("HTC Evo");
+		DeviceModel deviceModel = (DeviceModel) DeviceModel.find("byName", ModelName).fetch().get(0);
 		deviceModel.deviceRepairList = deviceRepairs;
 		deviceModel.save();
-		assertTrue(deviceModel.deviceRepairList.size()>0);
+		return deviceModel.id > 0;
     }
 	
 	/*
@@ -113,22 +161,20 @@ public class ManufacturerTest extends UnitTest {
 	 * Add device models to Manufacturer and create 
 	 * 
 	 */
-	@Test
-    public void CreateManufacturerWithDeviceModelAndWithRepairs() {
-		List<DeviceRepair> deviceRepairs =  new ArrayList<DeviceRepair>();
-		List<DeviceModel> deviceModels =  new ArrayList<DeviceModel>();
-        deviceRepairs.add(CreateSimpleDeviceRepair("Display"));
-        deviceRepairs.add(CreateSimpleDeviceRepair("PowerButton"));
-		DeviceModel deviceModel = CreateSimpleDeviceModel("HTC Evo");
-		deviceModel.deviceRepairList = deviceRepairs;
-		deviceModel.save();
-		deviceModels.add(deviceModel);
-        long time = System.currentTimeMillis();
-		Manufacturer manufacturer = new Manufacturer("HTC", "HTC", "HTC manufacturer from testcase", "htc.png", new Timestamp(time), new Timestamp(time),deviceModels ).save();
-		assertTrue(deviceModel.deviceRepairList.size()>0);
-		assertNotNull(manufacturer);
-        assertTrue(manufacturer.id > 0 && manufacturer.deviceModels.size()>0);
-		
-    }
+//	@Test
+//    public void CreateManufacturerWithDeviceModelAndWithRepairs() {
+//		List<DeviceRepair> deviceRepairs =  new ArrayList<DeviceRepair>();
+//        deviceRepairs.add(CreateSimpleDeviceRepair("Display"));
+//        deviceRepairs.add(CreateSimpleDeviceRepair("PowerButton"));
+//		DeviceModel deviceModel =  (DeviceModel) DeviceModel.find("byName", "iPhone4").fetch().get(0);
+//		deviceModel.deviceRepairList = deviceRepairs;
+//		deviceModel.save();
+//		assertTrue(deviceModel.id > 0 && deviceModel.deviceRepairList.size()>0);
+//		
+//		deviceModel =  (DeviceModel) DeviceModel.find("byName", "iPhone5s").fetch().get(0);
+//		deviceModel.deviceRepairList = deviceRepairs;
+//		deviceModel.save();
+//		assertTrue(deviceModel.id > 0 && deviceModel.deviceRepairList.size()>0);
+//    }
 
 }

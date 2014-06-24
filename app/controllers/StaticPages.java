@@ -11,7 +11,7 @@ import org.joda.time.DateTime;
 
 import play.mvc.Controller;
 
-public class StaticPages extends Controller {
+public class StaticPages extends Application {
 
 	/*
 	 * Shows Q&A page
