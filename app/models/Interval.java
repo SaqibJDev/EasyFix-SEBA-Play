@@ -1,11 +1,12 @@
 package models;
 
 import javax.persistence.Embeddable;
+import javax.persistence.Entity;
 
 import play.db.jpa.Model;
 
 @Embeddable
-public class Interval extends Model{
+public class Interval{
 
     /**
      * start millis from joda.Interval

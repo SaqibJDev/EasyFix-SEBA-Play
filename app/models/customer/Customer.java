@@ -31,9 +31,9 @@ public class Customer extends Actor {
  //   @OneToMany
    // public List<Appointment> appointments; 
     
-    public Customer(String firstName, String lastName,
+    public Customer(String firstName, String lastName, String email, String password,
             ContactInformation contactInformation) {
-        super(firstName, lastName, contactInformation);
+        super(firstName, lastName,email, password, contactInformation);
         //this.notes = notes;
     }
 }

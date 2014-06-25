@@ -19,8 +19,32 @@ import com.google.gson.annotations.Expose;
 public class ContactInformation extends Model{
 
     @OneToOne
-    //@Embedded
     public Location address;
+   
+    /**
+     * The telephone number - required
+     */
+    @Expose
+    public String telephone;
+
+    /**
+     * The mobile number
+     */
+    @Expose
+    public String mobile;
+
+    /**
+     * The email address - required
+     */
+    @Expose
+    public String email;
+
+    /**
+     * Website of external technician - optional 
+     */
+    @Expose
+    public String website;
+
     /**
      * For external
      * @param telephone
@@ -53,36 +77,12 @@ public class ContactInformation extends Model{
             this.email = email;
             this.address = address;
         }
-    /**
-     * The telephone number - required
-     */
-    @Expose
-    public String telephone;
-
-    /**
-     * The mobile number
-     */
-    @Expose
-    public String mobile;
-
-    /**
-     * The email address - required
-     */
-    @Expose
-    public String email;
-
-    /**
-     * Website of external technician - optional 
-     */
-    @Expose
-    public String website;
-
-    /**
-     * The location of actor, for technician it is the location he/she can serve and for customer the
-     * desirable meeting place
-     */
-    //@Expose
-    @OneToMany
-    public List<Location> addresses;
+//    /**
+//     * The location of actor, for technician it is the location he/she can serve and for customer the
+//     * desirable meeting place
+//     */
+//    //@Expose
+//    @OneToMany
+//    public List<Location> addresses;
 
 }

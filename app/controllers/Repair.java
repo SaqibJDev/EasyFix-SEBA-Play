@@ -8,9 +8,12 @@ import java.util.List;
 import models.device.DeviceModel;
 import models.device.DeviceRepair;
 import models.device.Manufacturer;
+import play.mvc.Before;
 import play.mvc.Controller;
+import play.mvc.With;
 
-public class Repair extends Controller {
+
+public class Repair extends Application {
 
 	/*
 	 * Shows list of all manufacturer from database

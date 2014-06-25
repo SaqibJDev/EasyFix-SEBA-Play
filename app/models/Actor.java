@@ -27,37 +27,49 @@ public class Actor extends Model{
     @Expose
     public String firstName;
 
-    public Actor() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-    @Expose
-    public java.sql.Timestamp createdOn;
-    @Expose
-    public java.sql.Timestamp lastUpdated;
-
-  
     /**
      * The last name of person
      */
     @Expose
     public String lastName;
+    
+    @Expose
+    public String email;
+    
+    @Expose
+    public String password;
+    
+    @Expose
+    public java.sql.Timestamp createdOn;
+    @Expose
+    public java.sql.Timestamp lastUpdated;
 
     /**
      * contact information of person
      */
     @Expose
-    //@ManyToOne
     @OneToOne
-   // @Embedded
     public ContactInformation contactInformation;
 
+    public Actor() {
+        super();
+    }
+    
     public Actor(String firstName, String lastName,
             ContactInformation contactInformation) {
         super();
         this.firstName = firstName;
         this.lastName = lastName;
+        this.contactInformation = contactInformation;
+    }
+    
+    public Actor(String firstName, String lastName, String email, String password,
+            ContactInformation contactInformation) {
+        super();
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
         this.contactInformation = contactInformation;
     }
 

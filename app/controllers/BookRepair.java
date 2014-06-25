@@ -8,13 +8,15 @@ import models.device.DeviceModel;
 import models.technician.Technician;
 import play.data.validation.Required;
 import play.mvc.Controller;
+import play.mvc.With;
 
 /**
  * 
  * @author Chrysa Papadaki - papadaki.chr@gmail.com
  * 
  */
-public class BookRepair extends Controller {
+@With(Secure.class)
+public class BookRepair extends Application {
 
     /********************* BOOK REPAIR CODE START **********************************/
 

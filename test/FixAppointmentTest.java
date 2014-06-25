@@ -107,7 +107,7 @@ public class FixAppointmentTest extends UnitTest {
     public void createAndRetrieveCustomer() {
 
         Location l = Location.find("byZip", "80333").first();
-        Customer c = new Customer("James", "Roe", new ContactInformation(
+        Customer c = new Customer("James", "Roe", "james@roe.com", "jamesroe", new ContactInformation(
                 "010394344", "w487937", "jane@row.com", l, "s")).save();
 
     }

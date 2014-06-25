@@ -63,11 +63,20 @@
 	      </form>
 	
           <div class="navbar-collapse collapse">
+        	#{if user!=null}
+        		
+        	<ul class="nav navbar-nav navbar-right">
+	              <li><span style="color: white;">Welcome ${user}!</span></li>
+	              <li><a href="/logout">Logout</a></li>
+            </ul>
+            #{/if}
+            #{else}
             <ul class="nav navbar-nav navbar-right">
 		
-              <li><a href="login.html">Login</a></li>
+              <li><a href="/login">Login</a></li>
               <li><a href="signup.html">Signup</a></li>
             </ul>
+            #{/else}
           </div>
        <!--/.navbar-collapse -->
      </div>

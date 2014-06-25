@@ -12,6 +12,7 @@ import models.Actor;
 import models.ContactInformation;
 import models.device.DeviceModel;
 import models.device.DeviceRepair;
+import models.rating.Rating;
 import models.rating.RatingValue;
 
 import com.google.gson.annotations.Expose;
@@ -68,7 +69,12 @@ public class Technician extends Actor {
         // TODO Auto-generated constructor stub
     }
 
-    /**
+    public Technician(String firstName, String lastName,String email, String password,
+            ContactInformation contactInformation) {
+    	super(firstName, lastName, email, password, contactInformation);
+	}
+
+	/**
      * The specified working hours of technician
      */
     @OneToMany
@@ -97,8 +103,9 @@ public class Technician extends Actor {
     /**
      * The score of users' ratings on technician service
      */
-    @OneToOne
-    public RatingValue ratingScore;
+    @OneToMany
+    //public RatingValue ratingScore;
+    public List<Rating> rating;
     
     public static List<Technician> findByAddress(String city) {
 
@@ -115,7 +122,7 @@ public class Technician extends Actor {
     public static List<Technician> findTechniciansByIsExternal(
             boolean isExternal) {
         return Technician.find(
-                "select t from Technician t, Location l "
+                "select t from Technician t "
                         + "where t.isExternal =" + isExternal).fetch();
     }
     

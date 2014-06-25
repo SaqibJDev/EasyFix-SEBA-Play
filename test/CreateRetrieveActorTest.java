@@ -21,19 +21,32 @@ public class CreateRetrieveActorTest extends UnitTest {
     public void createAndRetrieveCustomer() {
 
         Location l = Location.find("byZip", "80333").first();
-        Customer c = new Customer("Jane", "Roe", new ContactInformation(
-                "010394344", "w487937", "jane@row.com", l, "s")).save();
+        Customer c = new Customer("Jane", "Roe", "jane@roe.com", "janeroe",(ContactInformation)new ContactInformation(
+                "010394344", "w487937", "jane@roe.com", l, "s").save()).save();
 
         // Test
         assertNotNull(c);
         assertEquals("Jane", c.firstName);
+    }
+    
+    @Test
+    public void createSimpleTechnicianWithLocation() {
+
+        Location l = Location.find("byZip", "80333").first();
+        ContactInformation c = (new ContactInformation(
+                "010394344", "w487937", "jhon@smith.com", l, "s")).save();
+        Technician technician = new Technician("Jhon", "Smith", "jhon@smith.com", "jhonsmith", c).save();
+
+        // Test
+        assertNotNull(technician);
+        assertEquals("Jhon", technician.firstName);
     }
 
     @Test
     public void createAndRetrieveTechnician() {
 
         // location
-        Location l = new Location("garching", "82333").save();
+        Location l = new Location("Garching", "82333").save();
 
         // 0 to 6, where 0 is Sunday, 1 is Monday,
         List<Interval> hours = new ArrayList<Interval>();

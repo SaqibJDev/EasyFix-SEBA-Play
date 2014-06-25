@@ -4,11 +4,15 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import controllers.Secure.Security;
+import models.Actor;
 import models.device.DeviceRepair;
 import models.technician.Technician;
+import play.mvc.Before;
 import play.mvc.Controller;
-
-public class ExternalTechnicians extends Controller {
+import play.mvc.With;
+@With(Secure.class)
+public class ExternalTechnicians extends Application {
 
 	/*
 	 * Show external technicians who offer repair services for selected device model and repair
