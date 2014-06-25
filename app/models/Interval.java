@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import play.db.jpa.Model;
 
 @Embeddable
-//@Entity
 public class Interval{
 
     /**
