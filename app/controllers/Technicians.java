@@ -75,7 +75,7 @@ public class Technicians extends Application {
     
     
     /*
-     * Get technicaians list for map
+     * Get technicians list for map
      */
     public static String getTechnicians(){
     	List<Technician> technicians = Technician.findTechniciansByIsExternal(false);
@@ -83,7 +83,14 @@ public class Technicians extends Application {
     	List<TechnicianMap> techniciansMapList = new ArrayList<TechnicianMap>();
     	
     	for (Technician technician : technicians) {
-    		techniciansMapList.add(new TechnicianMap(technician.firstName + " "+ technician.lastName, technician.id, technician.contactInformation.address.geoPoint.latitude, technician.contactInformation.address.geoPoint.longtitude, (float)4.0));
+//    		new TechnicianMap(technician.firstName + " "+ technician.lastName, technician.id, technician.contactInformation.address.geoPoint.latitude, technician.contactInformation.address.geoPoint.longtitude, (float)4.0)
+    		TechnicianMap tm = new TechnicianMap();
+    		tm.id = technician.id;
+    		tm.name = technician.firstName + " "+ technician.lastName;
+    		tm.longtitude = technician.contactInformation.address.geoPoint.longtitude;
+    		tm.latitude = technician.contactInformation.address.geoPoint.latitude;
+    		tm.rating = (float) 4.0;
+    		techniciansMapList.add(tm);
 		}
     	Gson gsonHandler = new Gson();
     	String returnResult = gsonHandler.toJson(technicians);
