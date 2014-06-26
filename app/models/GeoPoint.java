@@ -15,12 +15,12 @@ import play.db.jpa.Model;
 public class GeoPoint {
 
     public float latitude;
-    public float longtitude;
+    public float longitude;
     
     public GeoPoint(float latitude, float longitude) {
         super();
         this.latitude = latitude;
-        this.longtitude = longitude;
+        this.longitude = longitude;
     }
     
 }

@@ -83,13 +83,50 @@ public class Technicians extends Application {
     	List<TechnicianMap> techniciansMapList = new ArrayList<TechnicianMap>();
     	
     	for (Technician technician : technicians) {
-//    		new TechnicianMap(technician.firstName + " "+ technician.lastName, technician.id, technician.contactInformation.address.geoPoint.latitude, technician.contactInformation.address.geoPoint.longtitude, (float)4.0)
+//    		new TechnicianMap(technician.firstName + " "+ technician.lastName, technician.id, technician.contactInformation.address.geoPoint.latitude, technician.contactInformation.address.geoPoint.longitude, (float)4.0)
     		TechnicianMap tm = new TechnicianMap();
     		tm.id = technician.id;
     		tm.name = technician.firstName + " "+ technician.lastName;
-    		tm.longtitude = technician.contactInformation.address.geoPoint.longtitude;
+    		tm.longitude = technician.contactInformation.address.geoPoint.longitude;
     		tm.latitude = technician.contactInformation.address.geoPoint.latitude;
     		tm.rating = (float) 4.0;
+    		techniciansMapList.add(tm);
+		}
+    	Gson gsonHandler = new Gson();
+    	String returnResult = gsonHandler.toJson(technicians);
+    	System.out.println( returnResult);    	
+//    	return "{\"data\":"+gsonHandler.toJson(techniciansMapList)+"}";
+    	return gsonHandler.toJson(techniciansMapList);
+    }
+    
+    /*
+     * Get technicians list for map
+     */
+    public static String getCloseTechnicians(float userLatitude, float userLongitude, float maxDistance){
+    	List<Technician> technicians = Technician.findTechniciansByIsExternal(false);
+
+    	List<TechnicianMap> techniciansMapList = new ArrayList<TechnicianMap>();
+    	
+    	double deltaLat, deltaLng, distance;
+    	
+    	for (Technician technician : technicians) {
+  		
+    		deltaLat = technician.contactInformation.address.geoPoint.latitude - userLatitude;
+    		deltaLng = technician.contactInformation.address.geoPoint.longitude - userLongitude;
+    		
+    		distance = Math.pow(Math.sin(deltaLat/2), 2) + Math.cos(technician.contactInformation.address.geoPoint.latitude) * Math.cos(userLatitude) * Math.pow(Math.sin(deltaLng/2),2);
+    		distance = 2 * Math.atan2( Math.sqrt(distance), Math.sqrt(1-distance) ) * 6373000; //last number is radius of earth, converts into [m] distance
+    		
+    		if(distance>maxDistance)
+    			continue;
+
+    		TechnicianMap tm = new TechnicianMap();
+    		tm.id = technician.id;
+    		tm.name = technician.firstName + " "+ technician.lastName;
+    		tm.longitude = technician.contactInformation.address.geoPoint.longitude;
+    		tm.latitude = technician.contactInformation.address.geoPoint.latitude;
+    		tm.rating = (float) 4.0;
+    		//tm.distance = distance;
     		techniciansMapList.add(tm);
 		}
     	Gson gsonHandler = new Gson();
