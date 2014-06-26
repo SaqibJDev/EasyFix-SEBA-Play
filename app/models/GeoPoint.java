@@ -1,5 +1,6 @@
 package models;
 
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 
 import play.db.jpa.Model;
@@ -9,8 +10,9 @@ import play.db.jpa.Model;
  * @author Chrysa Papapdaki - papadaki.chr@gmail.com
  * 
  */
-@Entity
-public class GeoPoint extends Model {
+//@Entity
+@Embeddable
+public class GeoPoint {
 
     public long latitude;
     public long longtitude;

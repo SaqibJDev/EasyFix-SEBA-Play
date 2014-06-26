@@ -41,8 +41,13 @@ GET     /                                       Application.index
 	
 	# About Us page
 		GET     /AboutUs						               controllers.StaticPages.AboutUs
+		GET     /MapTest						               controllers.StaticPages.MapTest
 	
 
+
+# Ajax Calls
+	# Get Technicians for Map
+	GET /Technicians										controllers.Technicians.getTechnicians
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

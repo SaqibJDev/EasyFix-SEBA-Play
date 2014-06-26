@@ -1,18 +1,22 @@
 package controllers;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import controllers.Secure.Security;
 import models.Actor;
+import models.ajaxResponse.TechnicianMap;
 import models.device.DeviceRepair;
 import models.technician.Technician;
 import play.mvc.Before;
 import play.mvc.Controller;
 import play.mvc.With;
-@With(Secure.class)
-public class ExternalTechnicians extends Application {
+public class Technicians extends Application {
 
 	/*
 	 * Show external technicians who offer repair services for selected device model and repair
@@ -75,8 +79,19 @@ public class ExternalTechnicians extends Application {
      */
     public static String getTechnicians(){
     	List<Technician> technicians = Technician.findTechniciansByIsExternal(false);
-    	System.out.println( "Hello Ajax!");//Integer.toString(technicians.size());
-    	return "Hello Ajax!";
+
+    	List<TechnicianMap> techniciansMapList = new ArrayList<TechnicianMap>();
+    	
+    	for (Technician technician : technicians) {
+    		techniciansMapList.add(new TechnicianMap(technician.firstName + " "+ technician.lastName, technician.id, technician.contactInformation.address.geoPoint.latitude, technician.contactInformation.address.geoPoint.longtitude, (float)4.0));
+		}
+    	Gson gsonHandler = new Gson();
+    	String returnResult = gsonHandler.toJson(technicians);
+    	System.out.println( returnResult);    	
+//    	return "{\"data\":"+gsonHandler.toJson(techniciansMapList)+"}";
+    	return gsonHandler.toJson(techniciansMapList);
     }
+    
+   
 
 }

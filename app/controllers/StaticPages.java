@@ -27,4 +27,9 @@ public class StaticPages extends Application {
 		render();
 	}
 	
+	
+	public static void MapTest() {
+		render();
+	}
+	
 }

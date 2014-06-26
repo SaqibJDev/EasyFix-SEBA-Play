@@ -1,0 +1,39 @@
+#{extends 'master.html' /} #{set title:'EasyFix - About Us' /}#{set menu_item:'menu_aboutUs' /} 
+
+<script type="text/javascript">
+function callAjax(){
+	alert(1);
+	$.get( "/Technicians", function( data) {
+		  //$( ".result" ).html( data );
+		  alert( "Load was performed."+data );
+		  var obj = jQuery.parseJSON(data);
+		  $.each(obj, function (key,value) {
+			alert(value.name + " has "+value.rating+" rating!");
+    			//$('#campaign_keywords').append("<p>"+data.keywords[i]+"</p>");
+    			//alert(name + " has "+rating+" rating!");
+    			
+});
+		  
+		});
+	alert(2);
+}
+</script>
+
+<!-- ABOUT -->
+        <section id="about">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <h3>About Us</h3>
+              </div>
+              <div class="col-md-6 col-sm-6 wow ">
+                <p>EasyFix is a cost effective smartphone repairing service to help people fixing their broken phones with highly reliable and skilled technician at their doorstep.</p>
+                <p>We represent an innovative business idea on providing cost-effective smartphone repairing service by offering high-quality tech support services at customers' preferable places i.e. home, office, public place etc.</p>
+              </div>
+              <div class="col-md-6 col-sm-6 wow ">
+                <p> In addition, we offer repairing companies and self-employed technicians promoting and advertising their services. The aftermath of EasyFix offering and activities is high revenues as it successfully combines brokerage, subscription and advertisement models.</p>
+<input type="button" value="Click Me!" onclick="Javascript: callAjax();" />
+              </div>
+            </div>
+          </div>
+        </section>
