@@ -1,3 +1,6 @@
 # You can specialize this file for each language.
 # For example, for French create a messages.fr file
 #
+password = Password
+confpassword = Confirm Password
+validation.equals = %s and %s do not match

@@ -31,6 +31,10 @@ GET     /                                       Application.index
 		GET     /Repair/{maker}/{deviceModel}/{repair}/ExternalTechnicians  			controllers.ExternalTechnicians.show(maker,deviceModel,repair)
 		GET     /Repair/{maker}/{deviceModel}/{repair}/ExternalTechnicians/{name}  		controllers.ExternalTechnicians.details(maker, deviceModel,repair,name)
 
+	# Registration
+		GET     /Registration					               controllers.Registration.Index
+		POST    /register					               controllers.Registration.register
+		GET		/registerConfirm							controllers.Registration.registerConfirm
 # Static Pages
 	# Q&A page
 		GET     /QandA						                   controllers.StaticPages.QandA
