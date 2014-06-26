@@ -1,0 +1,92 @@
+#{extends 'master.html' /} 
+#{set title:'EasyFix - Signup'/}
+#{set menu_item:'menu_signup' /} 
+#{set moreScripts:'bootstrap.min.js' /}
+       <div class="container"><p>
+	   </p>
+ 		     <div class="col-md-2">
+			 </div>
+			 <div class="col-md-8">
+				 
+		<div class="panel panel-default">
+		  <div class="panel-body">
+			  <center>
+		    <h3>Create an Account</h3>
+			<h10><a href="/login">I already have an account.</a></h10>
+			
+		<form class="form-horizontal" id="signup" action="/register" method="post">
+		<fieldset>
+
+		<!-- Form Name -->
+		
+
+		<!-- Email-->
+		<div class="control-group tooltips">
+		  <label class="control-label" for="Email"></label>
+		  <div class="controls">
+		    <input id="Email" name="email" type="email" placeholder="Email" class="input-xlarge" required="" data-toggle="tooltip" title="Please use a valid email-adress. Your email will be handled strictly confidential!">
+    
+		  </div>
+		</div>
+	
+		<!-- Name-->
+		
+		<div class="control-group tooltips">
+		  <label class="control-label" for="Name"></label>
+		  <div class="controls">
+			  
+			  
+		    <input id="Name" name="name" type="text" placeholder="Name" class="input-xlarge" required="" data-toggle="tooltip" title="Please type-in your desired Username.">
+		
+		  </div>
+		</div>
+		
+
+		<!-- Password input-->
+		<div class="control-group tooltips">
+		  <label class="control-label" for="passwordinput"></label>	  
+		  
+		  <div class="controls">
+		    <input id="password" name="password" type="password" placeholder="Password" class="input-xlarge" required="" data-toggle="tooltip" title="Your password should have at least 6 characters!">
+   
+		  </div>
+		</div>
+		
+
+		<!-- Password retype-->
+		<div class="control-group tooltips">
+		  <label class="control-label" for="passwordinput"></label>
+		  <div class="controls">
+		    <input id="confpassword" data-match="password" data-match-error="Whoops, these don't match" name="confpassword" type="password" placeholder="Re-type Password" class="input-xlarge" required="">
+    
+		  </div>
+		</div>
+		
+	
+
+		<!-- Button -->
+		<div class="control-group">
+		  <label class="control-label" for="login"></label>
+		  <div class="controls">
+		      <input type="checkbox" name="checkboxes" id="checkboxes-0" value="I agree to Conditions of Use and Privacy Notice of Easyfix." required="">
+		     I agree to the <a href="conditions.html">conditions of use</a> and <a href="privacy.html">privacy notice</a> of Easyfix.</br></p>
+		    <button id="login" name="login" class="btn btn-primary">Join us</button>
+		  </div>
+		</div>
+		<p>
+		</p>
+
+		</fieldset>
+		</form>
+		
+	</center>
+		  </div>
+		</div>
+ 			
+	 		   
+   </div>
+   
+     <div class="col-md-2">
+	 </div>
+	 
+	 </div>
