@@ -6,8 +6,8 @@ public class TechnicianMap {
 	public float latitude;
     public float longitude;
     public float rating;
-	public TechnicianMap(String name, long id, float latitude, float longitude,
-			float rating) {
+    
+	public TechnicianMap(String name, long id, float latitude, float longitude, float rating) {
 		super();
 		this.name = name;
 		this.id = id;
@@ -15,6 +15,7 @@ public class TechnicianMap {
 		this.longitude = longitude;
 		this.rating = rating;
 	}
+	
 	public TechnicianMap() {
 		// TODO Auto-generated constructor stub
 	}

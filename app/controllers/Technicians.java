@@ -111,6 +111,8 @@ public class Technicians extends Application {
     	
     	for (Technician technician : technicians) {
   		
+    		//calculation from: http://andrew.hedges.name/experiments/haversine/
+    		
     		deltaLat = technician.contactInformation.address.geoPoint.latitude - userLatitude;
     		deltaLng = technician.contactInformation.address.geoPoint.longitude - userLongitude;
     		

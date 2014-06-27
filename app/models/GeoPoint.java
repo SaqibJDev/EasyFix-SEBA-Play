@@ -21,6 +21,5 @@ public class GeoPoint {
         super();
         this.latitude = latitude;
         this.longitude = longitude;
-    }
-    
+    }    
 }
