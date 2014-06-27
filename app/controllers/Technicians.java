@@ -138,6 +138,43 @@ public class Technicians extends Application {
     	return gsonHandler.toJson(techniciansMapList);
     }
     
-   
+    /*
+     * Get technicians list for map
+     */
+    public static String getOutOfDistanceTechnicians(float userLatitude, float userLongitude, float minDistance){
+    	List<Technician> technicians = Technician.findTechniciansByIsExternal(false);
+
+    	List<TechnicianMap> techniciansMapList = new ArrayList<TechnicianMap>();
+    	
+    	double deltaLat, deltaLng, distance;
+    	
+    	for (Technician technician : technicians) {
+  		
+    		//calculation from: http://andrew.hedges.name/experiments/haversine/
+    		
+    		deltaLat = technician.contactInformation.address.geoPoint.latitude - userLatitude;
+    		deltaLng = technician.contactInformation.address.geoPoint.longitude - userLongitude;
+    		
+    		distance = Math.pow(Math.sin(deltaLat/2), 2) + Math.cos(technician.contactInformation.address.geoPoint.latitude) * Math.cos(userLatitude) * Math.pow(Math.sin(deltaLng/2),2);
+    		distance = 2 * Math.atan2( Math.sqrt(distance), Math.sqrt(1-distance) ) * 6373000; //last number is radius of earth, converts into [m] distance
+    		
+    		if(distance<minDistance)
+    			continue;
+
+    		TechnicianMap tm = new TechnicianMap();
+    		tm.id = technician.id;
+    		tm.name = technician.firstName + " "+ technician.lastName;
+    		tm.longitude = technician.contactInformation.address.geoPoint.longitude;
+    		tm.latitude = technician.contactInformation.address.geoPoint.latitude;
+    		tm.rating = (float) 4.0;
+    		//tm.distance = distance;
+    		techniciansMapList.add(tm);
+		}
+    	Gson gsonHandler = new Gson();
+    	String returnResult = gsonHandler.toJson(technicians);
+    	System.out.println( returnResult);    	
+//    	return "{\"data\":"+gsonHandler.toJson(techniciansMapList)+"}";
+    	return gsonHandler.toJson(techniciansMapList);
+    }
 
 }
