@@ -50,7 +50,7 @@ moreScripts:'bootstrap.min.js' /}
 										technician</label>
 									<div class="controls">
 										<div class="input-append">
-											<input id="buttondropdown" name="buttondropdown"
+											<input id="my-technician" name="buttondropdown"
 												class="input-xlarge" placeholder="technician" type="text"
 												required="">
 											<div class="btn-group">
@@ -110,15 +110,20 @@ moreScripts:'bootstrap.min.js' /}
 						var infowindow = new google.maps.InfoWindow();
 						var marker;
 						var currentMarker;
+						var markerList =[];
+						var boxList =[];
+						var i = 0;
 
 						var icons = {
 							ownPosition : {
 								icon : 'http://maps.google.com/mapfiles/kml/paddle/red-stars.png'
 							},
-							repairShop : {
-								//too big: icon: 'http://s1.directupload.net/images/140623/kfdn86tx.png'
-								//icon: 'http://s1.directupload.net/images/140623/z7ecadzh.png'
+							closeRepairShop : {
 								icon : 'http://s1.directupload.net/images/140623/oexdi2rp.png'
+
+							},
+							outOfDistanceRepairShop : {
+								icon : 'http://s1.directupload.net/images/140628/zt3xjpqt.png'
 
 							}
 						};
@@ -181,30 +186,6 @@ moreScripts:'bootstrap.min.js' /}
 
 						//for reverse geocoding:
 						function codeLatLng(latitude, longitude) {
-							/*var input = '40.714224,-73.961452';
-							var latlngStr = input.split(',', 2);
-							var lat = parseFloat(latlngStr[0]);
-							var lng = parseFloat(latlngStr[1]);
-							
-							var latlng = new google.maps.LatLng(latitude, longitude);
-							geocoder.geocode({'latLng': latlng}, function(results, status) {
-								if (status == google.maps.GeocoderStatus.OK) {
-									if (results[1]) {
-										map.setZoom(11);
-										marker = new google.maps.Marker({
-											position: latlng,
-											map: map,
-											clickable:	true
-										});
-										infowindow.setContent(results[1].formatted_address);
-										infowindow.open(map, marker);
-									} else {
-										alert('No results found');
-									}
-								} else {
-									alert('Geocoder failed due to: ' + status);
-								}
-							});*/
 							var latlng = new google.maps.LatLng(latitude,
 									longitude);
 							geocoder
@@ -292,44 +273,71 @@ moreScripts:'bootstrap.min.js' /}
 							$("p").html(errMsg);
 						}
 
-						//click in the map event?
-						/*myListener = google.maps.event.addListener(map, 'click', function(event) {
-							alert("works");
-							placeMarker(event.latLng);
-							google.maps.event.removeListener(myListener);
-						});*/
-
-						function addMarker(position, type, title, content) {
+						function addMarker(position, type, title, name, rating) {
 							var marker = new google.maps.Marker({
 								position : position,
 								icon : icons[type].icon,
 								map : map,
 								title : title,
 								clickable : true
-							//,
-							//animation:	google.maps.Animation.DROP
+							//,animation:	google.maps.Animation.DROP
 							});
+							
+					/*		markerList.push(marker);
 
+							var boxText = document.createElement("div");
+				            boxText.id = i;
+				            boxText.className = "labelText" + i;
+				            boxText.innerHTML = content;
+				            boxList.push(boxText);
+							
+				            google.maps.event.addListener(marker, 'click', (function(marker, i) {
+
+				                return function() {
+				                    //infowindow.setContent(boxList[this.id]);
+				                    infowindow.open(map, marker);
+				                }
+				                })(marker, i, content)); //end add marker listener
+
+				                google.maps.event.addDomListener(boxList[i],'click',(function(marker, i) {
+				                        return function() {
+				                          alert('clicked ' + cityList[i][0])
+				                        }
+				                      })(marker, i));
+				                */			            
+				            var content = '<span style="font-weight:bold;text-align: left;">Name: '
+								+ name
+								+ '<br />Rating: '
+								+ rating
+								+ '</span>';
+				                
 							// Create info window. In content you can pass simple text or html code.
 							var infowindow = new google.maps.InfoWindow({
 								content : content,
 								maxWidth : 150
 							});
-
+							
 							// Add listener for marker. You can add listener for any object
 							google.maps.event.addListener(marker, "click",
 									function() {
 										infowindow.open(map, marker);
-									});
+							});
 
 							if (type == 'ownPosition') {
 								map.panTo(position);
 								currentMarker = marker;
 							}
+							i++;
+							
+							//choose technician when clicking on a marker
+				            google.maps.event.addListener(marker, "click", function()
+				            {
+				            	document.getElementById("my-technician").value = name;
+				            });
 						}
 
 						function insertDatabaseMarkers() {
-							$.get("/Technicians", function(data) {
+					/*		$.get("/Technicians", function(data) {
 								//$( ".result" ).html( data );
 								//						//alert( "Load was performed."+data );
 								var obj = jQuery.parseJSON(data);
@@ -339,17 +347,50 @@ moreScripts:'bootstrap.min.js' /}
 											addMarker(new google.maps.LatLng(
 													value.latitude,
 													value.longitude),
-													'repairShop', value.name,
-													'<span style="font-weight:bold;text-align: left;">Name: '
-															+ value.name
-															+ '<br />Rating: '
-															+ value.rating
-															+ '</span>');
+													'repairShop', value.name, value.name, value.rating);
 											//alert(value.name + " has "+value.rating+" rating!");
 											//$('#campaign_keywords').append("<p>"+data.keywords[i]+"</p>");
 											//alert(name + " has "+rating+" rating!");
 
 										});
+							});
+ 					*/
+		 					$.get("/CloseTechnicians", function(data) {
+								//$( ".result" ).html( data );
+								//						//alert( "Load was performed."+data );
+								if(data!=null) {
+									var obj = jQuery.parseJSON(data);
+									$.each(obj,
+											function(key, value) {
+												//alert(value.latitude+' '+value.longitude+'repairShop'+value.name+value.rating);
+												addMarker(new google.maps.LatLng(
+														value.latitude,
+														value.longitude),
+														'closeRepairShop', value.name, value.name, value.rating);
+												//alert(value.name + " has "+value.rating+" rating!");
+												//$('#campaign_keywords').append("<p>"+data.keywords[i]+"</p>");
+												//alert(name + " has "+rating+" rating!");
+			
+									});
+								}
+							});
+		 					$.get("/OutOfDistanceTechnicians", function(data) {
+								//$( ".result" ).html( data );
+								//						//alert( "Load was performed."+data );
+								if(data!=null) {
+									var obj = jQuery.parseJSON(data);
+									$.each(obj,
+										function(key, value) {
+											//alert(value.latitude+' '+value.longitude+'repairShop'+value.name+value.rating);
+											addMarker(new google.maps.LatLng(
+													value.latitude,
+													value.longitude),
+													'outOfDistanceRepairShop', value.name, value.name, value.rating);
+											//alert(value.name + " has "+value.rating+" rating!");
+											//$('#campaign_keywords').append("<p>"+data.keywords[i]+"</p>");
+											//alert(name + " has "+rating+" rating!");
+									});
+								}
 							});
 
 							//addMarker(new google.maps.LatLng(48.13743,11.57549),'repairShop','MUC-Phone-Fix','<h4>Name: Abc<br />Rating: 4.0</h4>');
@@ -360,6 +401,7 @@ moreScripts:'bootstrap.min.js' /}
 				            google.maps.event.addListener(map, "click", function(event)
 				            {
 								currentMarker.setMap(null);
+								markerList =[];
 				            	
 								insertDatabaseMarkers();
 								
@@ -426,13 +468,15 @@ moreScripts:'bootstrap.min.js' /}
 									};
 									map = new google.maps.Map(document.getElementById("mapcanvas"),myOptions);
 									showMap();
-									insertDatabaseMarkers();
+									
 							//		addMarker(event.latLng, 'ownPosition', 'Meeting Point', '<span style="font-weight:bold;text-align: left;">Chosen point for meeting.</span>');)
 
 									addMarker(newLatLng,
 											'ownPosition',
 											'Searched Position',
 											'<span style="font-weight:bold;text-align:left;">Your searched position</span>');
+							
+									insertDatabaseMarkers();
 								}
 							});
 						}

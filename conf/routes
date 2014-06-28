@@ -48,6 +48,10 @@ GET     /                                       Application.index
 # Ajax Calls
 	# Get Technicians for Map
 	GET /Technicians										controllers.Technicians.getTechnicians
+	# Get Technicians that are close to user for Map
+	GET /CloseTechnicians									controllers.Technicians.getCloseTechnicians
+	# Get Technicians that are out of Distance for Map
+	GET /OutOfDistanceTechnicians							controllers.Technicians.getOutOfDistanceTechnicians
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

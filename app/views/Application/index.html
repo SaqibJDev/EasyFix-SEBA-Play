@@ -118,46 +118,10 @@ your broken phone fixed.' /}
 
 				//for reverse geocoding
 				geocoder = new google.maps.Geocoder();
-
-				// add a click event handler to the map object
-				google.maps.event.addListener(map, "click", function(event) {
-					alert("lat:" + event.latLng.lat() + " lng:"
-							+ event.latLng.lng());
-					// place a marker
-					addMarker(event.latLng, 'ownPosition', 'Text');
-
-					// display the lat/lng in your form's lat/lng fields
-					//document.getElementById("latFld").value = event.latLng.lat();
-					//document.getElementById("lngFld").value = event.latLng.lng();
-				});
 			}
 
 			//for reverse geocoding:
 			function codeLatLng(latitude, longitude) {
-				/*var input = '40.714224,-73.961452';
-				var latlngStr = input.split(',', 2);
-				var lat = parseFloat(latlngStr[0]);
-				var lng = parseFloat(latlngStr[1]);
-				
-				var latlng = new google.maps.LatLng(latitude, longitude);
-				geocoder.geocode({'latLng': latlng}, function(results, status) {
-					if (status == google.maps.GeocoderStatus.OK) {
-						if (results[1]) {
-							map.setZoom(11);
-							marker = new google.maps.Marker({
-								position: latlng,
-								map: map,
-								clickable:	true
-							});
-							infowindow.setContent(results[1].formatted_address);
-							infowindow.open(map, marker);
-						} else {
-							alert('No results found');
-						}
-					} else {
-						alert('Geocoder failed due to: ' + status);
-					}
-				});*/
 				var latlng = new google.maps.LatLng(latitude, longitude);
 				geocoder
 						.geocode({'latLng' : latlng},
@@ -210,8 +174,7 @@ your broken phone fixed.' /}
 						myOptions);
 
 				addMarker(googleLatLng, 'ownPosition',
-						'You are here! (at least within a '
-								+ position.coords.accuracy + ' meter radius)');
+						'You are here! (at least within a '	+ position.coords.accuracy + ' meter radius)');
 
 				insertDatabaseMarkers();
 
