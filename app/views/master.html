@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="@{'/public/stylesheets/main.css'}">
     <link rel="stylesheet" href="@{'/public/stylesheets/animate.css'}">
     <link href="@{'/public/stylesheets/font-awesome.min.css'}" rel="stylesheet">
+    <link href="@{'/public/stylesheets/bootstrap-datetimepicker.css'}" rel="stylesheet">
     #{if moreStyles!=null}
     %{cssFiles = moreStyles.split(",") }%
     #{list items:cssFiles, as:"cssFile"}
@@ -19,13 +20,15 @@
     <!-- font -->
     <link href="@{'/public/stylesheets/fonts.css'}" rel='stylesheet' type='text/css'>
     <script type="text/javascript" src="${'/public/javascripts/jquery.min.js'}"></script>
+    
     #{if moreScripts!=null}
     %{jsFiles = moreScripts.split(",") }%
     #{list items:jsFiles, as:"jsFile"}
     <script type="text/javascript" src="${'/public/javascripts/'+jsFile}"></script>
     #{/list}
     #{/if}
-    
+    <!-- script type="text/javascript" src="${'/public/javascripts/moment.js'}"></script>
+    <script type="text/javascript" src="${'/public/javascripts/bootstrap-datetimepicker.js'}"></script> -->
     <script type="text/javascript">
 	$(document).ready(function() {
 		$("##{get 'menu_item' /}").css( "background-color","#428bca" );
@@ -67,6 +70,7 @@
         		
         	<ul class="nav navbar-nav navbar-right">
 	              <li><span style="color: white;">Welcome ${user}!</span></li>
+	              <li><a href="#">Profile</a></li>
 	              <li><a href="/logout">Logout</a></li>
             </ul>
             #{/if}

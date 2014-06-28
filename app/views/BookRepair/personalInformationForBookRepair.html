@@ -32,7 +32,8 @@
 		  </div>
 		</div>
 	</center>
-			<form class="form-horizontal">
+	<div style="text-align:center;">This information is shown from your profile. Please update <a href="/Profile">profile</a> if something is not up to date.</div>
+			<form class="form-horizontal" method="post" action="${'/Repair/'+maker+'/'+deviceModel+'/'+repair+'/Technicians Availability/Personal Information/Review%20Appointment'}">
 			<fieldset>
 </br>
 			<!-- Button Drop Down -->
@@ -44,7 +45,7 @@
 <div class="control-group">
   <label class="control-label" for="textinput">First Name</label>
   <div class="controls">
-    <input id="textinput" name="textinput" type="text" placeholder="First Name" class="input-xlarge" required="">
+    <input id="textinput" readonly="readonly" name="textinput" type="text" placeholder="First Name" class="input-xlarge" required="" value="${firstName}">
     
   </div>
 </div>
@@ -54,7 +55,7 @@
 <div class="control-group">
   <label class="control-label" for="street">Street</label>
   <div class="controls">
-    <input id="street" name="street" type="text" placeholder="Street" class="input-xlarge" required="">
+    <input id="street" readonly="readonly" name="street" type="text" placeholder="Street" class="input-xlarge" required=""  value="${street}">
     
   </div>
 </div>
@@ -64,7 +65,7 @@
 <div class="control-group">
   <label class="control-label" for="postal">Postalcode</label>
   <div class="controls">
-    <input id="postal" name="postal" type="text" placeholder="Postalcode" class="input-xlarge" required="">
+    <input id="postal" readonly="readonly" name="postal" type="text" placeholder="Postalcode" class="input-xlarge" required=""  value="${zip}">
     
   </div>
 </div>
@@ -74,7 +75,7 @@
 <div class="control-group">
   <label class="control-label" for="postal">Phone</label>
   <div class="controls">
-    <input id="postal" name="phone" type="text" placeholder="Phone" class="input-xlarge" required="">
+    <input id="phone" name="phone" readonly="readonly" type="text" placeholder="Phone" class="input-xlarge" required=""  value="${phone}">
     
   </div>
 </div>
@@ -90,7 +91,7 @@
 			<div class="control-group">
 			  <label class="control-label" for="lastname">Last Name</label>
 			  <div class="controls">
-			    <input id="lastname" name="lastname" type="text" placeholder="Last Name" class="input-xlarge" required="">
+			    <input id="lastname" readonly="readonly" name="lastname" type="text" placeholder="Last Name" class="input-xlarge" required=""  value="${lastName}">
     
 			  </div>
 			</div>
@@ -100,7 +101,7 @@
 			<div class="control-group">
 			  <label class="control-label" for="Number">No.</label>
 			  <div class="controls">
-			    <input id="Time" name="Time" type="text" placeholder="No." class="mini" required="">
+			    <input id="number" readonly="readonly" name="number" type="text" placeholder="No." class="mini" required=""  value="${streetNo}">
     
 			  </div>
 			</div>
@@ -110,7 +111,7 @@
 			<div class="control-group">
 			  <label class="control-label" for="postal">City</label>
 			  <div class="controls">
-			    <input id="postal" name="city" type="text" placeholder="City" class="input-xlarge" required="">
+			    <input id="city" readonly="readonly" name="city" type="text" placeholder="City" class="input-xlarge" required=""  value="${city}">
     
 			  </div>
 			</div>
@@ -120,7 +121,7 @@
 			<div class="control-group">
 			  <label class="control-label" for="postal">Mobile</label>
 			  <div class="controls">
-			    <input id="mobile" name="mobile" type="text" placeholder="Mobile" class="input-xlarge" required="">
+			    <input id="mobile" readonly="readonly" name="mobile" type="text" placeholder="Mobile" class="input-xlarge" required=""  value="${mobile}">
     
 			  </div>
 			</div>
@@ -136,13 +137,13 @@
 			<div class="control-group">
 			  <label class="control-label" for="notes">Additional Information</label>
 			  <div class="controls">                     
-			    <textarea id="notes" name="notes"></textarea>
+			    <textarea id="notes" name="notes" cols="46"></textarea>
 			  </div>
 			</div>
 		</center>
 
 			</fieldset>
-			</form>
+			
 		</br>
 		
 			
@@ -154,7 +155,7 @@
 			<div class="control-group">
 			  <label class="control-label" for="back"></label>
 			  <div class="controls">
-			    <button id="back" name="back" class="btn btn-primary">Back</button>
+			    <button id="back" name="back" class="btn btn-primary" onclick="Javascript:window.history.back();">Back</button>
 			  </div>
 			</div>
 			
@@ -169,9 +170,12 @@
 			<div class="control-group">
 			  <label class="control-label" for="singlebutton"></label>
 			  <div class="controls">
-			    <a href="${'/Repair/'+maker+'/'+deviceModel+'/'+repair+'/Technicians Availability/Personal Information/Review%20Appointment'}"><button id="singlebutton" name="singlebutton" class="btn btn-primary">Review your booking</button></a>
+			  <input type="submit" id="singlebutton" name="singlebutton" class="btn btn-primary" value="Review your booking" />
+			    <a href="${'/Repair/'+maker+'/'+deviceModel+'/'+repair+'/Technicians Availability/Personal Information/Review%20Appointment'}">afdskj</a>
 			  </div>
-			  
+			  <input type="hidden" name="technician_id" value="${technician_id}" />
+			<input type="hidden" name="repair_id" value="${repair_id}" />
+			</form>
 			</div>
 		    <div class="col-md-2">
 				</div>

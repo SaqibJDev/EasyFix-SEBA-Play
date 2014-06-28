@@ -51,6 +51,7 @@
 				var geocoder;
 				var infowindow = new google.maps.InfoWindow();
 				var marker;
+				var userLatLng;
 				
 				var icons = {
 				  ownPosition: {
@@ -245,7 +246,7 @@
 				}
 				
 				function insertDatabaseMarkers() {
-					$.get( "/Technicians", function( data) {
+					$.get( "/Technicians/"+userLatLng.lat()+"/"+userLatLng.lng()+"/5000", function( data) {
 						  //$( ".result" ).html( data );
 //						  alert( "Load was performed."+data );
 						  var obj = jQuery.parseJSON(data);
@@ -254,6 +255,7 @@
 							//alert(value.name + " has "+value.rating+" rating!");
 				    			//$('#campaign_keywords').append("<p>"+data.keywords[i]+"</p>");
 				    			//alert(name + " has "+rating+" rating!");
+				    			//alert(userLatLng+ "|"+ userLatLng.lat() + "|" + userLatLng.lng());
 				    			
 				});
 						  
@@ -296,7 +298,7 @@
 						//map.setCenter();
 						
 						var newLatLng = new google.maps.LatLng(results[0].geometry.location.lat(), results[0].geometry.location.lng());
-						
+						userLatLng = newLatLng;
 						var myOptions = {
 							zoom: 13,
 							center: newLatLng,

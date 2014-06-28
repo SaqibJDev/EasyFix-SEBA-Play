@@ -1,10 +1,16 @@
 package controllers;
 
+import groovy.ui.text.FindReplaceUtility;
+
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import controllers.Secure.Security;
+import models.Actor;
 import models.device.DeviceModel;
+import models.device.DeviceRepair;
+import models.device.Manufacturer;
 import models.technician.Technician;
 import play.data.validation.Required;
 import play.mvc.Controller;
@@ -27,7 +33,22 @@ public class BookRepair extends Application {
 	 * User selects Date and time
 	 */
     public static void index(String maker, String deviceModel, String repair) {
-        
+    	Manufacturer manufacturer = (Manufacturer) Manufacturer.find("byName", maker).fetch().get(0);
+    	for (DeviceModel model : manufacturer.deviceModels) {
+			if(model.name.equals(deviceModel))
+			{
+				
+				for (DeviceRepair deviceRepair : model.deviceRepairList) {
+					if(deviceRepair.name.equals(repair)){
+						renderArgs.put("repairTime", deviceRepair.repairTime);
+						renderArgs.put("repairCost", deviceRepair.price);
+						renderArgs.put("repair_id", deviceRepair.id);
+						break;
+					}
+				}
+				break;
+			}
+		} 
             render(deviceModel,repair, maker);
     }
     // TODO we need static page for mock-up with map
@@ -91,9 +112,25 @@ public class BookRepair extends Application {
 //        // TODO currently not working
 //    }
 //    
-    public static void personalInformationForBookRepair(String maker, String deviceModel, String repair) {
+    public static void personalInformationForBookRepair(String maker, String deviceModel, String repair, long repair_id) {
     	
-    	render(maker, deviceModel, repair);
+    	// Fetch User profile attributes
+    	Actor user = Actor.find("byEmail", Security.connected()).first();
+        renderArgs.put("firstName", user.firstName);
+        renderArgs.put("lastName", user.lastName);
+        renderArgs.put("street", user.contactInformation.address.street);
+        renderArgs.put("streetNo", user.contactInformation.address.streetNo);
+        renderArgs.put("zip", user.contactInformation.address.zip);
+        renderArgs.put("city", user.contactInformation.address.city);
+        renderArgs.put("phone", user.contactInformation.telephone);
+        renderArgs.put("mobile", user.contactInformation.mobile);
+        
+        renderArgs.put("maker", maker);
+    	renderArgs.put("deviceModel", deviceModel);
+    	renderArgs.put("repair", repair);
+    	renderArgs.put("repair_id", repair_id);
+        
+        render();
     }
 
     /**
@@ -115,8 +152,39 @@ public class BookRepair extends Application {
         // TODO currently not working
     }
     
-    public static void reviewAppointment(String maker, String deviceModel, String repair) {
-        
+    public static void reviewAppointment(String maker, String deviceModel, String repair, String notes, long technician_id, long repair_id) {
+    	System.out.println(notes);
+    	// Fetch Device Repair details
+        renderArgs.put("maker", maker);
+    	renderArgs.put("model", deviceModel);
+    	renderArgs.put("repair", repair);
+    	
+    	DeviceRepair deviceRepair = DeviceRepair.findById(repair_id);
+    	if(deviceRepair==null){
+    		System.out.println("it is Null");
+    	}else{
+    		System.out.println("not null" +deviceRepair.repairTime);
+    		renderArgs.put("repairTime", deviceRepair.repairTime);
+    		renderArgs.put("repairCost", deviceRepair.price);
+    	}
+    	
+		
+//    	Manufacturer manufacturer = (Manufacturer) Manufacturer.find("byName", maker).fetch().get(0);
+//    	for (DeviceModel model : manufacturer.deviceModels) {
+//			if(model.name.equals(deviceModel))
+//			{
+//				
+//				for (DeviceRepair deviceRepair : model.deviceRepairList) {
+//					if(deviceRepair.name.equals(repair)){
+//						renderArgs.put("repairTime", deviceRepair.repairTime);
+//						renderArgs.put("repairCost", deviceRepair.price);
+//						break;
+//					}
+//				}
+//				break;
+//			}
+//		} 
+    	
         render(deviceModel,repair, maker);
 }
 

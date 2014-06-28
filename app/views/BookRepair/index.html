@@ -1,12 +1,20 @@
 #{extends 'master.html' /} #{set title:'EasyFix - Technicians Availability' /}
-#{set menu_item:'menu_repair' /} #{set moreScripts:'bootstrap.min.js' /}
+#{set menu_item:'menu_repair' /} #{set moreScripts:'bootstrap.min.js,moment.js,bootstrap-datetimepicker.js' /}
 <script type="text/javascript">
 	$(document).ready(function() {
-		$(".tooltips button").tooltip({
+		/*$(".tooltips button").tooltip({
 			placement : 'top'
-		});
+		});*/
+		
+		$('#datepicker').datetimepicker({
+            pickTime: false
+        });
+		$('#timepicker').datetimepicker({
+            pickDate: false
+        });
 	});
 </script>
+
 #{include 'breadcrumbs.html'/}
 
        <div class="container"><p>
@@ -32,7 +40,7 @@
 		  </div>
 		</div>
 	</center>
-			<form class="form-horizontal">
+			<form class="form-horizontal" action="${'/Repair/'+maker+'/'+deviceModel+'/'+repair+'/Technicians Availability/Personal Information'}" method="post">
 			<fieldset>
 
 			<!-- Button Drop Down -->
@@ -87,29 +95,37 @@
 				 <center>
 
 			<!-- Text input-->
-			<div class="control-group">
-			  <label class="control-label" for="Date">Date</label>
-			  <div class="controls">
-			    <input id="Date" name="Date" type="text" placeholder="Date" class="input-xlarge">
-    
-			  </div>
-			</div>
+
+			<div class='col-sm-7'>
+			<label class="control-label" for="Date">Date</label>
+			<div class="form-group">
+                <div class='input-group date' id='datepicker' data-date-format="YYYY/MM/DD">
+                    <input id="Date" name="Date" type='text' class="form-control" readonly="readonly" />
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span>
+                    </span>
+                </div>
+            </div>
+            </div>
 
 			<!-- Text input-->
-			<div class="control-group">
-			  <label class="control-label" for="Time">Time</label>
-			  <div class="controls">
-			    <input id="Time" name="Time" type="text" placeholder="Time" class="input-xlarge" required="">
-    
-			  </div>
-			</div>
+			<div class='col-sm-7'>
+			<label class="control-label" for="Time">Time</label>
+            <div class="form-group">
+                <div class='input-group date' id='timepicker'>
+                    <input id="Time" name="Time" type='text' class="form-control" readonly="readonly" />
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+			
 		</center>
 			 </div>
 			
 			
 
 			</fieldset>
-			</form>
+			
 		</br>
 			<center>
 			<iframe src="https://www.google.com/maps/embed/v1/place?q=Tu%20M%C3%BCnchen%2C%20Munich%2C%20Allemagne&key=AIzaSyDQCZq4LTDm1WF7nZYcYoqD9NJkS8l7Xps" width="850" height="400" frameborder="0" style="border:0"></iframe></center>
@@ -137,9 +153,11 @@
 			<div class="control-group">
 			  <label class="control-label" for="singlebutton"></label>
 			  <div class="controls">
+			  <input type="hidden" name="repair_id" value="${repair_id}" />
+			  <input type="submit" value="Continue" class="btn btn-primary" />
 			    <a href="${'/Repair/'+maker+'/'+deviceModel+'/'+repair+'/Technicians Availability/Personal Information'}"><button id="singlebutton" name="singlebutton" class="btn btn-primary">Continue</button></a>
 			  </div>
-			  
+			  </form>
 			</div>
 		    <div class="col-md-1">
 				</div>

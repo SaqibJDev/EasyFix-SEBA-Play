@@ -81,13 +81,26 @@ public class Repair extends Application {
      */
     public static void deviceModelRepairDetails(String maker,
             String deviceModel, String repair) {
-        DeviceRepair deviceRepair = (DeviceRepair) DeviceRepair
-                .find("byName", repair).fetch(1).get(0);
-        if (deviceRepair != null) {
-            render(maker, deviceModel, deviceRepair, repair);
-        } else {
-            render();
-        }
+    	
+    	renderArgs.put("maker", maker);
+    	renderArgs.put("deviceModel", deviceModel);
+    	renderArgs.put("repair", repair);
+    	
+    	Manufacturer manufacturer = (Manufacturer) Manufacturer.find("byName", maker).fetch().get(0);
+    	for (DeviceModel model : manufacturer.deviceModels) {
+			if(model.name.equals(deviceModel))
+			{
+				
+				for (DeviceRepair deviceRepair : model.deviceRepairList) {
+					if(deviceRepair.name.equals(repair)){
+						renderArgs.put("deviceRepair", deviceRepair);
+						break;
+					}
+				}
+				break;
+			}
+		} 
+    	render();
 
     }
 

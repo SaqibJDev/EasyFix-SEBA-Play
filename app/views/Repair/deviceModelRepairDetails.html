@@ -22,7 +22,9 @@
 					Repair Details
 					</h2>
 			</div>
+			
 			<div class="panel-body">
+				#{if deviceRepair!=null}
 				<div class="col-md-3">
 					</br> <img src="${'/public/images/repairs/'+deviceRepair.image}"
 						width="60%" border="0" alt="Home">
@@ -62,7 +64,10 @@
 					</ul>
 
 				</div>
-
+			#{/if}
+			#{else}
+			 No Repair Found 
+			 #{/else}
 			</div>
 
 			<div class="col-md-1"></div>

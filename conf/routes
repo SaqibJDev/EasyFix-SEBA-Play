@@ -24,8 +24,10 @@ GET     /                                       Application.index
 
 	# Book Repair
 		GET     /Repair/{maker}/{deviceModel}/{repair}/Technicians%20Availability        												controllers.BookRepair.index(maker,deviceModel,repair)
-		GET     /Repair/{maker}/{deviceModel}/{repair}/Technicians%20Availability/Personal%20Information        						controllers.BookRepair.personalInformationForBookRepair(maker,deviceModel,repair)
+#		GET     /Repair/{maker}/{deviceModel}/{repair}/Technicians%20Availability/Personal%20Information        						controllers.BookRepair.personalInformationForBookRepair(maker,deviceModel,repair)
+		POST     /Repair/{maker}/{deviceModel}/{repair}/Technicians%20Availability/Personal%20Information        						controllers.BookRepair.personalInformationForBookRepair(maker,deviceModel,repair)
 		GET     /Repair/{maker}/{deviceModel}/{repair}/Technicians%20Availability/Personal%20Information/Review%20Appointment        	controllers.BookRepair.reviewAppointment(maker,deviceModel,repair)
+		POST     /Repair/{maker}/{deviceModel}/{repair}/Technicians%20Availability/Personal%20Information/Review%20Appointment        	controllers.BookRepair.reviewAppointment(maker,deviceModel,repair)
 
 	# External Technicians
 		GET     /Repair/{maker}/{deviceModel}/{repair}/ExternalTechnicians  			controllers.ExternalTechnicians.show(maker,deviceModel,repair)
@@ -48,6 +50,7 @@ GET     /                                       Application.index
 # Ajax Calls
 	# Get Technicians for Map
 	GET /Technicians										controllers.Technicians.getTechnicians
+	GET /Technicians/{userLatitude}/{userLongitude}/{maxDistance} controllers.Technicians.getCloseTechnicians(userLatitude,userLongitude,maxDistance)
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
