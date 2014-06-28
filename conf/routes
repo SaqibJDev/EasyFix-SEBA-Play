@@ -25,9 +25,11 @@ GET     /                                       Application.index
 	# Book Repair
 		GET     /Repair/{maker}/{deviceModel}/{repair}/Technicians%20Availability        												controllers.BookRepair.index(maker,deviceModel,repair)
 #		GET     /Repair/{maker}/{deviceModel}/{repair}/Technicians%20Availability/Personal%20Information        						controllers.BookRepair.personalInformationForBookRepair(maker,deviceModel,repair)
-		POST     /Repair/{maker}/{deviceModel}/{repair}/Technicians%20Availability/Personal%20Information        						controllers.BookRepair.personalInformationForBookRepair(maker,deviceModel,repair)
+		POST    /Repair/{maker}/{deviceModel}/{repair}/Technicians%20Availability/Personal%20Information        						controllers.BookRepair.personalInformationForBookRepair(maker,deviceModel,repair)
 		GET     /Repair/{maker}/{deviceModel}/{repair}/Technicians%20Availability/Personal%20Information/Review%20Appointment        	controllers.BookRepair.reviewAppointment(maker,deviceModel,repair)
-		POST     /Repair/{maker}/{deviceModel}/{repair}/Technicians%20Availability/Personal%20Information/Review%20Appointment        	controllers.BookRepair.reviewAppointment(maker,deviceModel,repair)
+		POST    /Repair/{maker}/{deviceModel}/{repair}/Technicians%20Availability/Personal%20Information/Review%20Appointment        	controllers.BookRepair.reviewAppointment(maker,deviceModel,repair)
+		
+		POST 	/BookRepair/appointmentConfirmation      	controllers.BookRepair.appointmentConfirmation(repair_id,technician_id,date,time,notes)
 
 	# External Technicians
 		GET     /Repair/{maker}/{deviceModel}/{repair}/ExternalTechnicians  			controllers.ExternalTechnicians.show(maker,deviceModel,repair)

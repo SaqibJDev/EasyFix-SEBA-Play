@@ -10,7 +10,6 @@ import play.db.jpa.Model;
  * @author Chrysa Papapdaki - papadaki.chr@gmail.com
  * 
  */
-//@Entity
 @Embeddable
 public class GeoPoint {
 

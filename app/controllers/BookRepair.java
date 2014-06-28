@@ -160,14 +160,22 @@ public class BookRepair extends Application {
     	renderArgs.put("repair", repair);
     	
     	DeviceRepair deviceRepair = DeviceRepair.findById(repair_id);
-    	if(deviceRepair==null){
-    		System.out.println("it is Null");
-    	}else{
-    		System.out.println("not null" +deviceRepair.repairTime);
+    	if(deviceRepair!=null){
     		renderArgs.put("repairTime", deviceRepair.repairTime);
     		renderArgs.put("repairCost", deviceRepair.price);
     	}
     	
+    	Technician technician = Technician.findById((long)3);
+    	if(technician!=null){
+    		renderArgs.put("technicianName", technician.firstName+" "+technician.lastName);
+    		renderArgs.put("technicianContact", technician.contactInformation.mobile);
+    	}
+    	
+    	renderArgs.put("date", "22-12-2014");
+    	renderArgs.put("time", "5:30 PM");
+    	renderArgs.put("notes", notes);
+    	renderArgs.put("repair_id", repair_id);
+    	renderArgs.put("technician_id", 3);
 		
 //    	Manufacturer manufacturer = (Manufacturer) Manufacturer.find("byName", maker).fetch().get(0);
 //    	for (DeviceModel model : manufacturer.deviceModels) {
@@ -191,9 +199,14 @@ public class BookRepair extends Application {
     /**
      * Step3/3 appointment confirmation
      * 
-     * @param appointmentId
+     * @param repairId
+     * @param technicianId
+     * @param date
+     * @param time
+     * @param notes
      */
-    public static void appointmentConfirmation(String appointmentId) {
-        // TODO currently not working
+    public static void appointmentConfirmation(long repair_id, long technician_id, String date, String time, String notes) {
+    	
+    	render();
     }
 }

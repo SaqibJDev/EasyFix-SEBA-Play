@@ -5,10 +5,6 @@ import java.sql.Date;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 
-import models.customer.Customer;
-import models.device.DeviceRepair;
-import models.technician.Technician;
-
 import org.joda.time.DateTime;
 import org.joda.time.Duration;
 
@@ -23,7 +19,7 @@ import com.google.gson.annotations.Expose;
  */
 // @Embeddable
 @Entity
-public class Appointment extends Model {
+public class CopyOfAppointment extends Model {
 
     /**
      * The appointment time
@@ -44,25 +40,30 @@ public class Appointment extends Model {
     @OneToOne
     public Location meetingPlace;
 
-    @OneToOne
-    public Customer customer;
+    public long customerId;
 
-    @OneToOne
-    public Technician technician;
+    public long technicianId;
 
-    @OneToOne
-    public DeviceRepair deviceRepair;
+    public long deviceRepairId;
 
+    /**
+     * not used for the moment The technician and the customer who will attend
+     * the meeting
+     */
+    // @OneToMany
+    // public List<Actor> attendees;
+    // @Expose
+    // public long customerId;
 
-    public Appointment(Date dateTimeStart, long duration,
+    public CopyOfAppointment(Date dateTimeStart, long duration,
             Location address, long customerId, long technicianId, long deviceRepairId) {
         super();
         this.dateTimeStart = dateTimeStart;
         this.duration = duration;
         this.meetingPlace = address;
-//        this.customerId = customerId;
-//        this.technicianId = technicianId;
-//        this.deviceRepairId = deviceRepairId;
+        this.customerId = customerId;
+        this.technicianId = technicianId;
+        this.deviceRepairId = deviceRepairId;
     }
 
 }
