@@ -36,7 +36,8 @@ GET     /                                       Application.index
 		GET		/registerConfirm							controllers.Registration.registerConfirm
 		
 	# UserProfile with appointment/repair list - redirect after login
-		GET     /Profile					               controllers.Profile.index
+		GET     /Profile/index/{customerid}	                controllers.Profile.index(customerid)
+		GET     /Profile/history/{customerid}	                controllers.Profile.history(customerid)
 	#Test urls redirect from profile
 		GET		/Feedback/index/{customerid}/{repairid}											controllers.Feedback.index
 		POST    /Feedback/submit							controllers.Feedback.submit(customerid, repairid, rating, comment)

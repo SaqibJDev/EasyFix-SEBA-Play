@@ -18,9 +18,7 @@ menu_item:'menu_feedback' /} #{set moreScripts:'bootstrap.min.js' /}
 <section id="payment">				 
  		<div class="panel panel-default">
  		  <div class="panel-body">
- 			  <center>
- 		    <h3>User Profile</h3>
-		</center>
+ 		    <h3> Profile | <a href="">History</a></h3> 
 	</br>
   
 <div class="well"><h5>Account Settings</h4>
@@ -30,7 +28,7 @@ menu_item:'menu_feedback' /} #{set moreScripts:'bootstrap.min.js' /}
 		   <h4>Email:</h4>
 		</div>
 	<div class="col-md-4">
-         <input id="email" type="text" class="form-control" placeholder="Email" title="email" required="">
+         <input id="email" type="text" value="${customer.contactInformation.email}" class="form-control" placeholder="Email" title="email" required="">
 			       </div>
 
 	 <div class="col-md-5">
@@ -88,10 +86,10 @@ menu_item:'menu_feedback' /} #{set moreScripts:'bootstrap.min.js' /}
   		   <h4>Name:</h4>
 			</div>
 		<div class="col-md-4">
-           <input id="firstname" type="text" class="form-control" placeholder="First Name" title="First name" required="">
+           <input id="firstname" value="${customer.firstName}" type="text" class="form-control" placeholder="First Name" title="First name" required="">
 				       </div>
 		   <div class="col-md-4">
-           <input id="lastname" type="text" class="form-control" placeholder="Last Name" title="Last name" required="">
+           <input id="lastname" value="${customer.lastName}" type="text" class="form-control" placeholder="Last Name" title="Last name" required="">
 			   
 	     </div>
 		 <div class="col-md-1">
@@ -104,10 +102,10 @@ menu_item:'menu_feedback' /} #{set moreScripts:'bootstrap.min.js' /}
   		   <h4>Adress:</h4>
 			</div>
 		<div class="col-md-5">
-           <input id="street" type="text" class="form-control" placeholder="Street" title="street" required="">
+           <input id="street" type="text" value="${customer.contactInformation.address.street}" class="form-control" placeholder="Street" title="street" required="">
 				       </div>
 		   <div class="col-md-2">
-           <input id="no" type="text" class="form-control" placeholder="No" title="streetno" required="">
+           <input id="no" type="text" value="${customer.contactInformation.address.streetNo}" class="form-control" placeholder="No" title="streetno" required="">
 			   
 	     </div>
 		 <div class="col-md-1">
@@ -117,10 +115,10 @@ menu_item:'menu_feedback' /} #{set moreScripts:'bootstrap.min.js' /}
 		<div class="col-md-3">
 			</div>
 		<div class="col-md-4">
-           <input id="street" type="text" class="form-control" placeholder="City" title="First name" required="">
+           <input id="street" type="text" value="${customer.contactInformation.address.city}" class="form-control" placeholder="City" title="First name" required="">
 				       </div>
 		   <div class="col-md-4">
-           <input id="lastname" type="text" class="form-control" placeholder="Postal Code" title="Last name" required="">
+           <input id="lastname" type="text" class="form-control" value="${customer.contactInformation.address.zip}" placeholder="Postal Code" title="Last name" required="">
 			   
 	     </div>
 		 <div class="col-md-1">
@@ -180,10 +178,10 @@ menu_item:'menu_feedback' /} #{set moreScripts:'bootstrap.min.js' /}
 		  		   <h4>Card Holder's Name:</h4>
 					</div>
 				<div class="col-md-4">
-	            <input id="firstname" type="text" class="form-control" placeholder="First Name" title="First name" required="">
+	            <input id="firstname" type="text" value="${customer.firstName}" class="form-control" placeholder="First Name" title="First name" required="">
 						       </div>
 				   <div class="col-md-4">
-	            <input id="lastname" type="text" class="form-control" placeholder="Last Name" title="Last name" required="">
+	            <input id="lastname" type="text" value="${customer.lastName}" class="form-control" placeholder="Last Name" title="Last name" required="">
 				   
 			     </div>
 	     </div>
@@ -263,6 +261,7 @@ menu_item:'menu_feedback' /} #{set moreScripts:'bootstrap.min.js' /}
 	  								     
 	
 		</div>
+		
 	   	<center><button type="button" class="btn btn-success">Save Changes</button></center>
 		
 </section>

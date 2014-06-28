@@ -6,6 +6,10 @@ import java.sql.Timestamp;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 
+import models.device.DeviceRepair;
+import models.rating.Rating;
+import models.technician.Technician;
+
 import org.joda.time.DateTime;
 
 import play.db.jpa.Model;
@@ -44,8 +48,14 @@ public class Appointment extends Model {
 	public long technicianId;
 
 	public long deviceRepairId;
-	
+
 	public long ratingId;
+
+	/**
+	 * Status of appointment as follows: 
+	 * 0 - paid 1 - pending
+	 */
+	public int paymentStatus;
 
 	public String getStartTime() {
 		DateTime dt = new DateTime(this.dateTimeStart.getTime());
@@ -62,7 +72,25 @@ public class Appointment extends Model {
 		return dt.getDayOfMonth() + "-" + dt.getMonthOfYear() + "-"
 				+ dt.getYear();
 	}
+	
+	public String getStatus(){
+		return (paymentStatus == 0)? "paid":"pending";
+	}
 
+	public DeviceRepair getDeviceRepair(){
+		return  (DeviceRepair) DeviceRepair
+				.find("byId", this.deviceRepairId).fetch(1).get(0);
+	}
+	
+	public Technician getTechnician(){
+		return (Technician) Technician
+		.find("byTechnicianId", this.technicianId).first();
+	}
+	
+	public Rating getRating(){
+		return (Rating) Rating
+		.find("byId", this.ratingId).first();
+	}
 	/**
 	 * not used for the moment The technician and the customer who will attend
 	 * the meeting

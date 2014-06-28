@@ -3,6 +3,7 @@ package controllers;
 import notifiers.Mails;
 import models.Actor;
 import models.Appointment;
+import models.PaymentStatus;
 import models.customer.Customer;
 import models.device.DeviceRepair;
 import models.technician.Technician;
@@ -82,6 +83,10 @@ public class Payment extends Controller {
 				.find("byId", repairId).fetch(1).get(0);
 		Customer customer = (Customer) Customer.find("byId", customerId)
 				.fetch(1).get(0);
+
+		Appointment appointment = (Appointment) Appointment
+				.find("byCustomerIdAndDeviceRepairId", customerId, repairId).first();
+		appointment.paymentStatus = PaymentStatus.PAID.getIndex();
 		Mails.paymentConfirmation(deviceRepair, customer);
 		render();
 	}
