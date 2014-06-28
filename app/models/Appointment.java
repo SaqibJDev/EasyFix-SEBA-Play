@@ -1,19 +1,18 @@
 package models;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 
 import org.joda.time.DateTime;
-import org.joda.time.Duration;
 
 import play.db.jpa.Model;
 
 import com.google.gson.annotations.Expose;
 
 /**
- * Immutable
  * 
  * @author Chrysa Papadaki - papadaki.chr@gmail.com
  */
@@ -21,49 +20,68 @@ import com.google.gson.annotations.Expose;
 @Entity
 public class Appointment extends Model {
 
-    /**
-     * The appointment time
-     */
-    // @Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
-    public Date dateTimeStart;
+	/**
+	 * The appointment time
+	 */
+	// @Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
+	public Timestamp dateTimeStart;
 
-    /**
-     * The duration of the meeting
-     */
-    // @Type(type = "org.joda.time.contrib.hibernate.PersistentDuration")
-    public long duration;
+	/**
+	 * The duration of the meeting
+	 */
+	// @Type(type = "org.joda.time.contrib.hibernate.PersistentDuration")
+	public long duration;
 
-    /**
-     * The location of the meeting which is the address of the customer
-     */
-    @Expose
-    @OneToOne
-    public Location meetingPlace;
+	/**
+	 * The location of the meeting which is the address of the customer
+	 */
+	@Expose
+	@OneToOne
+	public Location meetingPlace;
 
-    public long customerId;
+	public long customerId;
 
-    public long technicianId;
+	public long technicianId;
 
-    public long deviceRepairId;
+	public long deviceRepairId;
+	
+	public long ratingId;
 
-    /**
-     * not used for the moment The technician and the customer who will attend
-     * the meeting
-     */
-    // @OneToMany
-    // public List<Actor> attendees;
-    // @Expose
-    // public long customerId;
+	public String getStartTime() {
+		DateTime dt = new DateTime(this.dateTimeStart.getTime());
+		return dt.getHourOfDay() + ":" + dt.getMinuteOfHour();
+	}
 
-    public Appointment(Date dateTimeStart, long duration,
-            Location address, long customerId, long technicianId, long deviceRepairId) {
-        super();
-        this.dateTimeStart = dateTimeStart;
-        this.duration = duration;
-        this.meetingPlace = address;
-        this.customerId = customerId;
-        this.technicianId = technicianId;
-        this.deviceRepairId = deviceRepairId;
-    }
+	public String getEndTime() {
+		DateTime dt = new DateTime(dateTimeStart.getTime() + duration);
+		return dt.getHourOfDay() + ":" + dt.getMinuteOfHour();
+	}
+
+	public String getDate() {
+		DateTime dt = new DateTime(this.dateTimeStart.getTime());
+		return dt.getDayOfMonth() + "-" + dt.getMonthOfYear() + "-"
+				+ dt.getYear();
+	}
+
+	/**
+	 * not used for the moment The technician and the customer who will attend
+	 * the meeting
+	 */
+	// @OneToMany
+	// public List<Actor> attendees;
+	// @Expose
+	// public long customerId;
+
+	public Appointment(Timestamp dateTimeStart, long duration,
+			Location address, long customerId, long technicianId,
+			long deviceRepairId) {
+		super();
+		this.dateTimeStart = dateTimeStart;
+		this.duration = duration;
+		this.meetingPlace = address;
+		this.customerId = customerId;
+		this.technicianId = technicianId;
+		this.deviceRepairId = deviceRepairId;
+	}
 
 }

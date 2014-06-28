@@ -1,4 +1,5 @@
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class FixAppointmentTest extends UnitTest {
         Technician john = Technician.find("byLastName", "Smith").first();
         DeviceRepair d = DeviceRepair.find("byDisplayName", "screen").first();
         Customer c = (Customer) Customer.findAll().get(0);
-        Appointment app = new Appointment(new Date(new DateTime().getMillis()),
+        Appointment app = new Appointment(new Timestamp(0),
                 d.repairTime, c.contactInformation.address, c.id, john.id, d.id)
                 .save();
         assertEquals(c.contactInformation.address, app.meetingPlace);
@@ -59,7 +60,6 @@ public class FixAppointmentTest extends UnitTest {
         List<Technician> techs = Technician.findByGeoPoint(122,123);//Technician.findByAddressQuery("garching");
 
         assertNotSame(techs.size(), 0);
-        Logger.info("sizeeee"+techs.size());
         techs = Technician.findTechniciansByRepair(techs,
                 createDeviceModelList().get(0).name, "screen2");
 

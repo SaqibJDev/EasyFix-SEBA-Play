@@ -1,13 +1,9 @@
 package notifiers;
 
-import play.*;
-import play.mvc.*;
-
-import java.util.*;
-
 import models.Actor;
-
-import org.apache.commons.mail.EmailAttachment;
+import models.Appointment;
+import models.customer.Customer;
+import models.device.DeviceRepair;
  
 public class Mails extends play.mvc.Mailer {
  public static final String fromEmail = "EasyFix <no-reply@easyfix.com>";
@@ -30,5 +26,17 @@ public class Mails extends play.mvc.Mailer {
       send(user, newpassword);
       return true;
    }
- 
+
+   public static void paymentConfirmation(DeviceRepair repair, Customer customer) {
+	      setSubject("Payment Confirmation %s", customer.firstName);
+	      addRecipient(customer.email);
+	      setFrom("Me <me@me.com>");
+	      send(repair, customer);
+	   }
+   public static void bookRepairConfirmation(Appointment appointment, Customer customer) {
+	      setSubject("Book Repair Confirmation %s", customer.firstName);
+	      addRecipient(customer.email);
+	      setFrom("Me <me@me.com>");
+	      send(appointment, customer);
+	   }
 }

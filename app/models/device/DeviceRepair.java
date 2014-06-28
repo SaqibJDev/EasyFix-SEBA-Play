@@ -40,5 +40,19 @@ public class DeviceRepair extends Model{
 		this.lastUpdated = lastUpdated;
 	}
 	
+	/**
+	 * in Germany vat rate is 19 percent
+	 * @return vat 
+	 */
+	public float getVAT(){
+		return  Math.round((price * 19f / 100f));
+	}
 	
+	/**
+	 * 
+	 * @return price without vat
+	 */
+	public float getPriceWithoutVAT(){
+		return  (price - getVAT());
+	}
 }

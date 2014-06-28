@@ -1,0 +1,271 @@
+#{extends 'master.html' /} #{set title:'EasyFix - Feedback'/} #{set
+menu_item:'menu_feedback' /} #{set moreScripts:'bootstrap.min.js' /}
+<script type="text/javascript">
+	$(document).ready(function(){
+	    $(".tooltips button").tooltip({
+	        placement : 'top'
+	    });
+		
+	</script>
+<!-- #{include 'breadcrumbs.html'/} -->
+<!-- #{set moreScripts:'star-rating.min.js' /} -->
+<div class="container">
+<!-- Big Column #1 -->
+ <div class="col-md-2">
+ </div>
+ <!-- Big Column #2 -->
+ <div class="col-md-8">
+<section id="payment">				 
+ 		<div class="panel panel-default">
+ 		  <div class="panel-body">
+ 			  <center>
+ 		    <h3>User Profile</h3>
+		</center>
+	</br>
+  
+<div class="well"><h5>Account Settings</h4>
+
+<div class="row">
+	<div class="col-md-3">
+		   <h4>Email:</h4>
+		</div>
+	<div class="col-md-4">
+         <input id="email" type="text" class="form-control" placeholder="Email" title="email" required="">
+			       </div>
+
+	 <div class="col-md-5">
+		     </div>
+			    </div>
+  
+
+
+<div class="row">
+	<div class="col-md-3">
+		   <h4>Password:</h4>
+		</div>
+	<div class="col-md-4">
+         <input id="street" type="password" class="form-control" placeholder="Password" title="pwd" required="">
+			       </div>
+	   <div class="col-md-4">
+         <input id="repwd" type="password" class="form-control" placeholder="Re-type Password" title="repwd" required="">
+		   
+     </div>
+	 <div class="col-md-1">
+		     </div>
+			 
+			 
+			 
+			 
+  </div>
+<div class="row">
+	<div class="col-md-3">
+		<h4>Allow Cookies:</h4>
+		</div>
+	<div class="col-md-4">
+  <div class="controls">
+    <label class="checkbox inline" for="checkboxes-0">
+      <input type="checkbox" name="checkboxes" id="checkboxes-0" value="1234">
+</div>			       </div>
+	   <div class="col-md-5">
+		   
+     </div>
+	 
+  </div>
+  
+  
+    </div>
+  
+  
+  
+  
+  
+  
+
+	<div class="well"><h5>Personal Information</h4>
+	
+	<div class="row">
+		<div class="col-md-3">
+  		   <h4>Name:</h4>
+			</div>
+		<div class="col-md-4">
+           <input id="firstname" type="text" class="form-control" placeholder="First Name" title="First name" required="">
+				       </div>
+		   <div class="col-md-4">
+           <input id="lastname" type="text" class="form-control" placeholder="Last Name" title="Last name" required="">
+			   
+	     </div>
+		 <div class="col-md-1">
+			     </div>
+    </div>
+	
+	
+	<div class="row">
+		<div class="col-md-3">
+  		   <h4>Adress:</h4>
+			</div>
+		<div class="col-md-5">
+           <input id="street" type="text" class="form-control" placeholder="Street" title="street" required="">
+				       </div>
+		   <div class="col-md-2">
+           <input id="no" type="text" class="form-control" placeholder="No" title="streetno" required="">
+			   
+	     </div>
+		 <div class="col-md-1">
+			     </div>
+    </div>
+	<div class="row">
+		<div class="col-md-3">
+			</div>
+		<div class="col-md-4">
+           <input id="street" type="text" class="form-control" placeholder="City" title="First name" required="">
+				       </div>
+		   <div class="col-md-4">
+           <input id="lastname" type="text" class="form-control" placeholder="Postal Code" title="Last name" required="">
+			   
+	     </div>
+		 <div class="col-md-1">
+			     </div>
+    </div>
+	
+	</div>
+	
+	
+
+  
+	<div class="well"><h5>Payment Information</h4>
+
+			<!-- Form Name -->
+	    
+
+			<!-- Multiple Radios -->
+				<div class="row">
+			
+			
+			    <div class="col-md-4">
+		    
+			
+			  <h4>Payment Options:</h4>
+			  </div>
+		  
+			  <div class="controls">
+			  
+	  		    <div class="col-md-2">
+			  
+			  
+			    <label class="radio" for="payopt-0">
+			      <input type="radio" name="payopt" id="payopt-0" value="Visa" checked="checked" required="required">
+			      Visa
+			    </label>
+				</div>
+				<div class="col-md-3">
+			
+			    <label class="radio" for="payopt-1">
+			      <input type="radio" name="payopt" id="payopt-1" value="Mastercard" required="required">
+			      Mastercard
+			    </label>
+				</div>
+			
+				<div class="col-md-3">
+			    <label class="radio" for="payopt-2">
+			      <input type="radio" name="payopt" id="payopt-2" value="Paypal" required="required">
+			      Paypal
+			    </label>
+				</div>
+				 </div>
+			
+			</div>
+		</br>
+			<div class="row">
+				<div class="col-md-4">
+		  		   <h4>Card Holder's Name:</h4>
+					</div>
+				<div class="col-md-4">
+	            <input id="firstname" type="text" class="form-control" placeholder="First Name" title="First name" required="">
+						       </div>
+				   <div class="col-md-4">
+	            <input id="lastname" type="text" class="form-control" placeholder="Last Name" title="Last name" required="">
+				   
+			     </div>
+	     </div>
+		  <h4>Credit Card Number:</h4>
+			<div class="row">
+			                        <div class="col-md-3">
+			                            <input type="text" class="form-control" autocomplete="off" maxlength="4" pattern="\d{4}" title="First four digits" required="">
+			                        </div>
+			                        <div class="col-md-3">
+			                            <input type="text" class="form-control" autocomplete="off" maxlength="4" pattern="\d{4}" title="Second four digits" required="">
+			                        </div>
+			                        <div class="col-md-3">
+			                            <input type="text" class="form-control" autocomplete="off" maxlength="4" pattern="\d{4}" title="Third four digits" required="">
+			                        </div>
+			                        <div class="col-md-3">
+			                            <input type="text" class="form-control" autocomplete="off" maxlength="4" pattern="\d{4}" title="Fourth four digits" required="">
+			                        </div>
+			                    </div>
+								<div class="row">
+								 <div class="col-md-6"> 
+							   <h4>Card Expiry Date:</h4>
+							    </div>
+								<div class="col-md-6"> 
+									<h4>Card CVV:</h4>
+								</div>
+								</div>
+							
+									<div class="row">
+							
+							
+							
+						         
+										   <div class="col-md-2">  
+									   
+							             <div class="controls">
+							               <select name="expiry_month" id="expiry_month">
+							                 <option value="01">Jan</option>
+							                 <option value="02">Feb</option>
+							                 <option value="03">Mar</option>
+							                 <option value="04">Apr</option>
+							                 <option value="05">May</option>
+							                 <option value="06">June</option>
+							                 <option value="07">July</option>
+							                 <option value="08">Aug</option>
+							                 <option value="09">Sep</option>
+							                 <option value="10">Oct</option>
+							                 <option value="11">Nov</option>
+							                 <option value="12">Dec</option>
+							               </select>
+										    </div>
+											</div>
+										   <div class="col-md-4">  
+									   
+							               <select name="expiry_year">
+							                 <option value="14">2014</option>
+							                 <option value="15">2015</option>
+							                 <option value="16">2016</option>
+							                 <option value="17">2017</option>
+							                 <option value="18">2018</option>
+							                 <option value="19">2019</option>
+							                 <option value="20">2020</option>
+							                 <option value="21">2021</option>
+							                 <option value="22">2022</option>
+							                 <option value="23">2023</option>
+							               </select>
+										    </div>
+										
+											  <div class="col-md-3">  
+			  		                            <input type="password" placeholder="CVV" class="form-control" autocomplete="off" maxlength="3"  title="cvv" required="">
+											  
+												  </div>
+							             <div class="col-md-3">  
+									   </div>
+									   
+								  
+									      </div>
+	  								     
+	
+		</div>
+	   	<center><button type="button" class="btn btn-success">Save Changes</button></center>
+		
+</section>
+	
+	</div>
+</div>

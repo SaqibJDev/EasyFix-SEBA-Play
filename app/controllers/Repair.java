@@ -26,7 +26,6 @@ public class Repair extends Application {
                 return o1.name.compareTo(o2.name);
             }
         });
-
         render(manufacturers);
     }
 
@@ -88,8 +87,5 @@ public class Repair extends Application {
         } else {
             render();
         }
-
     }
-
-
 }

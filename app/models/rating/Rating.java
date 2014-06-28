@@ -10,15 +10,18 @@ import play.db.jpa.Model;
 public class Rating extends Model{
 
     public long timestamp;
+    /**
+     * rating value - number of stars of customer for the selected technician for repair
+     */
     public int rating;
+    
+    /**
+     * User feedback on repair service
+     */
+    public String comment;
     @OneToOne
     public Customer customer;
     
     @OneToOne
     public Technician technician;
-    //public RatingValue ratingValue;
-    
-    //public long customerId;
-    
-    //public long technicianId;
 }

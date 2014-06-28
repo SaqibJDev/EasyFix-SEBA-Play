@@ -12,7 +12,6 @@ GET     /                                       Application.index
 	# Index Page: Manufacturer List Page
 		GET     /Repair                                      		controllers.Repair.index
 		GET     /Repair/                                      		controllers.Repair.index
-	
 	# Device Model List of selected Manufacturer 
 		GET     /Repair/{maker}                   					controllers.Repair.manufacturer(maker)
 	
@@ -35,17 +34,39 @@ GET     /                                       Application.index
 		GET     /Registration					               controllers.Registration.Index
 		POST    /register					               controllers.Registration.register
 		GET		/registerConfirm							controllers.Registration.registerConfirm
+		
+	# UserProfile with appointment/repair list - redirect after login
+		GET     /Profile					               controllers.Profile.index
+	#Test urls redirect from profile
+		GET		/Feedback/index/{customerid}/{repairid}											controllers.Feedback.index
+		POST    /Feedback/submit							controllers.Feedback.submit(customerid, repairid, rating, comment)
+		GET     /Feedback/Payment							controllers.Payment.index
+	#User submits her payment data and continues to paymentReview
+		POST    /Payment/paymentDetails								controllers.Payment.paymentDetails
+	#Go back from payment to feedback
+		GET   /Feedback/feedback/{customerid}/{repairid}							controllers.Feedback.feedback(customerid, repairid)
+	#Go to step 3 payment review
+		GET   /Payment/review								controllers.Payment.review(customerid, repairid)
+		POST  /Payment/paymentConfirmation					controllers.Payment.paymentConfirmation(customerid, repairid)
+	# selected repair
+#		GET     /customers/{id}/profile/{repairid}					               controllers.Profile.showRepair(customerid,repairid)
+	# submitFeedback
+#		GET    /customers/{customerid}/profile/{repairid}/Feedback		    controllers.Feedback.index(customerid, repairid)
+#		POST   /customers/{customerid}/profile/{repairid}/Feedback/submit	controllers.Feedback.submit(customerid, repairid, rating, comment)
+	# Payment
+#		GET    /customers/{customerid}/profile/{repairid}/Payment           controllers.Payment.index(repairid,customerid)
+#		POST    /customers/{customerid}/profile/{repairid}/pay           controllers.Payment.pay(repairid,customerid)
+#		GET    /customers/{customerid}/profile/{repairid}/paymentConfirmation           controllers.Payment.paymentConfirmation(repairid,customerid)
 # Static Pages
 	# Q&A page
 		GET     /QandA						                   controllers.StaticPages.QandA
 	
 	# About Us page
 		GET     /AboutUs						               controllers.StaticPages.AboutUs
-	
 
 
 # Ignore favicon requests
-GET     /favicon.ico                            404
+		GET     /favicon.ico                            404
 
 # Map static resources from the /app/public folder to the /public path
 GET     /public/                                staticDir:public
