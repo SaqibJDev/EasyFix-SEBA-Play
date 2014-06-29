@@ -114,8 +114,8 @@
 					<form class="form-horizontal" id="paymentConfirmation"
 						action="/Payment/paymentConfirmation" method="post">
 				<div class="controls">
-						<input type="number" name="customerId" id="customerId"
-							value=${customerId} hidden="true"> 
+						<input type="number" name="customerid" id="customerid"
+							value=${customerid} hidden="true"> 
 							<input type="number" name="repairId" id="repairId" value=${deviceRepair.id}
 							hidden="true"> <span class="buttonright"><button
 								type="submit" id="continuepayment" name="continue payment"
@@ -125,8 +125,8 @@
 				<form class="form-horizontal" id="paymentConfirmation"
 						action="/Feedback/Payment" method="get">
 				<div class="controls">
-						<input type="number" name="customerId" id="customerId"
-							value=${customerId} hidden="true"> 
+						<input type="number" name="customerid" id="customerid"
+							value=${customerid} hidden="true"> 
 							<input type="number" name="repairId" id="repairId" value=${deviceRepair.id}
 							hidden="true"> <button type="submit" id="back" name="back" class="btn btn-primary">Back</button>
 					

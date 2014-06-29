@@ -35,29 +35,21 @@ GET     /                                       Application.index
 		POST    /register					               controllers.Registration.register
 		GET		/registerConfirm							controllers.Registration.registerConfirm
 		
-	# UserProfile with appointment/repair list - redirect after login
-		GET     /Profile/index/{customerid}	                controllers.Profile.index(customerid)
+	# UserProfile and Repair History
+		GET     /Profile/index/{customerid}	               		controllers.Profile.index(customerid)
 		GET     /Profile/history/{customerid}	                controllers.Profile.history(customerid)
-	#Test urls redirect from profile
-		GET		/Feedback/index/{customerid}/{repairid}											controllers.Feedback.index
-		POST    /Feedback/submit							controllers.Feedback.submit(customerid, repairid, rating, comment)
-		GET     /Feedback/Payment							controllers.Payment.index
-	#User submits her payment data and continues to paymentReview
-		POST    /Payment/paymentDetails								controllers.Payment.paymentDetails
-	#Go back from payment to feedback
-		GET   /Feedback/feedback/{customerid}/{repairid}							controllers.Feedback.feedback(customerid, repairid)
-	#Go to step 3 payment review
-		GET   /Payment/review								controllers.Payment.review(customerid, repairid)
-		POST  /Payment/paymentConfirmation					controllers.Payment.paymentConfirmation(customerid, repairid)
-	# selected repair
-#		GET     /customers/{id}/profile/{repairid}					               controllers.Profile.showRepair(customerid,repairid)
-	# submitFeedback
-#		GET    /customers/{customerid}/profile/{repairid}/Feedback		    controllers.Feedback.index(customerid, repairid)
-#		POST   /customers/{customerid}/profile/{repairid}/Feedback/submit	controllers.Feedback.submit(customerid, repairid, rating, comment)
+		POST    /Profile/saveChanges							controllers.Profile.saveChanges
+	# Feedback
+		GET		/Feedback/index/{customerid}/{repairid}			controllers.Feedback.index
+		POST    /Feedback/submit								controllers.Feedback.submit(customerid, repairid, rating, comment)
+		GET     /Feedback/Payment								controllers.Payment.index
+		# Go back from payment to feedback
+		GET   	/Feedback/feedback/{customerid}/{repairid}		controllers.Feedback.feedback(customerid, repairid)
 	# Payment
-#		GET    /customers/{customerid}/profile/{repairid}/Payment           controllers.Payment.index(repairid,customerid)
-#		POST    /customers/{customerid}/profile/{repairid}/pay           controllers.Payment.pay(repairid,customerid)
-#		GET    /customers/{customerid}/profile/{repairid}/paymentConfirmation           controllers.Payment.paymentConfirmation(repairid,customerid)
+		POST    /Payment/paymentDetails							controllers.Payment.paymentDetails
+		GET   	/Payment/review									controllers.Payment.review(customerid, repairid)
+		POST  	/Payment/paymentConfirmation					controllers.Payment.paymentConfirmation(customerid, repairid)
+
 # Static Pages
 	# Q&A page
 		GET     /QandA						                   controllers.StaticPages.QandA
