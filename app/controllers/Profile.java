@@ -27,33 +27,24 @@ public class Profile extends Controller {
 	 * @param customerid
 	 */
 	public static void index(long customerid) {
-		System.out.println("profile of cid=" + customerid);
 		Customer customer = Customer.find("byId", customerid).first();
 		PaymentInformation paymentInformation = customer.paymentInformation;
-		String cd1 = "";
-		String cd3 = "";
-		String cd2 = "";
-		String cd4 = "";
-		String holderlastname = customer.firstName;
-		String holderfirstname = customer.lastName;
-		String expiry_month = "11";
-		String expiry_year = "14";
-		String cvv = "";
-		if (paymentInformation != null) {
-			if (paymentInformation.cardNumber != null) {
-				System.out.println("customerid:" + customerid + "card:"
-						+ paymentInformation.cardNumber);
-				cd1 = paymentInformation.getFirstFourDigits();
-				cd2 = paymentInformation.getSecondFourDigits();
-				cd3 = paymentInformation.getThirdFourDigits();
-				cd4 = paymentInformation.getForthFourDigits();
-			}
-			expiry_month = paymentInformation.cardMonthExp;
-			expiry_year = paymentInformation.cardYearExp;
-			cvv = paymentInformation.cvv;
-		}
-		render(customerid, customer, holderfirstname, holderlastname,
-				expiry_month, expiry_year, cvv, cd1, cd2, cd3, cd4);
+		
+		if (paymentInformation == null)paymentInformation = new PaymentInformation();
+
+		renderArgs.put("cd1", paymentInformation.getFirstFourDigits());
+		renderArgs.put("cd2", paymentInformation.getSecondFourDigits());
+		renderArgs.put("cd3",  paymentInformation.getThirdFourDigits());
+		renderArgs.put("cd4",  paymentInformation.getForthFourDigits());
+		renderArgs.put("customerid", customerid);
+		renderArgs.put("customer", customer);
+		renderArgs.put("holderfirstname", paymentInformation.holderFirstName);
+		renderArgs.put("holderlastname", paymentInformation.holderLastName);
+		renderArgs.put("expiry_month", paymentInformation.cardMonthExp);
+		renderArgs.put("expiry_year", paymentInformation.cardYearExp);
+		renderArgs.put("cvv", paymentInformation.cvv);
+		
+		render();
 	}
 
 	/**
@@ -80,7 +71,6 @@ public class Profile extends Controller {
 		Customer customer = Customer.find("byId", customerid).first();
 		
 		validation.equals("password", password, "repassword", repassword);
-
 		validation.equals("password", password, "old password", customer.password);
 		System.out.println("customerid:" + customerid + "card:" + password
 				+ street);
