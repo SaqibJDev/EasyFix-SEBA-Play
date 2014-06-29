@@ -27,14 +27,15 @@ public class Feedback extends Controller {
 
 		System.out.println("cid=" + customerid + ",rid" + repairId + ",rating="
 				+ size + ",tech=" + technician.id);
+
+		if (appointment.paymentStatus == PaymentStatus.PAID.getIndex())
+			paid(customerid, repairId);
+		else{
 		if (size != 0) {
-			if (appointment.paymentStatus == PaymentStatus.PAID.getIndex())
-				paid(customerid, repairId);
-			else
 				feedback(customerid, repairId);
 		} else {
 			render(technician, repair, customerid, appointment);
-		}
+		}}
 	}
 
 	/**
