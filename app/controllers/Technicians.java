@@ -103,7 +103,7 @@ public class Technicians extends Application {
     /*
      * Get technicians list for map
      */
-    public static String getCloseTechnicians(float userLatitude, float userLongitude, float maxDistance){
+    public static String getCloseTechnicians(float userLatitude, float userLongitude, float maxDistance, boolean closeTechnicians){
     	List<Technician> technicians = Technician.findTechniciansByIsExternal(false);
 
     	List<TechnicianMap> techniciansMapList = new ArrayList<TechnicianMap>();
@@ -118,7 +118,9 @@ public class Technicians extends Application {
     		distance = Math.pow(Math.sin(deltaLat/2), 2) + Math.cos(technician.contactInformation.address.geoPoint.latitude) * Math.cos(userLatitude) * Math.pow(Math.sin(deltaLng/2),2);
     		distance = 2 * Math.atan2( Math.sqrt(distance), Math.sqrt(1-distance) ) * 6373000; //last number is radius of earth, converts into [m] distance
     		System.out.println(distance);
-    		if(distance>maxDistance)
+    		if(closeTechnicians && distance>maxDistance)
+    			continue;
+    		else if(!closeTechnicians && distance<maxDistance)
     			continue;
 
     		TechnicianMap tm = new TechnicianMap();
@@ -130,6 +132,16 @@ public class Technicians extends Application {
     		//tm.distance = distance;
     		techniciansMapList.add(tm);
 		}
+    	
+    	TechnicianMap tm = new TechnicianMap();
+		tm.id = 5;
+		tm.name = "saqib javed";
+		tm.longtitude = 000;//technician.contactInformation.address.geoPoint.longtitude;
+		tm.latitude = 000;//technician.contactInformation.address.geoPoint.latitude;
+		tm.rating = (float) 4.0;
+		//tm.distance = distance;
+		techniciansMapList.add(tm);
+    	
     	Gson gsonHandler = new Gson();
     	String returnResult = gsonHandler.toJson(technicians);
     	System.out.println( returnResult);    	

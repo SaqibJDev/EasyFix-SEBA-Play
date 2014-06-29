@@ -80,11 +80,20 @@
 		
 		  
 	 </div>
+	 <div class="col-md-10" style="width: 100%;"> </div>
+	<div class="col-md-4" style="margin: 0 0 0 80px; width: 100%;">
+	    <h4>Additional Information:</h4>
+	   </div>	
+		<div class="col-md-6" align="left" style="margin: 0 0 0 80px; width:80%;">
+	    <h6>#{if notes!=null}${notes}#{/if}&nbsp;</h6>
+		  
+		</div>
 			
-		    <div class="col-md-2">
+		    <div class="col-md-10">
+		    <br />&nbsp;
 				</div>
 			
-		    <div class="col-md-2">
+		    <div class="col-md-2" style="margin-left: 100px;">
 			<!-- Button -->
 			<div class="control-group">
 			  <label class="control-label" for="back"></label>
@@ -95,7 +104,7 @@
 			
 			</div>
 			
-		    <div class="col-md-4">
+		    <div class="col-md-5">
 				</div>
 				<div class="col-md-2" align="right">
 					
@@ -110,6 +119,7 @@
 			  <input type="hidden" name="date" value="${date}" />
 			  <input type="hidden" name="time" value="${time}" />
 			  <input type="hidden" name="notes" value="${notes}" />
+			  <input type="hidden" name="location" value="${location}" />
 			    <input type="submit" id="singlebutton" name="singlebutton" class="btn btn-success" value="Book Repair" />
 			    </form>
 			  </div>

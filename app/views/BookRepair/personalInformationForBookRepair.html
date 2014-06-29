@@ -155,7 +155,7 @@
 			<div class="control-group">
 			  <label class="control-label" for="back"></label>
 			  <div class="controls">
-			    <button id="back" name="back" class="btn btn-primary" onclick="Javascript:window.history.back();">Back</button>
+			    <input type="button" id="back" name="back" class="btn btn-primary" onclick="Javascript:window.history.back();" value="Back" />
 			  </div>
 			</div>
 			
@@ -171,10 +171,12 @@
 			  <label class="control-label" for="singlebutton"></label>
 			  <div class="controls">
 			  <input type="submit" id="singlebutton" name="singlebutton" class="btn btn-primary" value="Review your booking" />
-			    <a href="${'/Repair/'+maker+'/'+deviceModel+'/'+repair+'/Technicians Availability/Personal Information/Review%20Appointment'}">afdskj</a>
 			  </div>
-			  <input type="hidden" name="technician_id" value="${technician_id}" />
+			<input type="hidden" name="technician_id" value="${technician_id}" />
 			<input type="hidden" name="repair_id" value="${repair_id}" />
+			<input type="hidden" name="date" value="${date}" />
+			<input type="hidden" name="time" value="${time}" />
+			<input type="hidden" name="location" value="${location}" />
 			</form>
 			</div>
 		    <div class="col-md-2">

@@ -18,7 +18,7 @@ import play.mvc.With;
 
 /**
  * 
- * @author Chrysa Papadaki - papadaki.chr@gmail.com
+ * @author Chrysa Papadaki - papadaki.chr@gmail.com / Changed By Hafiz Saqib Javed
  * 
  */
 @With(Secure.class)
@@ -32,6 +32,17 @@ public class BookRepair extends Application {
 	 * Show list of available technicians according to User selected location
 	 * User selects Date and time
 	 */
+    /**
+     * Step1/3 check technicians availability. to get the internal technicians
+     * who can repair the damage and go to the given location
+     * <p>
+     * Response: list of technicinas who can go to the location otherwise
+     * (list==null) no tech available message //TODO
+     * 
+     * @param model
+     * @param repair
+     * @param location
+     */
     public static void index(String maker, String deviceModel, String repair) {
     	Manufacturer manufacturer = (Manufacturer) Manufacturer.find("byName", maker).fetch().get(0);
     	for (DeviceModel model : manufacturer.deviceModels) {
@@ -51,24 +62,25 @@ public class BookRepair extends Application {
 		} 
             render(deviceModel,repair, maker);
     }
-    // TODO we need static page for mock-up with map
-    public static void checkTechniciansAvailability(String deviceModel, String repair) {
-        List<Technician> inTechnicians = Technician.findTechniciansByRepair(
-                Technician.findTechniciansByIsExternal(false), deviceModel,
-                repair);
-        if (inTechnicians != null) {
-            Collections.sort(inTechnicians, new Comparator<Technician>() {
-                public int compare(Technician o1, Technician o2) {
-                    return o1.lastName.compareTo(o2.lastName);
-                }
-            });
-            render(inTechnicians);
-        } else
-            render();
-    }
+    
+//    // TODO we need static page for mock-up with map
+//    public static void checkTechniciansAvailability(String deviceModel, String repair) {
+//        List<Technician> inTechnicians = Technician.findTechniciansByRepair(
+//                Technician.findTechniciansByIsExternal(false), deviceModel,
+//                repair);
+//        if (inTechnicians != null) {
+//            Collections.sort(inTechnicians, new Comparator<Technician>() {
+//                public int compare(Technician o1, Technician o2) {
+//                    return o1.lastName.compareTo(o2.lastName);
+//                }
+//            });
+//            render(inTechnicians);
+//        } else
+//            render();
+//    }
 
     /**
-     * Step1/3 check technicians availability. to get the internal technicians
+     * Step1/4 check technicians availability. to get the internal technicians
      * who can repair the damage and go to the given location
      * <p>
      * Response: list of technicinas who can go to the location otherwise
@@ -78,23 +90,23 @@ public class BookRepair extends Application {
      * @param repair
      * @param location
      */
-    public static void modelRepairTechnicianByLocation(String model,
-            String repair, @Required String location) {
-        List<Technician> techs = Technician.findByAddress(location);
-        DeviceModel dm = DeviceModel.find("byName", model).first();
-        techs = Technician.findTechniciansByRepair(techs, dm.name, repair);
-        if (techs != null) {
-            Collections.sort(techs, new Comparator<Technician>() {
-
-                public int compare(Technician o1, Technician o2) {
-                    return o1.lastName.compareTo(o2.lastName);
-                }
-            });
-            render(techs);
-        } else
-            render("No technician for " + repair
-                    + " repair available for this location");
-    }
+//    public static void modelRepairTechnicianByLocation(String model,
+//            String repair, @Required String location) {
+//        List<Technician> techs = Technician.findByAddress(location);
+//        DeviceModel dm = DeviceModel.find("byName", model).first();
+//        techs = Technician.findTechniciansByRepair(techs, dm.name, repair);
+//        if (techs != null) {
+//            Collections.sort(techs, new Comparator<Technician>() {
+//
+//                public int compare(Technician o1, Technician o2) {
+//                    return o1.lastName.compareTo(o2.lastName);
+//                }
+//            });
+//            render(techs);
+//        } else
+//            render("No technician for " + repair
+//                    + " repair available for this location");
+//    }
 
     /**
      * to check technicians availability for the given timeslot . if he is
@@ -112,7 +124,24 @@ public class BookRepair extends Application {
 //        // TODO currently not working
 //    }
 //    
-    public static void personalInformationForBookRepair(String maker, String deviceModel, String repair, long repair_id) {
+    
+    
+    /**
+     * Step2/4 appointment and customer details we need to check validity of
+     * fields using javascript on client. response: if user filled in the form
+     * correctly, he is redirected to step3 otherwise gets error messages
+     * 
+     * @param firstname
+     * @param lastname
+     * @param street
+     * @param city
+     * @param plz
+     * @param tel
+     * @param notes
+     */
+    public static void personalInformationForBookRepair(String maker, String deviceModel, String repair, long repair_id, long technician, String date, String time, String location) {
+    	
+    	System.out.println("maker:"+maker+"|deviceModel:"+deviceModel+"|repair:"+repair+"|repair_id:"+repair_id+"|technicain:"+technician+"|date:"+date+"|time:"+time+"|location:"+location);
     	
     	// Fetch User profile attributes
     	Actor user = Actor.find("byEmail", Security.connected()).first();
@@ -129,31 +158,27 @@ public class BookRepair extends Application {
     	renderArgs.put("deviceModel", deviceModel);
     	renderArgs.put("repair", repair);
     	renderArgs.put("repair_id", repair_id);
+    	renderArgs.put("technician_id", technician);
+    	renderArgs.put("date", date);
+    	renderArgs.put("time", time);
+    	renderArgs.put("location", location);
         
         render();
     }
-
-    /**
-     * Step2/3 appointment and customer details we need to check validity of
-     * fields using javascript on client. response: if user filled in the form
-     * correctly, he is redirected to step3 otherwise gets error messages
-     * 
-     * @param firstname
-     * @param lastname
-     * @param street
-     * @param city
-     * @param plz
-     * @param tel
-     * @param notes
-     */
-    public static void modelRepairTechnicianAppointment(String firstname,
-            String lastname, String street, String city, String plz,
-            String tel, String notes) {
-        // TODO currently not working
-    }
     
-    public static void reviewAppointment(String maker, String deviceModel, String repair, String notes, long technician_id, long repair_id) {
-    	System.out.println(notes);
+    /**
+     * Step3/4 review appointment
+     * 
+     * @param repairId
+     * @param technicianId
+     * @param date
+     * @param time
+     * @param notes
+     * @param location
+     */
+    public static void reviewAppointment(String maker, String deviceModel, String repair, String notes, long technician_id, long repair_id, String date, String time, String location) {
+//    	System.out.println(notes);
+//    	System.out.println("maker:"+maker+"|deviceModel:"+deviceModel+"|repair:"+repair+"|repair_id:"+repair_id+"|technicain:"+technician_id+"|date:"+date+"|time:"+time+"|location:"+location);
     	// Fetch Device Repair details
         renderArgs.put("maker", maker);
     	renderArgs.put("model", deviceModel);
@@ -165,39 +190,24 @@ public class BookRepair extends Application {
     		renderArgs.put("repairCost", deviceRepair.price);
     	}
     	
-    	Technician technician = Technician.findById((long)3);
+    	Technician technician = Technician.findById(technician_id);
     	if(technician!=null){
     		renderArgs.put("technicianName", technician.firstName+" "+technician.lastName);
     		renderArgs.put("technicianContact", technician.contactInformation.mobile);
     	}
     	
-    	renderArgs.put("date", "22-12-2014");
-    	renderArgs.put("time", "5:30 PM");
+    	renderArgs.put("date", date);
+    	renderArgs.put("time", time);
     	renderArgs.put("notes", notes);
     	renderArgs.put("repair_id", repair_id);
-    	renderArgs.put("technician_id", 3);
+    	renderArgs.put("technician_id", technician_id);
+    	renderArgs.put("location", location);
 		
-//    	Manufacturer manufacturer = (Manufacturer) Manufacturer.find("byName", maker).fetch().get(0);
-//    	for (DeviceModel model : manufacturer.deviceModels) {
-//			if(model.name.equals(deviceModel))
-//			{
-//				
-//				for (DeviceRepair deviceRepair : model.deviceRepairList) {
-//					if(deviceRepair.name.equals(repair)){
-//						renderArgs.put("repairTime", deviceRepair.repairTime);
-//						renderArgs.put("repairCost", deviceRepair.price);
-//						break;
-//					}
-//				}
-//				break;
-//			}
-//		} 
-    	
         render(deviceModel,repair, maker);
 }
 
     /**
-     * Step3/3 appointment confirmation
+     * Step4/4 appointment confirmation
      * 
      * @param repairId
      * @param technicianId
@@ -205,8 +215,8 @@ public class BookRepair extends Application {
      * @param time
      * @param notes
      */
-    public static void appointmentConfirmation(long repair_id, long technician_id, String date, String time, String notes) {
-    	
+    public static void appointmentConfirmation(long repair_id, long technician_id, String date, String time, String notes, String location) {
+    	System.out.println("repair_id:"+repair_id+"|technicain:"+technician_id+"|date:"+date+"|time:"+time+"|location:"+location);
     	render();
     }
 }

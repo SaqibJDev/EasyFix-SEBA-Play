@@ -52,7 +52,7 @@ GET     /                                       Application.index
 # Ajax Calls
 	# Get Technicians for Map
 	GET /Technicians										controllers.Technicians.getTechnicians
-	GET /Technicians/{userLatitude}/{userLongitude}/{maxDistance} controllers.Technicians.getCloseTechnicians(userLatitude,userLongitude,maxDistance)
+	GET /Technicians/{userLatitude}/{userLongitude}/{maxDistance}/{closeTechnicians} controllers.Technicians.getCloseTechnicians(userLatitude,userLongitude,maxDistance,closeTechnicians)
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
