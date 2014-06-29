@@ -36,21 +36,23 @@ menu_item:'menu_feedback' /} #{set moreScripts:'bootstrap.min.js' /}
 					<div class="col-md-1"></div>
 					<div class="col-md-2">
 
+					
 						<h4>Technician:</h4>
-						<h4>Repair:</h4>
-						<h4>Cost:</h4>
-						<h4>Time:</h4>
-						<h4>Date:</h4>
-					</div>
-
+   				    <h4>Repair:</h4>
+   						<h4>Cost:</h4>
+			   			<h4>Date:</h4>
+			   			<h4>Time:</h4>
+			   			<h4>Duration:</h4>
+						</div>
+				
 					<div class="col-md-3">
 
 						<h6 style="font-size:14px">${technician.firstName} ${technician.lastName}</h6>
 						<h6 style="font-size:14px">${repair.displayName}</h6>
 						<h6 style="font-size:14px">${repair.price} &euro;</h6>
-						<h6 style="font-size:14px">${appointment.getStartTime()} until
-							${appointment.getEndTime()}</h6>
 						<h6 style="font-size:14px">${appointment.getDate()}</h6>
+						<h6 style="font-size:14px">${appointment.getStartTime()}</h6>
+						<h6 style="font-size:14px">${appointment.getDuration()}</h6>
 					</div>
 
 					<div class="col-md-6">
@@ -86,9 +88,17 @@ menu_item:'menu_feedback' /} #{set moreScripts:'bootstrap.min.js' /}
 			<div class="controls">
 				<span>
 					<a href="${'/'}"><button id="back" name="back" class="btn btn-primary">Back</button></a>
-				</span> <span class="buttonright">	<a href="${'/Feedback/Payment'}"><button id="continuepayment"
-								name="continue payment" data-toggle="tooltip"
-								class="btn btn-primary">Continue to payment</button></a></span>
+				</span> <span class="buttonright"><form class="form-horizontal" id="paymentConfirmation"
+						action="/Payment/index" method="post">
+				<div class="controls">
+						<input type="number" name="customerid" id="customerid"
+							value=${customerid} hidden="true"> 
+							<input type="number" name="repairId" id="repairId" value=${repair.id}
+							hidden="true"> <span class="buttonright"><button
+								type="submit" id="continuepayment" name="continue payment"
+								class="btn btn-success">continue to payment</button></span>
+					
+				</div></form></span>
 
 			</div>
 			</section>
