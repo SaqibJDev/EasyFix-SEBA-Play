@@ -36,21 +36,23 @@ menu_item:'menu_feedback' /} #{set moreScripts:'bootstrap.min.js' /}
 					<div class="col-md-1"></div>
 					<div class="col-md-2">
 
+					
 						<h4>Technician:</h4>
-						<h4>Repair:</h4>
-						<h4>Cost:</h4>
-						<h4>Time:</h4>
-						<h4>Date:</h4>
-					</div>
-
+   				    <h4>Repair:</h4>
+   						<h4>Cost:</h4>
+			   			<h4>Date:</h4>
+			   			<h4>Time:</h4>
+			   			<h4>Duration:</h4>
+						</div>
+				
 					<div class="col-md-3">
 
 						<h6 style="font-size:14px">${technician.firstName} ${technician.lastName}</h6>
 						<h6 style="font-size:14px">${repair.displayName}</h6>
 						<h6 style="font-size:14px">${repair.price} &euro;</h6>
-						<h6 style="font-size:14px">${appointment.getStartTime()} until
-							${appointment.getEndTime()}</h6>
 						<h6 style="font-size:14px">${appointment.getDate()}</h6>
+						<h6 style="font-size:14px">${appointment.getStartTime()}</h6>
+						<h6 style="font-size:14px">${appointment.getDuration()}</h6>
 					</div>
 
 					<div class="col-md-6">

@@ -10,6 +10,7 @@ import models.rating.Rating;
 import models.technician.Technician;
 
 import org.joda.time.DateTime;
+import org.joda.time.Duration;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
@@ -68,6 +69,10 @@ public class Appointment extends Model {
 		return dt.getHourOfDay() + ":" + dt.getMinuteOfHour();
 	}
 
+	public String getDuration(){
+		Duration duration = new Duration(this.duration);
+		return duration.getStandardMinutes()+" min";
+	}
 	public String getDate() {
 		DateTime dt = new DateTime(this.dateTimeStart.getTime());
 		DateTimeFormatter fmt = DateTimeFormat.forPattern("d MMMM, yyyy");

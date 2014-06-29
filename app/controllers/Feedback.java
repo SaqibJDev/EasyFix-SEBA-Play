@@ -30,12 +30,13 @@ public class Feedback extends Controller {
 
 		if (appointment.paymentStatus == PaymentStatus.PAID.getIndex())
 			paid(customerid, repairId);
-		else{
-		if (size != 0) {
+		else {
+			if (size != 0) {
 				feedback(customerid, repairId);
-		} else {
-			render(technician, repair, customerid, appointment);
-		}}
+			} else {
+				render(technician, repair, customerid, appointment);
+			}
+		}
 	}
 
 	/**
@@ -81,6 +82,7 @@ public class Feedback extends Controller {
 			render(technicianName, rating, repair, customerid, appointment);
 		}
 	}
+
 	/**
 	 * It displays either user's feedback or feedback form to allow user to
 	 * submit feedback
@@ -101,6 +103,7 @@ public class Feedback extends Controller {
 		} else
 			index(customerid, repairId);
 	}
+
 	/**
 	 * It displays either user's feedback or feedback form to allow user to
 	 * submit feedback
