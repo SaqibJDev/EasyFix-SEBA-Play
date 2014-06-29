@@ -121,7 +121,7 @@ public class Technicians extends Application {
     		
     		if(distance>maxDistance)
     			continue;
-
+    		
     		TechnicianMap tm = new TechnicianMap();
     		tm.id = technician.id;
     		tm.name = technician.firstName + " "+ technician.lastName;
