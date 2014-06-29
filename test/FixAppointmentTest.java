@@ -8,6 +8,8 @@ import models.ContactInformation;
 import models.GeoPoint;
 import models.Interval;
 import models.Location;
+import models.PaymentInformation;
+import models.PaymentOption;
 import models.customer.Customer;
 import models.device.DeviceModel;
 import models.device.DeviceRepair;
@@ -107,8 +109,16 @@ public class FixAppointmentTest extends UnitTest {
     public void createAndRetrieveCustomer() {
 
         Location l = Location.find("byZip", "80333").first();
+        PaymentInformation paymentInformation = new PaymentInformation();
+        paymentInformation.cardMonthExp="11";
+        paymentInformation.cardNumber="1234567891234567";
+        paymentInformation.holderFirstName = "James";
+        paymentInformation.holderLastName = "Row";
+        paymentInformation.paymentOption = PaymentOption.MASTERCARD;
+        paymentInformation.save();
+        
         Customer c = new Customer("James", "Roe", "james@roe.com", "jamesroe", new ContactInformation(
-                "010394344", "w487937", "jane@row.com", l, "s")).save();
+                "010394344", "w487937", "jane@row.com", l, "s"), paymentInformation).save();
 
     }
 }

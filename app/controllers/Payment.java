@@ -3,6 +3,7 @@ package controllers;
 import notifiers.Mails;
 import models.Actor;
 import models.Appointment;
+import models.PaymentInformation;
 import models.PaymentStatus;
 import models.customer.Customer;
 import models.device.DeviceRepair;
@@ -20,14 +21,17 @@ public class Payment extends Controller {
 	/**
 	 * index page where user can choose option to pay for repair
 	 */
-	public static void index(long repairId, long customerId) {
-		System.out.println("repairId = " + repairId + ", customerId = "
-				+ customerId);
+	public static void index(long repairId, long customerid) {
+		System.out.println("repairId = " + repairId + ", customerid = "
+				+ customerid);
 		DeviceRepair deviceRepair = (DeviceRepair) DeviceRepair
 				.find("byId", repairId).fetch(1).get(0);
-		Customer customer = (Customer) Customer.find("byId", customerId)
+		Customer customer = (Customer) Customer.find("byId", customerid)
 				.fetch(1).get(0);
-		render(deviceRepair, customer);
+		PaymentInformation paymentInformation = customer.paymentInformation;
+		if (paymentInformation == null)
+			paymentInformation = new PaymentInformation();
+		render(deviceRepair, customer, paymentInformation);
 	}
 
 	/**
@@ -36,9 +40,9 @@ public class Payment extends Controller {
 	public static void paymentDetails(String firstname, String lastname,
 			String cd1, String cd2, String cd3, String cd4,
 			String expiry_month, String expiry_year, String password,
-			long customerId, long repairId) {
+			long customerid, long repairId) {
 		System.out.println("lastname = " + lastname + ", firstName = "
-				+ firstname + ", cardNumber = " + cd1+"cid="+customerId+"rid="+repairId);
+				+ firstname + ", cardNumber = " + cd1+"cid="+customerid+"rid="+repairId);
 		validation.required(lastname);
 		validation.required(firstname);
 		validation.required(cd1);
@@ -49,7 +53,7 @@ public class Payment extends Controller {
 
 		DeviceRepair deviceRepair = (DeviceRepair) DeviceRepair
 				.find("byId", repairId).first();
-		Customer customer = (Customer) Customer.find("byId", customerId).first();
+		Customer customer = (Customer) Customer.find("byId", customerid).first();
 
 		System.out.println("lastname = " +deviceRepair.description);
 		if (validation.hasErrors()) {
@@ -63,30 +67,31 @@ public class Payment extends Controller {
 			String cardnumber = cd1 + "" + cd2 + cd3 + cd4 + "";
 			String holder = firstname + " " + lastname;
 			float amount = deviceRepair.price;
-			review(holder, cardnumber, amount, customerId, repairId);
+			review(holder, cardnumber, amount, customerid, repairId);
 			
 		}
 	}
 
-	public static void review(String holder, String cardnumber, float amount, long customerId, long repairId) {
+	public static void review(String holder, String cardnumber, float amount, long customerid, long repairId) {
 		 DeviceRepair deviceRepair = (DeviceRepair) DeviceRepair
 		  .find("byId", repairId).first();
 		 
-		render(holder, cardnumber, amount, customerId, repairId, deviceRepair);
+		render(holder, cardnumber, amount, customerid, repairId, deviceRepair);
 	}
 
 	/**
 	 * Submits Payment, sends user email and redirects user to confirmation page
 	 */
-	public static void paymentConfirmation(long customerId, long repairId) {
+	public static void paymentConfirmation(long customerid, long repairId) {
 		DeviceRepair deviceRepair = (DeviceRepair) DeviceRepair
 				.find("byId", repairId).fetch(1).get(0);
-		Customer customer = (Customer) Customer.find("byId", customerId)
+		Customer customer = (Customer) Customer.find("byId", customerid)
 				.fetch(1).get(0);
 
 		Appointment appointment = (Appointment) Appointment
-				.find("byCustomerIdAndDeviceRepairId", customerId, repairId).first();
+				.find("byCustomerIdAndDeviceRepairId", customerid, repairId).first();
 		appointment.paymentStatus = PaymentStatus.PAID.getIndex();
+		appointment.save();
 		Mails.paymentConfirmation(deviceRepair, customer);
 		render();
 	}

@@ -1,6 +1,5 @@
 package models;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 
 import javax.persistence.Entity;
@@ -11,6 +10,8 @@ import models.rating.Rating;
 import models.technician.Technician;
 
 import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
 import play.db.jpa.Model;
 
@@ -61,6 +62,7 @@ public class Appointment extends Model {
 		return dt.getHourOfDay() + ":" + dt.getMinuteOfHour();
 	}
 
+
 	public String getEndTime() {
 		DateTime dt = new DateTime(dateTimeStart.getTime() + duration);
 		return dt.getHourOfDay() + ":" + dt.getMinuteOfHour();
@@ -68,8 +70,8 @@ public class Appointment extends Model {
 
 	public String getDate() {
 		DateTime dt = new DateTime(this.dateTimeStart.getTime());
-		return dt.getDayOfMonth() + "-" + dt.getMonthOfYear() + "-"
-				+ dt.getYear();
+		DateTimeFormatter fmt = DateTimeFormat.forPattern("d MMMM, yyyy");
+		return dt.toString(fmt);
 	}
 	
 	public String getStatus(){
@@ -83,12 +85,13 @@ public class Appointment extends Model {
 	
 	public Technician getTechnician(){
 		return (Technician) Technician
-		.find("byTechnicianId", this.technicianId).first();
+		.find("byId", this.technicianId).first();
 	}
 	
 	public Rating getRating(){
-		return (Rating) Rating
+		Rating rating = (Rating) Rating
 		.find("byId", this.ratingId).first();
+		return (rating == null)?new Rating(0): rating;
 	}
 	/**
 	 * not used for the moment The technician and the customer who will attend

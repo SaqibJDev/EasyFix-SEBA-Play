@@ -106,29 +106,29 @@ menu_item:'menu_payment' /} #{set moreScripts:'bootstrap.min.js' /}
 	  		   <h4>Card Holder's Name:</h4>
 				</div>
 			<div class="col-md-4">
-            <input id="firstname" name="firstname" type="text" value="${customer.firstName}" class="form-control" placeholder="First Name" title="First name" required="">
+            <input id="firstname" name="firstname" type="text" value="${customer.paymentInformation.holderFirstName}" class="form-control" placeholder="First Name" title="First name" required="">
 					       </div>
 			   <div class="col-md-4">
-            <input id="lastname" name="lastname" type="text" value="${customer.lastName}" class="form-control" placeholder="Last Name" title="Last name" required="">
+            <input id="lastname" name="lastname" type="text" value="${customer.paymentInformation.holderLastName}" class="form-control" placeholder="Last Name" title="Last name" required="">
 				   
 		     </div>
      </div>
-     <input type="number" name="customerId" id="customerId" value=${customer.id} hidden="true">
+     <input type="number" name="customerid" id="customerid" value=${customer.id} hidden="true">
 							<input type="number" name="repairId" id="repairId" value=${deviceRepair.id} hidden="true">
 							
 	  <h4>Credit Card Number:</h4>
 		<div class="row">
 		                        <div class="col-md-3">
-		                            <input id="cd1" name="cd1" type="text" class="form-control" autocomplete="off" maxlength="4" pattern="\d{4}" title="First four digits" required="">
+		                            <input id="cd1" name="cd1" value="${customer.paymentInformation.getFirstFourDigits()}" type="text" class="form-control"  maxlength="4" pattern="\d{4}" title="First four digits" required="">
 		                        </div>
 		                        <div class="col-md-3">
-		                            <input id="cd2" name="cd2" type="text" class="form-control" autocomplete="off" maxlength="4" pattern="\d{4}" title="Second four digits" required="">
+		                            <input id="cd2" name="cd2" value="${customer.paymentInformation.getSecondFourDigits()}"type="text" class="form-control"  maxlength="4" pattern="\d{4}" title="Second four digits" required="">
 		                        </div>
 		                        <div class="col-md-3">
-		                            <input id="cd3" name="cd3" type="text" class="form-control" autocomplete="off" maxlength="4" pattern="\d{4}" title="Third four digits" required="">
+		                            <input id="cd3" name="cd3" value="${customer.paymentInformation.getThirdFourDigits()}"type="text" class="form-control"  maxlength="4" pattern="\d{4}" title="Third four digits" required="">
 		                        </div>
 		                        <div class="col-md-3">
-		                            <input id="cd4" name="cd4" type="text" class="form-control" autocomplete="off" maxlength="4" pattern="\d{4}" title="Fourth four digits" required="">
+		                            <input id="cd4" name="cd4" value="${customer.paymentInformation.getForthFourDigits()}" type="text" class="form-control"  maxlength="4" pattern="\d{4}" title="Fourth four digits" required="">
 		                        </div>
 		                    </div>
 							<div class="row">
@@ -148,7 +148,7 @@ menu_item:'menu_payment' /} #{set moreScripts:'bootstrap.min.js' /}
 									   <div class="col-md-2">  
 									   
 						             <div class="controls">
-						               <select name="expiry_month" id="expiry_month">
+						               <select name="expiry_month" id="expiry_month" value="${customer.paymentInformation.cardMonthExp}">
 						                 <option value="01">Jan</option>
 						                 <option value="02">Feb</option>
 						                 <option value="03">Mar</option>
@@ -166,7 +166,7 @@ menu_item:'menu_payment' /} #{set moreScripts:'bootstrap.min.js' /}
 										</div>
 									   <div class="col-md-4">  
 									   
-						               <select name="expiry_year">
+						               <select name="expiry_year" value="${customer.paymentInformation.cardYearExp}">
 						                 <option value="14">2014</option>
 						                 <option value="15">2015</option>
 						                 <option value="16">2016</option>
@@ -181,7 +181,7 @@ menu_item:'menu_payment' /} #{set moreScripts:'bootstrap.min.js' /}
 									    </div>
 										
 										  <div class="col-md-3">  
-		  		                            <input id="password" name="password" type="password" placeholder="CVV" class="form-control" autocomplete="off" maxlength="3"  title="cvv" required="">
+		  		                            <input id="password" name="password" type="password" value = "${customer.paymentInformation.cvv}" placeholder="CVV" class="form-control" autocomplete="off" maxlength="3"  title="cvv" required="">
 											  
 											  </div>
 						             <div class="col-md-3">  
@@ -202,7 +202,7 @@ menu_item:'menu_payment' /} #{set moreScripts:'bootstrap.min.js' /}
 		</form>
 		
 		    <span><form class="form-horizontal" action="/Feedback/index" method="post">
-			 	<input type="number" name="customerId" id="customerId"
+			 	<input type="number" name="customerid" id="customerid"
 							value=${customer.id} hidden="true"> 
 							<input type="number" name="repairId" id="repairId" value=${deviceRepair.id}
 							hidden="true">

@@ -9,13 +9,17 @@ import play.db.jpa.Model;
 @Entity
 public class Rating extends Model{
 
-    public long timestamp;
+    public Rating(int i) {
+		this.rating = i;
+	}
+
+	public long timestamp;
     /**
      * rating value - number of stars of customer for the selected technician for repair
      */
     public int rating;
-    
-    /**
+
+	/**
      * User feedback on repair service
      */
     public String comment;

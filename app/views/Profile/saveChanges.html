@@ -20,6 +20,7 @@ menu_item:'menu_profile' /} #{set moreScripts:'bootstrap.min.js' /}
  		  <div class="panel-body">
  		    <h3> My Account | <a href="/Profile/history/${customerid}"> History</a></h3> 
 	</br>
+  <h5>You have successfully saved your profile changes!</h5>
 <div class="well"><h5>Account Settings</h5>
 
 						<form class="form-horizontal" id="submit" action="/Profile/saveChanges"
@@ -100,10 +101,10 @@ menu_item:'menu_profile' /} #{set moreScripts:'bootstrap.min.js' /}
 	
 	<div class="row">
 		<div class="col-md-3">
-  		   <h4>Address:</h4>
+  		   <h4>Adress:</h4>
 			</div>
 		<div class="col-md-5">
-            <input id="street" name="street" type="text" value="${customer.contactInformation.address.street}" class="form-control" placeholder="Street" title="street" required="">
+           <input id="street" name="street" type="text" value="${customer.contactInformation.address.street}" class="form-control" placeholder="Street" title="street" required="">
 				       </div>
 		   <div class="col-md-2">
            <input id="no" name="streetno" type="text" value="${customer.contactInformation.address.streetNo}" class="form-control" placeholder="No" title="streetno" required="">
@@ -261,17 +262,7 @@ menu_item:'menu_profile' /} #{set moreScripts:'bootstrap.min.js' /}
 									      </div>
 									      
      <input type="number" name="customerid" id="customerid" value=${customer.id} hidden="true">
-     			  #{ifErrors}
- 
- 
-   #{errors}
-       <div class="bg-danger" style="margin: auto; width:50%;">${error}</div>
-   #{/errors}
- 
-#{/ifErrors}
 	   	<center><button type="submit" class="btn btn-success">Save Changes</button></center></form>
-	  								     <!-- Form Name -->
-	
 	  								     
 	</h5>
 		</div>

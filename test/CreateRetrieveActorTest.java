@@ -4,6 +4,8 @@ import java.util.List;
 import models.ContactInformation;
 import models.Interval;
 import models.Location;
+import models.PaymentInformation;
+import models.PaymentOption;
 import models.customer.Customer;
 import models.device.DeviceModel;
 import models.device.DeviceRepair;
@@ -13,6 +15,7 @@ import models.technician.WorkingHours;
 import org.joda.time.DateTime;
 import org.junit.Test;
 
+import play.db.jpa.JPABase;
 import play.test.UnitTest;
 
 
@@ -21,8 +24,17 @@ public class CreateRetrieveActorTest extends UnitTest {
     public void createAndRetrieveCustomer() {
 
         Location l = Location.find("byZip", "80333").first();
+        PaymentInformation paymentInformation = new PaymentInformation();
+        paymentInformation.cardMonthExp="11";
+        paymentInformation.cardNumber="1234567891234567";
+        paymentInformation.holderFirstName = "James";
+        paymentInformation.holderLastName = "Row";
+        paymentInformation.paymentOption = PaymentOption.MASTERCARD;
+        paymentInformation.save();
+        
+        
         Customer c = new Customer("Jane", "Roe", "jane@roe.com", "janeroe",(ContactInformation)new ContactInformation(
-                "010394344", "w487937", "jane@roe.com", l, "s").save()).save();
+                "010394344", "w487937", "jane@roe.com", l, "s").save(), paymentInformation).save();
 
         // Test
         assertNotNull(c);
@@ -69,8 +81,10 @@ public class CreateRetrieveActorTest extends UnitTest {
         new WorkingHours(5, hours);
 
         weekHours = WorkingHours.findAll();
-        new Technician("John", "Tith", new ContactInformation("010394344",
-                "w487937", "john@example.com", l, "s"), "smartphone expert",
+        ContactInformation ci = new ContactInformation("010394344",
+                "w487937", "john@example.com", l, "s");
+        ci.save();
+        new Technician("John", "Tith", ci, "smartphone expert",
                 "broken screens", weekHours, "logo1.jpeg", false,  createDeviceModelList()).save();
 
         // Retrieve the user with title address expert
