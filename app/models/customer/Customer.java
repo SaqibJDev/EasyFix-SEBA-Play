@@ -28,8 +28,8 @@ public class Customer extends Actor {
 //    @Expose
 //    private String notes;
     
- //   @OneToMany
-   // public List<Appointment> appointments; 
+    @OneToMany
+    public List<Appointment> appointments; 
     
     public Customer(String firstName, String lastName, String email, String password,
             ContactInformation contactInformation) {

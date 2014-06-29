@@ -1,6 +1,7 @@
 package models;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
@@ -16,25 +17,17 @@ import play.db.jpa.Model;
 
 import com.google.gson.annotations.Expose;
 
-/**
- * Immutable
- * 
- * @author Chrysa Papadaki - papadaki.chr@gmail.com
- */
-// @Embeddable
 @Entity
 public class Appointment extends Model {
 
     /**
      * The appointment time
      */
-    // @Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
-    public Date dateTimeStart;
+    public Timestamp dateTimeStart;
 
     /**
      * The duration of the meeting
      */
-    // @Type(type = "org.joda.time.contrib.hibernate.PersistentDuration")
     public long duration;
 
     /**
@@ -53,16 +46,22 @@ public class Appointment extends Model {
     @OneToOne
     public DeviceRepair deviceRepair;
 
+    public String templ;
 
     public Appointment(Date dateTimeStart, long duration,
             Location address, long customerId, long technicianId, long deviceRepairId) {
         super();
-        this.dateTimeStart = dateTimeStart;
+        //this.dateTimeStart = dateTimeStart;
         this.duration = duration;
         this.meetingPlace = address;
 //        this.customerId = customerId;
 //        this.technicianId = technicianId;
 //        this.deviceRepairId = deviceRepairId;
     }
+
+
+	public Appointment() {
+		// TODO Auto-generated constructor stub
+	}
 
 }

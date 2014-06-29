@@ -9,6 +9,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import models.Actor;
+import models.Appointment;
 import models.ContactInformation;
 import models.device.DeviceModel;
 import models.device.DeviceRepair;
@@ -38,6 +39,9 @@ public class Technician extends Actor {
      */
     @Expose
     public String description;
+    
+    @OneToMany
+    public List<Appointment> appointments; 
 
     /**
      * 

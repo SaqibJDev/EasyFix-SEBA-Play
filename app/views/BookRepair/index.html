@@ -496,6 +496,7 @@
 											results[0].geometry.location
 													.lng());
 									userLatLng = newLatLng;
+									setCoordinates();
 									var myOptions = {
 										zoom : 13,
 										center : newLatLng,
@@ -531,6 +532,13 @@
 						}
 
 						google.maps.event.addDomListener(window, 'load', initialize);
+						function setCoordinates(){
+							alert(userLatLng.lng()+"|"+document.getElementById("longitude_txt").value)
+						document.getElementById("longitude_txt").value = userLatLng.lng();
+						document.getElementById("latitude_txt").value = userLatLng.lat();
+						//document.findelemn $("#longitude").val('userLatLng.lng()');
+						//$("#latitude").val(userLatLng.lat());}
+						}
 					</script>
 					<!-- end of self generated script -->
 				</div>
@@ -553,6 +561,8 @@
 						<label class="control-label" for="singlebutton"></label>
 						<div class="controls">
 			  <input type="hidden" name="repair_id" value="${repair_id}" />
+			  <input type="hidden" name="latitude" value="0" id="latitude_txt" />
+			  <input type="hidden" name="longitude" value="0" id="longitude_txt" />
 			  <input type="submit" value="Continue" class="btn btn-primary" />
 			  </div>
 			  </form>

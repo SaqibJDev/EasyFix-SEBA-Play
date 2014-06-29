@@ -2,12 +2,21 @@ package controllers;
 
 import groovy.ui.text.FindReplaceUtility;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
+
+import org.joda.time.DateTime;
 
 import controllers.Secure.Security;
 import models.Actor;
+import models.Appointment;
+import models.GeoPoint;
+import models.Location;
+import models.customer.Customer;
 import models.device.DeviceModel;
 import models.device.DeviceRepair;
 import models.device.Manufacturer;
@@ -139,10 +148,10 @@ public class BookRepair extends Application {
      * @param tel
      * @param notes
      */
-    public static void personalInformationForBookRepair(String maker, String deviceModel, String repair, long repair_id, long technician, String date, String time, String location) {
+    public static void personalInformationForBookRepair(String maker, String deviceModel, String repair, long repair_id, long technician, String date, String time, String location, float longitude, float latitude) {
     	
     	System.out.println("maker:"+maker+"|deviceModel:"+deviceModel+"|repair:"+repair+"|repair_id:"+repair_id+"|technicain:"+technician+"|date:"+date+"|time:"+time+"|location:"+location);
-    	
+    	System.out.println(latitude);
     	// Fetch User profile attributes
     	Actor user = Actor.find("byEmail", Security.connected()).first();
         renderArgs.put("firstName", user.firstName);
@@ -162,6 +171,8 @@ public class BookRepair extends Application {
     	renderArgs.put("date", date);
     	renderArgs.put("time", time);
     	renderArgs.put("location", location);
+    	renderArgs.put("latitude", latitude);
+    	renderArgs.put("longitude", longitude);
         
         render();
     }
@@ -176,11 +187,12 @@ public class BookRepair extends Application {
      * @param notes
      * @param location
      */
-    public static void reviewAppointment(String maker, String deviceModel, String repair, String notes, long technician_id, long repair_id, String date, String time, String location) {
+    public static void reviewAppointment(String maker, String deviceModel, String repair, String notes, long technician_id, long repair_id, String date, String time, String location, float longitude, float latitude) {
 //    	System.out.println(notes);
 //    	System.out.println("maker:"+maker+"|deviceModel:"+deviceModel+"|repair:"+repair+"|repair_id:"+repair_id+"|technicain:"+technician_id+"|date:"+date+"|time:"+time+"|location:"+location);
     	// Fetch Device Repair details
-        renderArgs.put("maker", maker);
+    	System.out.println("latitude"+latitude);
+    	renderArgs.put("maker", maker);
     	renderArgs.put("model", deviceModel);
     	renderArgs.put("repair", repair);
     	
@@ -202,6 +214,8 @@ public class BookRepair extends Application {
     	renderArgs.put("repair_id", repair_id);
     	renderArgs.put("technician_id", technician_id);
     	renderArgs.put("location", location);
+    	renderArgs.put("latitude", latitude);
+    	renderArgs.put("longitude", longitude);
 		
         render(deviceModel,repair, maker);
 }
@@ -215,8 +229,35 @@ public class BookRepair extends Application {
      * @param time
      * @param notes
      */
-    public static void appointmentConfirmation(long repair_id, long technician_id, String date, String time, String notes, String location) {
-    	System.out.println("repair_id:"+repair_id+"|technicain:"+technician_id+"|date:"+date+"|time:"+time+"|location:"+location);
+    public static void appointmentConfirmation(long repair_id, long technician_id, String date, String time, String notes, String location, float longitude, float latitude) {
+    	System.out.println("repair_id:"+repair_id+"|technicain:"+technician_id+"|date:"+date+"|time:"+time+"|location:"+location+"|lat:"+latitude);
+    	System.out.println("latitude-"+latitude+"|Longitude-"+longitude);
+    	String []timeArr = time.split(" ");
+    	if(timeArr[1].equals("PM")){
+    		timeArr[0] = (Integer.parseInt(timeArr[0].split(":")[0])+12)+":"+timeArr[0].split(":")[1];
+    	}
+    	Appointment appointment = new Appointment();
+    	appointment.customer = Customer.find("byEmail", Security.connected()).first();
+    	appointment.technician = Technician.findById(technician_id);
+    	appointment.deviceRepair = DeviceRepair.findById(repair_id);
+    	Location locationObj = new Location(null, location, null, null, null);
+    	locationObj.geoPoint = new GeoPoint(latitude, longitude);
+    	locationObj.save();
+    	appointment.meetingPlace = locationObj;
+    	java.sql.Timestamp date2;
+		try {
+			Date tempDate = (Date) new SimpleDateFormat("yyyy/MM/dd HH:mm").parse(date+" "+timeArr[0]);
+			date2 = new java.sql.Timestamp(tempDate.getTime());
+			appointment.dateTimeStart = date2;
+			System.out.println(date2.toString());
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+		System.out.println("Customer Name:"+appointment.customer.firstName+"|technician Name:"+appointment.technician.firstName+"|device Repair:"+appointment.deviceRepair.name+"|"+
+		"Date:"+appointment.dateTimeStart.toString()+"|Location:"+appointment.meetingPlace.street);
+    	appointment.save();
     	render();
     }
 }
