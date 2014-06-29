@@ -18,10 +18,9 @@ menu_item:'menu_profile' /} #{set moreScripts:'bootstrap.min.js' /}
 			<div class="panel panel-default">
 				<div class="panel-body">
 					<h3>
-						<a href="url"> Profile </a> | History
+						<a href="/Profile/index/${customerid}"> Profile </a> | History
 					</h3>
 					</br>
-
 					<div class="well">
 						<h5>Repair History</h5>
 						<!-- Table -->
@@ -45,7 +44,6 @@ menu_item:'menu_profile' /} #{set moreScripts:'bootstrap.min.js' /}
 								<td>${appointment.getRating()}</td>
 								<td>${appointment.getDeviceRepair().price}</td>
 								<td>${appointment.getStatus()}</td>
-
 								<td><ul class="tooltips">
 						<form class="form-horizontal" id="index" action="/Feedback/index"
 							method="get">

@@ -52,8 +52,7 @@ public class Appointment extends Model {
 	public long ratingId;
 
 	/**
-	 * Status of appointment as follows: 
-	 * 0 - paid 1 - pending
+	 * Status of payment
 	 */
 	public int paymentStatus;
 
@@ -74,7 +73,7 @@ public class Appointment extends Model {
 	}
 	
 	public String getStatus(){
-		return (paymentStatus == 0)? "paid":"pending";
+		return (paymentStatus == PaymentStatus.PAID.getIndex())? "paid":"pending";
 	}
 
 	public DeviceRepair getDeviceRepair(){
