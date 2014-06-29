@@ -1,4 +1,5 @@
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,6 +8,8 @@ import models.ContactInformation;
 import models.GeoPoint;
 import models.Interval;
 import models.Location;
+import models.PaymentInformation;
+import models.PaymentOption;
 import models.customer.Customer;
 import models.device.DeviceModel;
 import models.device.DeviceRepair;
@@ -34,7 +37,7 @@ public class FixAppointmentTest extends UnitTest {
         Technician john = Technician.find("byLastName", "Smith").first();
         DeviceRepair d = DeviceRepair.find("byDisplayName", "screen").first();
         Customer c = (Customer) Customer.findAll().get(0);
-        Appointment app = new Appointment(new Date(new DateTime().getMillis()),
+        Appointment app = new Appointment(new Timestamp(0),
                 d.repairTime, c.contactInformation.address, c.id, john.id, d.id)
                 .save();
         assertEquals(c.contactInformation.address, app.meetingPlace);
@@ -59,7 +62,6 @@ public class FixAppointmentTest extends UnitTest {
         List<Technician> techs = Technician.findByGeoPoint(122,123);//Technician.findByAddressQuery("garching");
 
         assertNotSame(techs.size(), 0);
-        Logger.info("sizeeee"+techs.size());
         techs = Technician.findTechniciansByRepair(techs,
                 createDeviceModelList().get(0).name, "screen2");
 
@@ -107,8 +109,16 @@ public class FixAppointmentTest extends UnitTest {
     public void createAndRetrieveCustomer() {
 
         Location l = Location.find("byZip", "80333").first();
+        PaymentInformation paymentInformation = new PaymentInformation();
+        paymentInformation.cardMonthExp="11";
+        paymentInformation.cardNumber="1234567891234567";
+        paymentInformation.holderFirstName = "James";
+        paymentInformation.holderLastName = "Row";
+        paymentInformation.paymentOption = PaymentOption.MASTERCARD;
+        paymentInformation.save();
+        
         Customer c = new Customer("James", "Roe", "james@roe.com", "jamesroe", new ContactInformation(
-                "010394344", "w487937", "jane@row.com", l, "s")).save();
+                "010394344", "w487937", "jane@row.com", l, "s"), paymentInformation).save();
 
     }
 }

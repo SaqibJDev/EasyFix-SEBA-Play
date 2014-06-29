@@ -26,7 +26,6 @@ public class Repair extends Application {
                 return o1.name.compareTo(o2.name);
             }
         });
-
         render(manufacturers);
     }
 
@@ -81,7 +80,6 @@ public class Repair extends Application {
      */
     public static void deviceModelRepairDetails(String maker,
             String deviceModel, String repair) {
-    	
     	renderArgs.put("maker", maker);
     	renderArgs.put("deviceModel", deviceModel);
     	renderArgs.put("repair", repair);
@@ -103,6 +101,4 @@ public class Repair extends Application {
     	render();
 
     }
-
-
 }

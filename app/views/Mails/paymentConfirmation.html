@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table,th,td {
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+th,td {
+	padding: 5px;
+}
+</style>
+</head>
+<body>
+	<p>
+		Dear <b>${customer.firstName}</b>,
+	</p>
+	<p>
+		<strong>You have successfully transfered the required fee for
+			the repair service.</strong><br>
+	</p>
+	<p>Find below payment details</p>
+
+
+	<table style="width: 300px">
+		<tr>
+			<th>Description</th>
+			<th>Price</th>
+			<th>Payment Method</th>
+		</tr>
+		<tr>
+			<td>${repair.name}</td>
+			<td>${repair.price}</td>
+			<td>credit card</td>
+		</tr>
+	</table>
+		<p>
+		<strong>Thank you for using our services!</strong><br>
+	</p>
+</html>

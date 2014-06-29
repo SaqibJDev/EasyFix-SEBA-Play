@@ -25,6 +25,7 @@ public class ApplicationTest extends FunctionalTest {
         assertCharset(play.Play.defaultWebEncoding, response);
     }
 	
+	
 	@Test
     public void testThatQandAPageWorks() {
         Response response = GET("/QandA");

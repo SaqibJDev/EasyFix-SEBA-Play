@@ -16,6 +16,7 @@ import models.Actor;
 import models.Appointment;
 import models.GeoPoint;
 import models.Location;
+import models.PaymentStatus;
 import models.customer.Customer;
 import models.device.DeviceModel;
 import models.device.DeviceRepair;
@@ -237,9 +238,13 @@ public class BookRepair extends Application {
     		timeArr[0] = (Integer.parseInt(timeArr[0].split(":")[0])+12)+":"+timeArr[0].split(":")[1];
     	}
     	Appointment appointment = new Appointment();
-    	appointment.customer = Customer.find("byEmail", Security.connected()).first();
-    	appointment.technician = Technician.findById(technician_id);
-    	appointment.deviceRepair = DeviceRepair.findById(repair_id);
+    	Customer customer = Customer.find("byEmail", Security.connected()).first();
+//    	appointment.technician = Technician.findById(technician_id);
+//    	appointment.deviceRepair = DeviceRepair.findById(repair_id);
+    	appointment.customerId = customer.id;
+    	appointment.technicianId = technician_id;
+    	appointment.deviceRepairId = repair_id;
+    	appointment.paymentStatus = PaymentStatus.PENDING.getIndex();
     	Location locationObj = new Location(null, location, null, null, null);
     	locationObj.geoPoint = new GeoPoint(latitude, longitude);
     	locationObj.save();

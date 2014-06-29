@@ -1,0 +1,114 @@
+#{extends 'master.html' /} #{set title:'EasyFix - Feedback'/} #{set
+menu_item:'menu_feedback' /} #{set moreScripts:'bootstrap.min.js' /}
+<script type="text/javascript">
+	$(document).ready(function(){
+	    $(".tooltips button").tooltip({
+	        placement : 'top'
+	    });
+		
+	</script>
+<!-- #{include 'breadcrumbs.html'/} -->
+<!-- #{set moreScripts:'star-rating.min.js' /} -->
+<div class="container">
+	<p></p>
+	<!-- Big Column #1 -->
+	<div class="col-md-2"></div>
+	<!-- Big Column #2 -->
+	<div class="col-md-8">
+
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<center>
+					<h3>Rate your technician</h3>
+		</center>
+	</br>
+		<section id="payment">
+		
+		 <center>
+		<div class="progress" style='margin-left:50px; margin-right:50px;'>
+		  <div class="progress-bar" role="progressbar" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100" style="width: 33%;">
+		    Step 1/3
+		  </div>
+		</div>
+	</center>
+	<div class="col-md-1">
+	    </div>
+		    <div class="col-md-2">
+			
+						<h4>Technician:</h4>
+   				    <h4>Repair:</h4>
+   						<h4>Cost:</h4>
+			   			<h4>Time:</h4>
+			   			<h4>Date:</h4>
+						</div>
+						
+					    <div class="col-md-3">
+						<h6>${technicianName}</h6>
+   				    <h6>${repair.name}</h6>
+   					<h6>${repair.price}</h6> 
+			   		<h6>${appointment.getStartTime()} until ${appointment.getEndTime()}</h6>
+			   		<h6>${appointment.getDate()}</h6>
+		</div>
+		
+		
+		
+		 <div class="col-md-6">
+	 		
+		<form>
+			<h5>Thank you for your Feedback!</h5>
+			Your Rating:
+		    <input id="rating"  class="rating" value="${rating.rating}" data-disabled="true" data-size="sm" data-show-caption="false" data-show-clear="false">
+			<div class="control-group">
+			  Your comment:
+			  <h2>${rating.comment}</h2>
+			 	</div>
+		  
+		</form>
+		</div>
+		</div>
+	    
+			<div class="control-group" style='margin-left:50px; margin-right:50px'>
+			  <label class="control-label" for="back"></label>
+			  <div class="controls">
+				<span>
+					<a href="${'/Profile'}"><button id="back" name="back" class="btn btn-primary">Back</button></a>
+				</span>	<form class="form-horizontal" id="paymentConfirmation"
+						action="/Payment/index" method="post">
+				<div class="controls">
+						<input type="number" name="customerid" id="customerid"
+							value=${customerid} hidden="true"> 
+							<input type="number" name="repairId" id="repairId" value=${repair.id}
+							hidden="true"> <span class="buttonright"><button
+								type="submit" id="continuepayment" name="continue payment"
+								class="btn btn-success">continue to payment</button></span>
+					
+				</div></form>
+
+			</div>
+			</section>
+		
+		</br>
+		
+			<!-- Button -->
+		
+		  
+		
+	    
+		
+			  </div>
+
+	
+			 <!-- 4 Info Columns -->
+		  
+	</div>
+  
+			
+			
+			
+			
+				<!-- Big Column #3 -->
+			  <div class="col-md-2">
+			  </div>
+			 
+			     </div>
+			 </div>

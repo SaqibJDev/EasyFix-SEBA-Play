@@ -7,6 +7,8 @@
     <title>#{get 'title' /}</title>
     <!-- Stylesheet -->
     <link href="@{'/public/stylesheets/bootstrap.min.css'}" rel="stylesheet">
+    <link href="@{'/public/stylesheets/star-rating.min.css'}" rel="stylesheet">
+    <link href="@{'/public/stylesheets/star-rating.min.css'}" rel="stylesheet">
     <link rel="stylesheet" href="@{'/public/stylesheets/main.css'}">
     <link rel="stylesheet" href="@{'/public/stylesheets/animate.css'}">
     <link href="@{'/public/stylesheets/font-awesome.min.css'}" rel="stylesheet">
@@ -69,8 +71,8 @@
         	#{if user!=null}
         		
         	<ul class="nav navbar-nav navbar-right">
-	              <li><span style="color: white;">Welcome ${user}!</span></li>
-	              <li><a href="#">Profile</a></li>
+	              <li><span style="color: white; padding-right: 20px;">Welcome ${user}!</span></li>
+	              <li><a href="/Profile" id="menu_profile">Profile</a></li>
 	              <li><a href="/logout">Logout</a></li>
             </ul>
             #{/if}

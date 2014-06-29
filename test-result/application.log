@@ -1,28 +1,59 @@
-24 Jun 2014 04:07:42,590 INFO  ~ Starting E:\Work\JAVA\Play\EasyFix\.
-24 Jun 2014 04:07:42,594 WARN  ~ Declaring modules in application.conf is deprecated. Use dependencies.yml instead (module.secure)
-24 Jun 2014 04:07:42,595 INFO  ~ Module secure is available (C:\play-1.2.5\modules\secure)
-24 Jun 2014 04:07:43,677 WARN  ~ You're running Play! in DEV mode
-24 Jun 2014 04:07:45,259 WARN  ~ Ignoring maker (static params must be specified as key:'value',...)
-24 Jun 2014 04:07:45,263 WARN  ~ Ignoring maker,deviceModel (static params must be specified as key:'value',...)
-24 Jun 2014 04:07:45,264 WARN  ~ Ignoring maker,deviceModel (static params must be specified as key:'value',...)
-24 Jun 2014 04:07:45,265 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
-24 Jun 2014 04:07:45,265 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
-24 Jun 2014 04:07:45,266 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
-24 Jun 2014 04:07:45,267 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
-24 Jun 2014 04:07:45,267 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
-24 Jun 2014 04:07:45,267 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
-24 Jun 2014 04:07:45,268 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
-24 Jun 2014 04:07:45,269 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
-24 Jun 2014 04:07:45,269 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
-24 Jun 2014 04:07:45,270 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
-24 Jun 2014 04:07:45,270 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
-24 Jun 2014 04:07:45,270 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
-24 Jun 2014 04:07:45,271 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
-24 Jun 2014 04:07:45,271 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
-24 Jun 2014 04:07:45,271 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
-24 Jun 2014 04:07:45,273 WARN  ~ Ignoring maker, deviceModel,repair,name (static params must be specified as key:'value',...)
-24 Jun 2014 04:07:45,273 WARN  ~ Ignoring maker, deviceModel,repair,name (static params must be specified as key:'value',...)
-24 Jun 2014 04:07:45,273 WARN  ~ Ignoring maker, deviceModel,repair,name (static params must be specified as key:'value',...)
-24 Jun 2014 04:07:45,273 WARN  ~ Ignoring maker, deviceModel,repair,name (static params must be specified as key:'value',...)
-24 Jun 2014 04:07:46,456 INFO  ~ Connected to jdbc:mysql://127.0.0.1/playdb_chrysa?useUnicode=yes&characterEncoding=UTF-8&connectionCollation=utf8_general_ci
-24 Jun 2014 04:07:48,116 INFO  ~ Application 'EasyFix' is now started !
+29 Jun 2014 16:21:48,468 INFO  ~ Starting C:\Users\User\Documents\GitHub\play\easyfix4\EasyFix-SEBA-Play\.
+29 Jun 2014 16:21:48,472 WARN  ~ Declaring modules in application.conf is deprecated. Use dependencies.yml instead (module.secure)
+29 Jun 2014 16:21:48,474 INFO  ~ Module secure is available (C:\play-1.2.5\modules\secure)
+29 Jun 2014 16:21:49,495 WARN  ~ You're running Play! in DEV mode
+29 Jun 2014 16:21:51,532 WARN  ~ Ignoring maker (static params must be specified as key:'value',...)
+29 Jun 2014 16:21:51,535 WARN  ~ Ignoring maker,deviceModel (static params must be specified as key:'value',...)
+29 Jun 2014 16:21:51,535 WARN  ~ Ignoring maker,deviceModel (static params must be specified as key:'value',...)
+29 Jun 2014 16:21:51,537 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
+29 Jun 2014 16:21:51,538 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
+29 Jun 2014 16:21:51,538 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
+29 Jun 2014 16:21:51,539 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
+29 Jun 2014 16:21:51,539 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
+29 Jun 2014 16:21:51,539 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
+29 Jun 2014 16:21:51,540 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
+29 Jun 2014 16:21:51,540 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
+29 Jun 2014 16:21:51,540 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
+29 Jun 2014 16:21:51,541 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
+29 Jun 2014 16:21:51,542 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
+29 Jun 2014 16:21:51,542 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
+29 Jun 2014 16:21:51,543 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
+29 Jun 2014 16:21:51,543 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
+29 Jun 2014 16:21:51,543 WARN  ~ Ignoring maker,deviceModel,repair (static params must be specified as key:'value',...)
+29 Jun 2014 16:21:51,544 WARN  ~ Ignoring maker, deviceModel,repair,name (static params must be specified as key:'value',...)
+29 Jun 2014 16:21:51,544 WARN  ~ Ignoring maker, deviceModel,repair,name (static params must be specified as key:'value',...)
+29 Jun 2014 16:21:51,544 WARN  ~ Ignoring maker, deviceModel,repair,name (static params must be specified as key:'value',...)
+29 Jun 2014 16:21:51,544 WARN  ~ Ignoring maker, deviceModel,repair,name (static params must be specified as key:'value',...)
+29 Jun 2014 16:21:51,547 WARN  ~ Ignoring customerid (static params must be specified as key:'value',...)
+29 Jun 2014 16:21:51,547 WARN  ~ Ignoring customerid (static params must be specified as key:'value',...)
+29 Jun 2014 16:21:51,549 WARN  ~ Ignoring customerid, repairid, rating, comment (static params must be specified as key:'value',...)
+29 Jun 2014 16:21:51,550 WARN  ~ Ignoring customerid, repairid, rating, comment (static params must be specified as key:'value',...)
+29 Jun 2014 16:21:51,550 WARN  ~ Ignoring customerid, repairid, rating, comment (static params must be specified as key:'value',...)
+29 Jun 2014 16:21:51,550 WARN  ~ Ignoring customerid, repairid, rating, comment (static params must be specified as key:'value',...)
+29 Jun 2014 16:21:51,552 WARN  ~ Ignoring customerid, repairid (static params must be specified as key:'value',...)
+29 Jun 2014 16:21:51,552 WARN  ~ Ignoring customerid, repairid (static params must be specified as key:'value',...)
+29 Jun 2014 16:21:51,554 WARN  ~ Ignoring customerid, repairid (static params must be specified as key:'value',...)
+29 Jun 2014 16:21:51,554 WARN  ~ Ignoring customerid, repairid (static params must be specified as key:'value',...)
+29 Jun 2014 16:21:51,555 WARN  ~ Ignoring customerid, repairid (static params must be specified as key:'value',...)
+29 Jun 2014 16:21:51,555 WARN  ~ Ignoring customerid, repairid (static params must be specified as key:'value',...)
+29 Jun 2014 16:21:52,259 INFO  ~ Connected to jdbc:mysql://127.0.0.1/play?useUnicode=yes&characterEncoding=UTF-8&connectionCollation=utf8_general_ci
+29 Jun 2014 16:21:53,852 INFO  ~ Application 'EasyFix' is now started !
+29 Jun 2014 16:21:55,090 INFO  ~ From Mock Mailer
+	New email received by
+	From: no-reply@easyfix.com
+	ReplyTo: no-reply@easyfix.com
+	To: "papadaki.chr@gmail.com" <papadaki.chr@gmail.com>
+	Subject: Your password has been reset
+	text/plain; charset=UTF-8: Hello Saqib,
+ 
+Your new password is blah blah. 
+	text/html; charset=UTF-8: <html>
+<body><head>...</head><body>
+<img src="mycompany.com/images"/>
+<p>
+    Hello Saqib, Your new password is <b>blah blah</b>.
+</p>
+</body>
+</html> 
+	
+

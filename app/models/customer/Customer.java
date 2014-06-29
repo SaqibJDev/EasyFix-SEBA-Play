@@ -1,17 +1,12 @@
 package models.customer;
 
-import java.util.List;
-
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import models.Actor;
-import models.Appointment;
 import models.ContactInformation;
-
-import com.google.gson.annotations.Expose;
+import models.PaymentInformation;
 /**
  * 
  * @author Chrysa Papadaki - papadaki.chr@gmail.com
@@ -21,19 +16,20 @@ import com.google.gson.annotations.Expose;
 @Table(name = "customer")
 public class Customer extends Actor {
 
-    private long customerId;
     /**
      * Additional Information 
      */
 //    @Expose
 //    private String notes;
     
-    @OneToMany
-    public List<Appointment> appointments; 
+//    @OneToMany
+//    public List<Appointment> appointments; 
+    @OneToOne
+   public PaymentInformation paymentInformation;
     
     public Customer(String firstName, String lastName, String email, String password,
-            ContactInformation contactInformation) {
+            ContactInformation contactInformation, PaymentInformation payinfo) {
         super(firstName, lastName,email, password, contactInformation);
-        //this.notes = notes;
+        this.paymentInformation = payinfo;
     }
 }

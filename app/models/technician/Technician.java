@@ -27,7 +27,6 @@ import com.google.gson.annotations.Expose;
 @Entity
 public class Technician extends Actor {
 
-//    public long technicianid;
     /**
      * The title of occupation of technician
      */

@@ -141,10 +141,10 @@ public class Technicians extends Application {
 		tm.rating = (float) 4.0;
 		//tm.distance = distance;
 		techniciansMapList.add(tm);
-    	
+    	//System.out.println(techniciansMapList.get(0).name);
     	Gson gsonHandler = new Gson();
-    	String returnResult = gsonHandler.toJson(technicians);
-    	System.out.println( returnResult);    	
+//    	String returnResult = gsonHandler.toJson(technicians);
+//    	System.out.println( returnResult);    	
 //    	return "{\"data\":"+gsonHandler.toJson(techniciansMapList)+"}";
     	return gsonHandler.toJson(techniciansMapList);
     }
