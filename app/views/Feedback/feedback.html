@@ -86,7 +86,15 @@ menu_item:'menu_feedback' /} #{set moreScripts:'bootstrap.min.js' /}
 					
 				</div></form>
 					<span>
-					<a href="${'/Profile/history/${customerid}'}"><button id="back" name="back" class="btn btn-primary">Back</button></a>
+					<form class="form-horizontal" id="history"
+						action="/Profile/history" method="get">
+				<div class="controls">
+						<input type="number" name="customerid" id="customerid"
+							value=${customerid} hidden="true"> 
+							<button
+								type="submit" id="back" name="back" class="btn btn-primary">Back</button>
+					
+				</div></form>
 				</span>	
 				
 			</div>

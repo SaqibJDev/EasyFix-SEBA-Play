@@ -2,7 +2,11 @@ package controllers;
 
 import java.util.List;
 
+import net.sf.cglib.core.Local;
+
 import models.Appointment;
+import models.ContactInformation;
+import models.Location;
 import models.PaymentInformation;
 import models.PaymentOption;
 import models.PaymentStatus;
@@ -46,10 +50,10 @@ public class Profile extends Controller {
 			}
 			expiry_month = paymentInformation.cardMonthExp;
 			expiry_year = paymentInformation.cardYearExp;
-			cvv  = paymentInformation.cvv;
+			cvv = paymentInformation.cvv;
 		}
-		render(customerid, customer, holderfirstname, holderlastname, expiry_month, expiry_year, cvv, cd1, cd2,
-				cd3, cd4);
+		render(customerid, customer, holderfirstname, holderlastname,
+				expiry_month, expiry_year, cvv, cd1, cd2, cd3, cd4);
 	}
 
 	/**
@@ -58,7 +62,6 @@ public class Profile extends Controller {
 	 * @param customerid
 	 */
 	public static void history(long customerid) {
-		System.out.println("history of cid=" + customerid);
 		List<Appointment> appointments = Appointment.find("byCustomerId",
 				customerid).fetch();
 		render(customerid, appointments);
@@ -74,23 +77,50 @@ public class Profile extends Controller {
 			String holderlastname, String cd1, String cd2, String cd3,
 			String cd4, String expiry_month, String expiry_year, String cvv) {
 
-		System.out.println("customerid:" + customerid + "email:" + email + ","
-				+ payopt+","+cd1+","+expiry_month);
 		Customer customer = Customer.find("byId", customerid).first();
-		PaymentInformation paymentInformation = new PaymentInformation();
-		paymentInformation.cardMonthExp = expiry_month;
-		paymentInformation.cardYearExp = expiry_year;
-		paymentInformation.cvv = cvv;
-		paymentInformation.holderFirstName = holderfirstname;
-		paymentInformation.holderLastName = holderlastname;
-		paymentInformation.paymentOption = PaymentOption.valueOf(payopt);
-		paymentInformation.cardNumber = cd1 +""+ cd2+"" + cd3 +""+ cd4;
-		paymentInformation.save();
-		customer.paymentInformation = paymentInformation;	
-		customer.save();
+		
+		validation.equals("password", password, "repassword", repassword);
 
-		render(customerid, customer, holderfirstname, holderlastname, expiry_month, expiry_year, cvv, cd1, cd2,
-				cd3, cd4);
+		validation.equals("password", password, "old password", customer.password);
+		System.out.println("customerid:" + customerid + "card:" + password
+				+ street);
+		if (validation.hasErrors()) {
+			params.flash(); // add http parameters to the flash scope
+			validation.keep(); // keep the errors for the next request
+			index(customerid);
+		} else {
+			
+			Location address = Location.find("byId", customer.contactInformation.address.id).first();
+			address.street = street;
+			address.streetNo = streetno;
+			address.city = city;
+			address.save();
+			
+			ContactInformation ci = ContactInformation.find("byId", customer.contactInformation.id).first();
+			ci.email = email;
+			ci.address = address;
+			ci.save();
+			
+			PaymentInformation paymentInformation = new PaymentInformation();
+			paymentInformation.cardMonthExp = expiry_month;
+			paymentInformation.cardYearExp = expiry_year;
+			paymentInformation.cvv = cvv;
+			paymentInformation.holderFirstName = holderfirstname;
+			paymentInformation.holderLastName = holderlastname;
+			paymentInformation.paymentOption = PaymentOption.valueOf(payopt);
+			paymentInformation.cardNumber = cd1 + "" + cd2 + "" + cd3 + ""
+					+ cd4;
+			paymentInformation.save();
+			
 
+			customer.lastName = lastname;
+			customer.firstName = firstname;
+			customer.contactInformation = ci;	
+			customer.paymentInformation = paymentInformation;
+			customer.save();
+
+			render(customerid, customer, holderfirstname, holderlastname,
+					expiry_month, expiry_year, cvv, cd1, cd2, cd3, cd4);
+		}
 	}
 }

@@ -21,19 +21,19 @@ public class Location extends Model {
      * center.
      */
     @Expose
-    private String city;
+    public String city;
 
     /**
      * The name of street of town
      */
     @Expose
-    private String street;
+    public String street;
 
     /**
      * Street number
      */
     @Expose
-    private String streetNo;
+    public String streetNo;
 
     /**
      * 
@@ -66,7 +66,7 @@ public class Location extends Model {
      * A postal code designating a region defined by the postal service.
      */
     @Expose
-    private String zip;
+    public String zip;
 
     public GeoPoint geoPoint;
 
@@ -75,6 +75,6 @@ public class Location extends Model {
      * name.
      */
     @Expose
-    private String country;
+    public String country;
 
 }

@@ -43,10 +43,10 @@ menu_item:'menu_profile' /} #{set moreScripts:'bootstrap.min.js' /}
 		   <h4>Password:</h4>
 		</div>
 	<div class="col-md-4">
-         <input id="street" type="password" name="password" class="form-control" placeholder="Password" title="pwd" required="">
+         <input id="password" type="password" name="password" class="form-control" placeholder="Password" title="pwd" required="">
 			       </div>
 	   <div class="col-md-4">
-         <input id="repwd" type="password" name="repassword" class="form-control" placeholder="Re-type Password" title="repwd" required="">
+         <input id="repassword" type="password" name="repassword" class="form-control" placeholder="Re-type Password" title="repwd" required="">
 		   
      </div>
 	 <div class="col-md-1">
@@ -100,10 +100,10 @@ menu_item:'menu_profile' /} #{set moreScripts:'bootstrap.min.js' /}
 	
 	<div class="row">
 		<div class="col-md-3">
-  		   <h4>Adress:</h4>
+  		   <h4>Address:</h4>
 			</div>
 		<div class="col-md-5">
-           <input id="street" name="street" type="text" value="${customer.contactInformation.address.street}" class="form-control" placeholder="Street" title="street" required="">
+            <input id="street" name="street" type="text" value="${customer.contactInformation.address.street}" class="form-control" placeholder="Street" title="street" required="">
 				       </div>
 		   <div class="col-md-2">
            <input id="no" name="streetno" type="text" value="${customer.contactInformation.address.streetNo}" class="form-control" placeholder="No" title="streetno" required="">
@@ -261,7 +261,17 @@ menu_item:'menu_profile' /} #{set moreScripts:'bootstrap.min.js' /}
 									      </div>
 									      
      <input type="number" name="customerid" id="customerid" value=${customer.id} hidden="true">
+     			  #{ifErrors}
+ 
+ 
+   #{errors}
+       <div class="bg-danger" style="margin: auto; width:50%;">${error}</div>
+   #{/errors}
+ 
+#{/ifErrors}
 	   	<center><button type="submit" class="btn btn-success">Save Changes</button></center></form>
+	  								     <!-- Form Name -->
+	
 	  								     
 	</h5>
 		</div>

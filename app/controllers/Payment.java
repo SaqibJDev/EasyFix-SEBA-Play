@@ -91,6 +91,7 @@ public class Payment extends Controller {
 		Appointment appointment = (Appointment) Appointment
 				.find("byCustomerIdAndDeviceRepairId", customerid, repairId).first();
 		appointment.paymentStatus = PaymentStatus.PAID.getIndex();
+		appointment.save();
 		Mails.paymentConfirmation(deviceRepair, customer);
 		render();
 	}
