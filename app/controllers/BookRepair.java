@@ -255,8 +255,8 @@ public class BookRepair extends Application {
 			e.printStackTrace();
 		}
     	
-		System.out.println("Customer Name:"+appointment.customer.firstName+"|technician Name:"+appointment.technician.firstName+"|device Repair:"+appointment.deviceRepair.name+"|"+
-		"Date:"+appointment.dateTimeStart.toString()+"|Location:"+appointment.meetingPlace.street);
+//		System.out.println("Customer Name:"+appointment.customer.firstName+"|technician Name:"+appointment.technician.firstName+"|device Repair:"+appointment.deviceRepair.name+"|"+
+//		"Date:"+appointment.dateTimeStart.toString()+"|Location:"+appointment.meetingPlace.street);
     	appointment.save();
     	render();
     }
