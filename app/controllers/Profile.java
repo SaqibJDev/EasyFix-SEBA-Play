@@ -50,26 +50,6 @@ public class Profile extends Application {
 		render();
 	}
 	
-//	public static void index2(long customerid) {
-//		Customer customer = Customer.find("byId", customerid).first();
-//		PaymentInformation paymentInformation = customer.paymentInformation;
-//		
-//		if (paymentInformation == null)paymentInformation = new PaymentInformation();
-//
-//		renderArgs.put("cd1", paymentInformation.getFirstFourDigits());
-//		renderArgs.put("cd2", paymentInformation.getSecondFourDigits());
-//		renderArgs.put("cd3",  paymentInformation.getThirdFourDigits());
-//		renderArgs.put("cd4",  paymentInformation.getForthFourDigits());
-//		renderArgs.put("customerid", customerid);
-//		renderArgs.put("customer", customer);
-//		renderArgs.put("holderfirstname", paymentInformation.holderFirstName);
-//		renderArgs.put("holderlastname", paymentInformation.holderLastName);
-//		renderArgs.put("expiry_month", paymentInformation.cardMonthExp);
-//		renderArgs.put("expiry_year", paymentInformation.cardYearExp);
-//		renderArgs.put("cvv", paymentInformation.cvv);
-//		
-//		render();
-//	}
 
 	/**
 	 * Shows repair history of user
@@ -97,8 +77,6 @@ public class Profile extends Application {
 		
 		validation.equals("password", password, "repassword", repassword);
 		validation.equals("password", password, "old password", customer.password);
-		System.out.println("customerid:" + customerid + "card:" + password
-				+ street);
 		if (validation.hasErrors()) {
 			params.flash(); // add http parameters to the flash scope
 			validation.keep(); // keep the errors for the next request

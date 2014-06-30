@@ -21,9 +21,6 @@ public class WorkingHours extends Model{
      */
     public int day;
     public Interval interval;
-    //@ElementCollection
-//    @OneToMany
-//    public List<Interval> hours;
 
     /**
      * Map of working hours, use Calendar.DAY_OF_WEEK to define integer and joda

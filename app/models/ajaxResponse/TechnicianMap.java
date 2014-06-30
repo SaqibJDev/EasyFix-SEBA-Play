@@ -15,9 +15,7 @@ public class TechnicianMap {
 		this.longtitude = longtitude;
 		this.rating = rating;
 	}
-	public TechnicianMap() {
-		// TODO Auto-generated constructor stub
-	}
+	public TechnicianMap() {}
     
     
 }

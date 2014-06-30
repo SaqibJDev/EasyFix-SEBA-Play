@@ -50,7 +50,7 @@ your broken phone fixed.' /}
 			var marker;
 				var userLatLng;
 
-			var icons = {
+		/*	var icons = {
 				ownPosition : {
 					icon : 'http://maps.google.com/mapfiles/kml/paddle/red-stars.png'
 				},
@@ -61,6 +61,20 @@ your broken phone fixed.' /}
 
 				}
 			};
+			*/
+			var icons = {
+					ownPosition : {
+						icon : 'http://maps.google.com/mapfiles/kml/paddle/red-stars.png'
+					},
+					repairShop : {
+						icon : 'http://s1.directupload.net/images/140623/oexdi2rp.png'
+
+					},
+					outOfDistanceRepairShop : {
+						icon : 'http://s1.directupload.net/images/140628/zt3xjpqt.png'
+
+					}
+				};
 
 			function initialize() {
 
@@ -234,27 +248,34 @@ your broken phone fixed.' /}
 			}
 
 			function insertDatabaseMarkers() {
-					$.get( "/Technicians/"+userLatLng.lat()+"/"+userLatLng.lng()+"/5000", function( data) {
-						  //$( ".result" ).html( data );
-					//						//alert( "Load was performed."+data );
+				$.get( "/Technicians/"+userLatLng.lat()+"/"+userLatLng.lng()+"/5000/true", function( data) {
 					var obj = jQuery.parseJSON(data);
 					$.each(obj, function(key, value) {
-						//alert(value.latitude+' '+value.longitude+'repairShop'+value.name+value.rating);
 						addMarker(new google.maps.LatLng(value.latitude,
 								value.longtitude), 'repairShop', value.name,
 								'<span style="font-weight:bold;text-align: left;">Name: '
 										+ value.name + '<br />Rating: '
 										+ value.rating + '</span>');
-						//alert(value.name + " has "+value.rating+" rating!");
-						//$('#campaign_keywords').append("<p>"+data.keywords[i]+"</p>");
-						//alert(name + " has "+rating+" rating!");
 
 					});
 				});
+				
+				$.get("/Technicians/"+userLatLng.lat()+"/"+userLatLng.lng()+"/5000/false", function(data) {
+					//$( ".result" ).html( data );
+					//						//alert( "Load was performed."+data );
+					if(data!=null) {
+						var obj = jQuery.parseJSON(data);
+						$.each(obj,
+							function(key, value) {
+								//alert(value.latitude+' '+value.longtitude+'repairShop'+value.name+value.rating);
+								addMarker(new google.maps.LatLng(
+										value.latitude,
+										value.longtitude),
+										'outOfDistanceRepairShop', value.name, value.name, value.rating);
+						});
+					}
+				});
 
-				//addMarker(new google.maps.LatLng(48.13743,11.57549),'repairShop','MUC-Phone-Fix','<h4>Name: Abc<br />Rating: 4.0</h4>');
-				//var garLatLng = new google.maps.LatLng(48.264152,11.6688);
-				//addMarker(garLatLng,'repairShop','TUM Phone Repair','<h4>Name: Abc<br />Rating: 4.0</h4>');
 			}
 
 			function showMap() {

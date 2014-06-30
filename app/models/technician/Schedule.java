@@ -17,7 +17,6 @@ import com.google.gson.annotations.Expose;
  */
 @Embeddable
 public class Schedule {
-    private long technicianId;
     /**
      * The scheduled appointments of the Actor
      */

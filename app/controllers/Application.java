@@ -10,6 +10,13 @@ import models.*;
 
 public class Application extends Controller {
 
+	/*
+	 * For user login check
+	 * If user is logged in then header shows his name and logout
+	 * otherwise sign in / signup buttons
+	 * 
+	 * All controller are inherited from this to replicate this functionality
+	 */
 	@Before
     static void setConnectedUser() {
         if(Security.isConnected()) {
@@ -24,7 +31,4 @@ public class Application extends Controller {
         render();
     }
 
-    public static boolean abc(){
-    	return true;
-    }
 }

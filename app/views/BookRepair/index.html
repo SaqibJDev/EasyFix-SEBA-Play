@@ -429,16 +429,10 @@
 													value.latitude,
 													value.longtitude),
 													'outOfDistanceRepairShop', value.name, value.name, value.rating);
-										//	alert(value.name + " has "+value.rating+" rating!");
-											//$('#campaign_keywords').append("<p>"+data.keywords[i]+"</p>");
-											//alert(name + " has "+rating+" rating!");
 									});
 								}
 							});
 
-							//addMarker(new google.maps.LatLng(48.13743,11.57549),'repairShop','MUC-Phone-Fix','<h4>Name: Abc<br />Rating: 4.0</h4>');
-							//var garLatLng = new google.maps.LatLng(48.264152,11.6688);
-							//addMarker(garLatLng,'repairShop','TUM Phone Repair','<h4>Name: Abc<br />Rating: 4.0</h4>');
 							
 							// add a click event handler to the map object
 				            google.maps.event.addListener(map, "click", function(event)
@@ -487,9 +481,6 @@
 							},
 							function(results, status) {
 								if (status == google.maps.GeocoderStatus.OK) {
-									//alert("Latitude: "+results[0].geometry.location.lat());
-									//alert("Longitude: "+results[0].geometry.location.lng());
-									//map.setCenter();
 
 									var newLatLng = new google.maps.LatLng(
 											results[0].geometry.location
