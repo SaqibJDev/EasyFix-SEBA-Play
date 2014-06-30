@@ -65,28 +65,30 @@ menu_item:'menu_feedback' /} #{set moreScripts:'bootstrap.min.js' /}
 		  
 		</form>
 		</div>
-		</div>
-	    
+		
+	    <br />
 			<div class="control-group" style='margin-left:50px; margin-right:50px'>
 			  <label class="control-label" for="back"></label>
 			  <div class="controls">
-				<span>
+				<span style="width: 50%; float:left;">
 					<a href="${'/Profile'}"><button id="back" name="back" class="btn btn-primary">Back</button></a>
-				</span>	<form class="form-horizontal" id="paymentConfirmation"
-						action="/Payment/index" method="post">
-				<div class="controls">
+				</span>	
+				<span style="float:right;">
+				<form class="form-horizontal" id="paymentConfirmation"
+						action="/Payment" method="post">
+				
 						<input type="number" name="customerid" id="customerid"
 							value=${customerid} hidden="true"> 
 							<input type="number" name="repairId" id="repairId" value=${repair.id}
-							hidden="true"> <span class="buttonright"><button
+							hidden="true"> 
+							<input type="hidden" name="appointmentId" id="appointmentId" value=${appointment.id} /><button
 								type="submit" id="continuepayment" name="continue payment"
-								class="btn btn-success">continue to payment</button></span>
-					
-				</div></form>
-
-			</div>
+								class="btn btn-success">continue to payment</button>
+					</form></span>
+</div>
+			
 			</section>
-		
+		</div>
 		</br>
 		
 			<!-- Button -->

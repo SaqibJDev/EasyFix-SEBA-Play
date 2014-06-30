@@ -9,6 +9,8 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
+import notifiers.Mails;
+
 import org.joda.time.DateTime;
 
 import controllers.Secure.Security;
@@ -73,68 +75,6 @@ public class BookRepair extends Application {
             render(deviceModel,repair, maker);
     }
     
-//    // TODO we need static page for mock-up with map
-//    public static void checkTechniciansAvailability(String deviceModel, String repair) {
-//        List<Technician> inTechnicians = Technician.findTechniciansByRepair(
-//                Technician.findTechniciansByIsExternal(false), deviceModel,
-//                repair);
-//        if (inTechnicians != null) {
-//            Collections.sort(inTechnicians, new Comparator<Technician>() {
-//                public int compare(Technician o1, Technician o2) {
-//                    return o1.lastName.compareTo(o2.lastName);
-//                }
-//            });
-//            render(inTechnicians);
-//        } else
-//            render();
-//    }
-
-    /**
-     * Step1/4 check technicians availability. to get the internal technicians
-     * who can repair the damage and go to the given location
-     * <p>
-     * Response: list of technicinas who can go to the location otherwise
-     * (list==null) no tech available message //TODO
-     * 
-     * @param model
-     * @param repair
-     * @param location
-     */
-//    public static void modelRepairTechnicianByLocation(String model,
-//            String repair, @Required String location) {
-//        List<Technician> techs = Technician.findByAddress(location);
-//        DeviceModel dm = DeviceModel.find("byName", model).first();
-//        techs = Technician.findTechniciansByRepair(techs, dm.name, repair);
-//        if (techs != null) {
-//            Collections.sort(techs, new Comparator<Technician>() {
-//
-//                public int compare(Technician o1, Technician o2) {
-//                    return o1.lastName.compareTo(o2.lastName);
-//                }
-//            });
-//            render(techs);
-//        } else
-//            render("No technician for " + repair
-//                    + " repair available for this location");
-//    }
-
-    /**
-     * to check technicians availability for the given timeslot . if he is
-     * available create appointment and set datetime infomration. To do so first
-     * check if it is within workinghourinterval and day, if it is then compare
-     * given period datetime + repairduration to free timeslots of technician
-     * and fix appointment. Response: if technician is available user redirect
-     * to step2 otherwise user gets error message
-     * 
-     * @param date
-     * @param time
-     */
-//    public static void modelRepairTechnicianAvailability(String date,
-//            String time) {
-//        // TODO currently not working
-//    }
-//    
-    
     
     /**
      * Step2/4 appointment and customer details we need to check validity of
@@ -151,8 +91,6 @@ public class BookRepair extends Application {
      */
     public static void personalInformationForBookRepair(String maker, String deviceModel, String repair, long repair_id, long technician, String date, String time, String location, float longitude, float latitude) {
     	
-    	System.out.println("maker:"+maker+"|deviceModel:"+deviceModel+"|repair:"+repair+"|repair_id:"+repair_id+"|technicain:"+technician+"|date:"+date+"|time:"+time+"|location:"+location);
-    	System.out.println(latitude);
     	// Fetch User profile attributes
     	Actor user = Actor.find("byEmail", Security.connected()).first();
         renderArgs.put("firstName", user.firstName);
@@ -189,10 +127,7 @@ public class BookRepair extends Application {
      * @param location
      */
     public static void reviewAppointment(String maker, String deviceModel, String repair, String notes, long technician_id, long repair_id, String date, String time, String location, float longitude, float latitude) {
-//    	System.out.println(notes);
-//    	System.out.println("maker:"+maker+"|deviceModel:"+deviceModel+"|repair:"+repair+"|repair_id:"+repair_id+"|technicain:"+technician_id+"|date:"+date+"|time:"+time+"|location:"+location);
     	// Fetch Device Repair details
-    	System.out.println("latitude"+latitude);
     	renderArgs.put("maker", maker);
     	renderArgs.put("model", deviceModel);
     	renderArgs.put("repair", repair);
@@ -231,38 +166,39 @@ public class BookRepair extends Application {
      * @param notes
      */
     public static void appointmentConfirmation(long repair_id, long technician_id, String date, String time, String notes, String location, float longitude, float latitude) {
-    	System.out.println("repair_id:"+repair_id+"|technicain:"+technician_id+"|date:"+date+"|time:"+time+"|location:"+location+"|lat:"+latitude);
-    	System.out.println("latitude-"+latitude+"|Longitude-"+longitude);
-    	String []timeArr = time.split(" ");
-    	if(timeArr[1].equals("PM")){
-    		timeArr[0] = (Integer.parseInt(timeArr[0].split(":")[0])+12)+":"+timeArr[0].split(":")[1];
+    	try{
+    		String []timeArr = time.split(" ");
+    		if(timeArr[1].equals("PM")){
+        		timeArr[0] = (Integer.parseInt(timeArr[0].split(":")[0])+12)+":"+timeArr[0].split(":")[1];
+        	}
+        	Appointment appointment = new Appointment();
+        	Customer customer = Customer.find("byEmail", Security.connected()).first();
+        	appointment.customerId = customer.id;
+        	appointment.technicianId = technician_id;
+        	appointment.deviceRepairId = repair_id;
+        	DeviceRepair deviceRepair = DeviceRepair.findById(repair_id);
+        	appointment.duration = deviceRepair.repairTime;
+        	appointment.paymentStatus = PaymentStatus.PENDING.getIndex();
+        	Location locationObj = new Location(null, location, null, null, null);
+        	locationObj.geoPoint = new GeoPoint(latitude, longitude);
+        	locationObj.save();
+        	appointment.meetingPlace = locationObj;
+        	java.sql.Timestamp date2;
+    		try {
+    			Date tempDate = (Date) new SimpleDateFormat("yyyy/MM/dd HH:mm").parse(date+" "+timeArr[0]);
+    			date2 = new java.sql.Timestamp(tempDate.getTime());
+    			appointment.dateTimeStart = date2;
+    			System.out.println(date2.toString());
+    		} catch (ParseException e) {
+    			e.printStackTrace();
+    		}
+        	
+        	appointment.save();
+        	Mails.bookRepairConfirmation(appointment, customer, notes);
+        	render();
+    	}catch(Exception e){
+    		
     	}
-    	Appointment appointment = new Appointment();
-    	Customer customer = Customer.find("byEmail", Security.connected()).first();
-//    	appointment.technician = Technician.findById(technician_id);
-//    	appointment.deviceRepair = DeviceRepair.findById(repair_id);
-    	appointment.customerId = customer.id;
-    	appointment.technicianId = technician_id;
-    	appointment.deviceRepairId = repair_id;
-    	appointment.paymentStatus = PaymentStatus.PENDING.getIndex();
-    	Location locationObj = new Location(null, location, null, null, null);
-    	locationObj.geoPoint = new GeoPoint(latitude, longitude);
-    	locationObj.save();
-    	appointment.meetingPlace = locationObj;
-    	java.sql.Timestamp date2;
-		try {
-			Date tempDate = (Date) new SimpleDateFormat("yyyy/MM/dd HH:mm").parse(date+" "+timeArr[0]);
-			date2 = new java.sql.Timestamp(tempDate.getTime());
-			appointment.dateTimeStart = date2;
-			System.out.println(date2.toString());
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
     	
-//		System.out.println("Customer Name:"+appointment.customer.firstName+"|technician Name:"+appointment.technician.firstName+"|device Repair:"+appointment.deviceRepair.name+"|"+
-//		"Date:"+appointment.dateTimeStart.toString()+"|Location:"+appointment.meetingPlace.street);
-    	appointment.save();
-    	render();
     }
 }

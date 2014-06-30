@@ -13,28 +13,35 @@ import play.mvc.Controller;
  * 
  * @author Chrysa Papadaki - papadaki.chr@gmail.com
  */
-public class Feedback extends Controller {
+public class Feedback extends Application {
 	/**
 	 * Shows repair details page and rating form
 	 */
-	public static void index(long customerid, long repairId) {
-		DeviceRepair repair = (DeviceRepair) DeviceRepair
-				.find("byId", repairId).fetch(1).get(0);
-		Appointment appointment = (Appointment) Appointment.find(
-				"byCustomerIdAndDeviceRepairId", customerid, repairId).first();
-		Technician technician = appointment.getTechnician();
-		int size = Rating.find("byId", appointment.ratingId).fetch().size();
+	public static void index(long customerid, long repairId, long appointmentId) {
+		System.out.println("feedback index: cid=" + customerid + ",rid" + repairId);
+		try{
+			DeviceRepair repair = (DeviceRepair) DeviceRepair.find("byId", repairId).fetch(1).get(0);
+			Appointment appointment = (Appointment) Appointment.findById(appointmentId);
+//					find("byCustomerIdAndDeviceRepairId", customerid, repairId).first();
+			Technician technician = appointment.getTechnician();
+			int size = Rating.find("byId", appointment.ratingId).fetch().size();
 
-		System.out.println("cid=" + customerid + ",rid" + repairId + ",rating="
-				+ size + ",tech=" + technician.id);
-		if (size != 0) {
+			System.out.println("cid=" + customerid + ",rid" + repairId + ",rating="
+					+ size + ",tech=" + technician.id+", status="+appointment.paymentStatus);
+
 			if (appointment.paymentStatus == PaymentStatus.PAID.getIndex())
-				paid(customerid, repairId);
-			else
-				feedback(customerid, repairId);
-		} else {
-			render(technician, repair, customerid, appointment);
+				paid(customerid, repairId,appointmentId);
+			else {
+				if (size != 0) {
+					feedback(customerid, repairId,appointmentId);
+				} else {
+					render(technician, repair, customerid, appointment);
+				}
+			}
+		}catch(Exception ex){
+			
 		}
+				
 	}
 
 	/**
@@ -48,22 +55,23 @@ public class Feedback extends Controller {
 	 * @param notes
 	 */
 	public static void submit(long customerid, long repairId, int ratinginput,
-			String notes) {
-		System.out.println("cid=" + customerid + ",rid" + repairId + ",rating="
+			String notes, long appointmentId) {
+		System.out.println("feedback submit: cid=" + customerid + ",rid" + repairId + ",rating="
 				+ ratinginput + ",comment=" + notes);
 		validation.required(ratinginput);
 		validation.min(ratinginput, 1);
 		if (validation.hasErrors()) {
 			params.flash(); // add http parameters to the flash scope
 			validation.keep(); // keep the errors for the next request
-			index(customerid, repairId);// redirects to index
+			index(customerid, repairId, appointmentId);// redirects to index
 		} else {
 			DeviceRepair repair = (DeviceRepair) DeviceRepair
 					.find("byId", repairId).fetch(1).get(0);
 
-			Appointment appointment = (Appointment) Appointment.find(
-					"byCustomerIdAndDeviceRepairId", customerid, repairId)
-					.first();
+			Appointment appointment = (Appointment) Appointment.findById(appointmentId);
+//					.find(
+//					"byCustomerIdAndDeviceRepairId", customerid, repairId)
+//					.first();
 			Technician technician = appointment.getTechnician();
 			Rating rating = new Rating(0);
 			rating.comment = notes;
@@ -80,6 +88,7 @@ public class Feedback extends Controller {
 			render(technicianName, rating, repair, customerid, appointment);
 		}
 	}
+
 	/**
 	 * It displays either user's feedback or feedback form to allow user to
 	 * submit feedback
@@ -87,19 +96,21 @@ public class Feedback extends Controller {
 	 * @param customerid
 	 * @param repairId
 	 */
-	public static void paid(long customerid, long repairId) {
-		System.out.println("feedback: cid=" + customerid + ",rid" + repairId);
+	public static void paid(long customerid, long repairId, long appointmentId) {
+		System.out.println("paid: cid=" + customerid + ",rid" + repairId);
 		DeviceRepair repair = (DeviceRepair) DeviceRepair
 				.find("byId", repairId).fetch(1).get(0);
-		Appointment appointment = (Appointment) Appointment.find(
-				"byCustomerIdAndDeviceRepairId", customerid, repairId).first();
+		Appointment appointment = (Appointment) Appointment.findById(appointmentId);
+//				.find(
+//				"byCustomerIdAndDeviceRepairId", customerid, repairId).first();
 		Rating rating = appointment.getRating();
 		if (rating != null) {
 			Technician technician = appointment.getTechnician();
 			render(technician, rating, repair, customerid, appointment);
 		} else
-			index(customerid, repairId);
+			index(customerid, repairId, appointmentId);
 	}
+
 	/**
 	 * It displays either user's feedback or feedback form to allow user to
 	 * submit feedback
@@ -107,17 +118,19 @@ public class Feedback extends Controller {
 	 * @param customerid
 	 * @param repairId
 	 */
-	public static void feedback(long customerid, long repairId) {
+	public static void feedback(long customerid, long repairId, long appointmentId) {
 		System.out.println("feedback: cid=" + customerid + ",rid" + repairId);
 		DeviceRepair repair = (DeviceRepair) DeviceRepair
 				.find("byId", repairId).fetch(1).get(0);
-		Appointment appointment = (Appointment) Appointment.find(
-				"byCustomerIdAndDeviceRepairId", customerid, repairId).first();
+		Appointment appointment = (Appointment) Appointment.findById(appointmentId);
+//				find(
+//				"byCustomerIdAndDeviceRepairId", customerid, repairId).first();
 		Rating rating = appointment.getRating();
+		System.out.println("Appointment rating = "+rating.rating);
 		if (rating != null) {
 			Technician technician = appointment.getTechnician();
 			render(technician, rating, repair, customerid, appointment);
 		} else
-			index(customerid, repairId);
+			index(customerid, repairId, appointmentId);
 	}
 }

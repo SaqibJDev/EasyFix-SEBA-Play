@@ -12,68 +12,14 @@ import controllers.Secure.Security;
 import models.Actor;
 import models.ajaxResponse.TechnicianMap;
 import models.device.DeviceRepair;
+import models.rating.Rating;
 import models.technician.Technician;
 import play.mvc.Before;
 import play.mvc.Controller;
 import play.mvc.With;
 public class Technicians extends Application {
 
-	/*
-	 * Show external technicians who offer repair services for selected device model and repair
-	 */
-    public static void show(String maker, String deviceModel, String repair) {
-        List<Technician> exTechnicians = Technician.findTechniciansByRepair(
-                Technician.findTechniciansByIsExternal(true), deviceModel,
-                repair);
-        DeviceRepair deviceRepair = (DeviceRepair) DeviceRepair
-                .find("byName", repair).fetch(1).get(0);
-        if (exTechnicians != null) {
-            Collections.sort(exTechnicians, new Comparator<Technician>() {
-                public int compare(Technician o1, Technician o2) {
-                    return o1.lastName.compareTo(o2.lastName);
-                }
-            });
-            render(exTechnicians, deviceRepair, deviceModel, repair, maker);
-        } else
-            render();
-    }
-    
-	/*
-	 * Show list of all external technicians
-	 */
-    public static void showAll() {
-        List<Technician> exTechnicians = Technician.findTechniciansByIsExternal(true);
-        
-        if (exTechnicians != null && exTechnicians.size() > 0) {
-            Collections.sort(exTechnicians, new Comparator<Technician>() {
-                public int compare(Technician o1, Technician o2) {
-                    return o1.lastName.compareTo(o2.lastName);
-                }
-            });
-            render(exTechnicians);
-        } else
-            render();
-    }
-    
-    /*
-     * Show details of external technician company/show, address, Contact link
-     */
-    public static void details(String maker, String deviceModel, String repair, String name) {
-        List<Technician> exTechnicians = Technician.findTechniciansByIsExternal(true);
-        
-        if (exTechnicians != null && exTechnicians.size() > 0) {
-            for (Technician technician : exTechnicians) {
-				if(technician.title.equals(name)){
-					render(technician, maker, deviceModel, repair, name);
-					break;
-				}
-			}
-            
-        } else
-            render();
-    }
-    
-    
+   
     /*
      * Get technicians list for map
      */
@@ -83,7 +29,6 @@ public class Technicians extends Application {
     	List<TechnicianMap> techniciansMapList = new ArrayList<TechnicianMap>();
     	
     	for (Technician technician : technicians) {
-//    		new TechnicianMap(technician.firstName + " "+ technician.lastName, technician.id, technician.contactInformation.address.geoPoint.latitude, technician.contactInformation.address.geoPoint.longtitude, (float)4.0)
     		TechnicianMap tm = new TechnicianMap();
     		tm.id = technician.id;
     		tm.name = technician.firstName + " "+ technician.lastName;
@@ -95,7 +40,6 @@ public class Technicians extends Application {
     	Gson gsonHandler = new Gson();
     	String returnResult = gsonHandler.toJson(technicians);
     	System.out.println( returnResult);    	
-//    	return "{\"data\":"+gsonHandler.toJson(techniciansMapList)+"}";
     	return gsonHandler.toJson(techniciansMapList);
     }
     
@@ -105,7 +49,7 @@ public class Technicians extends Application {
      */
     public static String getCloseTechnicians(float userLatitude, float userLongitude, float maxDistance, boolean closeTechnicians){
     	List<Technician> technicians = Technician.findTechniciansByIsExternal(false);
-
+//maxDistance = 10000;
     	List<TechnicianMap> techniciansMapList = new ArrayList<TechnicianMap>();
     	
     	double deltaLat, deltaLng, distance;
@@ -117,7 +61,7 @@ public class Technicians extends Application {
     		
     		distance = Math.pow(Math.sin(deltaLat/2), 2) + Math.cos(technician.contactInformation.address.geoPoint.latitude) * Math.cos(userLatitude) * Math.pow(Math.sin(deltaLng/2),2);
     		distance = 2 * Math.atan2( Math.sqrt(distance), Math.sqrt(1-distance) ) * 6373000; //last number is radius of earth, converts into [m] distance
-    		System.out.println(distance);
+    		System.out.println(technician.lastName+"|distance:"+distance);
     		if(closeTechnicians && distance>maxDistance)
     			continue;
     		else if(!closeTechnicians && distance<maxDistance)
@@ -128,24 +72,16 @@ public class Technicians extends Application {
     		tm.name = technician.firstName + " "+ technician.lastName;
     		tm.longtitude = technician.contactInformation.address.geoPoint.longtitude;
     		tm.latitude = technician.contactInformation.address.geoPoint.latitude;
-    		tm.rating = (float) 4.0;
-    		//tm.distance = distance;
+    		float sum = 0, i = 1;
+    		for (Rating rat : technician.rating) {
+				sum+=rat.rating;
+				i++;
+			}
+    		tm.rating = sum/i;
     		techniciansMapList.add(tm);
 		}
     	
-    	TechnicianMap tm = new TechnicianMap();
-		tm.id = 5;
-		tm.name = "saqib javed";
-		tm.longtitude = 000;//technician.contactInformation.address.geoPoint.longtitude;
-		tm.latitude = 000;//technician.contactInformation.address.geoPoint.latitude;
-		tm.rating = (float) 4.0;
-		//tm.distance = distance;
-		techniciansMapList.add(tm);
-    	//System.out.println(techniciansMapList.get(0).name);
     	Gson gsonHandler = new Gson();
-//    	String returnResult = gsonHandler.toJson(technicians);
-//    	System.out.println( returnResult);    	
-//    	return "{\"data\":"+gsonHandler.toJson(techniciansMapList)+"}";
     	return gsonHandler.toJson(techniciansMapList);
     }
     

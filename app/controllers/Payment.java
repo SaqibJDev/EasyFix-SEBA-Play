@@ -16,12 +16,12 @@ import play.mvc.*;
  * @author Chrysa Papadaki - papadaki.chr@gmail.com
  * 
  */
-public class Payment extends Controller {
+public class Payment extends Application {
 
 	/**
 	 * index page where user can choose option to pay for repair
 	 */
-	public static void index(long repairId, long customerid) {
+	public static void index(long repairId, long customerid, long appointmentId) {
 		System.out.println("repairId = " + repairId + ", customerid = "
 				+ customerid);
 		DeviceRepair deviceRepair = (DeviceRepair) DeviceRepair
@@ -31,7 +31,7 @@ public class Payment extends Controller {
 		PaymentInformation paymentInformation = customer.paymentInformation;
 		if (paymentInformation == null)
 			paymentInformation = new PaymentInformation();
-		render(deviceRepair, customer, paymentInformation);
+		render(deviceRepair, customer, paymentInformation, appointmentId);
 	}
 
 	/**
@@ -40,9 +40,9 @@ public class Payment extends Controller {
 	public static void paymentDetails(String firstname, String lastname,
 			String cd1, String cd2, String cd3, String cd4,
 			String expiry_month, String expiry_year, String password,
-			long customerid, long repairId) {
+			long customerid, long repairId, long appointmentId) {
 		System.out.println("lastname = " + lastname + ", firstName = "
-				+ firstname + ", cardNumber = " + cd1+"cid="+customerid+"rid="+repairId);
+				+ firstname + ", cardNumber = " + cd1+"cid="+customerid+"rid="+repairId+"|appointmentid="+appointmentId);
 		validation.required(lastname);
 		validation.required(firstname);
 		validation.required(cd1);
@@ -60,40 +60,45 @@ public class Payment extends Controller {
 			for (play.data.validation.Error error : validation.errors()) {
 				System.out.println(error.message());
 			}
-			render(deviceRepair, customer);
+			render(deviceRepair, customer, appointmentId);
 		} else {
 
 			System.out.println("lastname = " +deviceRepair.description);
 			String cardnumber = cd1 + "" + cd2 + cd3 + cd4 + "";
 			String holder = firstname + " " + lastname;
 			float amount = deviceRepair.price;
-			review(holder, cardnumber, amount, customerid, repairId);
+			review(holder, cardnumber, amount, customerid, repairId,appointmentId);
 			
 		}
 	}
 
-	public static void review(String holder, String cardnumber, float amount, long customerid, long repairId) {
+	public static void review(String holder, String cardnumber, float amount, long customerid, long repairId, long appointmentId) {
 		 DeviceRepair deviceRepair = (DeviceRepair) DeviceRepair
 		  .find("byId", repairId).first();
 		 
-		render(holder, cardnumber, amount, customerid, repairId, deviceRepair);
+		render(holder, cardnumber, amount, customerid, repairId, deviceRepair,appointmentId);
 	}
 
 	/**
 	 * Submits Payment, sends user email and redirects user to confirmation page
 	 */
-	public static void paymentConfirmation(long customerid, long repairId) {
-		DeviceRepair deviceRepair = (DeviceRepair) DeviceRepair
-				.find("byId", repairId).fetch(1).get(0);
-		Customer customer = (Customer) Customer.find("byId", customerid)
-				.fetch(1).get(0);
+	public static void paymentConfirmation(long customerid, long repairId, long appointmentId) {
+		System.out.println("AppointmentId="+appointmentId);
+		try{
+			DeviceRepair deviceRepair = (DeviceRepair) DeviceRepair.find("byId", repairId).fetch(1).get(0);
+			Customer customer = (Customer) Customer.find("byId", customerid)
+					.fetch(1).get(0);
 
-		Appointment appointment = (Appointment) Appointment
-				.find("byCustomerIdAndDeviceRepairId", customerid, repairId).first();
-		appointment.paymentStatus = PaymentStatus.PAID.getIndex();
-		appointment.save();
-		Mails.paymentConfirmation(deviceRepair, customer);
-		render();
+			Appointment appointment = (Appointment) Appointment.findById(appointmentId);
+//					.find("byCustomerIdAndDeviceRepairId", customerid, repairId).first();
+			appointment.paymentStatus = PaymentStatus.PAID.getIndex();
+			appointment.save();
+			Mails.paymentConfirmation(deviceRepair, customer);
+			render();
+		}catch(Exception e){
+			
+		}
+				
 	}
 
 }

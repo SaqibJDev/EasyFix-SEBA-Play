@@ -77,12 +77,5 @@ public class ContactInformation extends Model{
             this.email = email;
             this.address = address;
         }
-//    /**
-//     * The location of actor, for technician it is the location he/she can serve and for customer the
-//     * desirable meeting place
-//     */
-//    //@Expose
-//    @OneToMany
-//    public List<Location> addresses;
 
 }

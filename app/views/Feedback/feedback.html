@@ -37,8 +37,9 @@ menu_item:'menu_feedback' /} #{set moreScripts:'bootstrap.min.js' /}
 						<h4>Technician:</h4>
    				    <h4>Repair:</h4>
    						<h4>Cost:</h4>
-			   			<h4>Time:</h4>
 			   			<h4>Date:</h4>
+			   			<h4>Time:</h4>
+			   			<h4>Duration:</h4>
 						</div>
 				
 					<div class="col-md-3">
@@ -46,13 +47,10 @@ menu_item:'menu_feedback' /} #{set moreScripts:'bootstrap.min.js' /}
 						<h6 style="font-size:14px">${technician.firstName} ${technician.lastName}</h6>
 						<h6 style="font-size:14px">${repair.displayName}</h6>
 						<h6 style="font-size:14px">${repair.price} &euro;</h6>
-						<h6 style="font-size:14px">${appointment.getStartTime()} until
-							${appointment.getEndTime()}</h6>
 						<h6 style="font-size:14px">${appointment.getDate()}</h6>
+						<h6 style="font-size:14px">${appointment.getStartTime()}</h6>
+						<h6 style="font-size:14px">${appointment.getDuration()}</h6>
 					</div>
-
-		
-		
 		
 		 <div class="col-md-6">
 	 		
@@ -75,10 +73,10 @@ menu_item:'menu_feedback' /} #{set moreScripts:'bootstrap.min.js' /}
 			  <div class="controls">
 			
 			<form class="form-horizontal" id="paymentConfirmation"
-						action="/Payment/index" method="post">
+						action="/Payment" method="post">
 				<div class="controls">
-						<input type="number" name="customerid" id="customerid"
-							value=${customerid} hidden="true"> 
+						<input type="number" name="customerid" id="customerid" value=${customerid} hidden="true">
+						<input type="hidden" name="appointmentId" id="appointmentId" value=${appointment.id} /> 
 							<input type="number" name="repairId" id="repairId" value=${repair.id}
 							hidden="true"> <span class="buttonright"><button
 								type="submit" id="continuepayment" name="continue payment"
@@ -87,7 +85,7 @@ menu_item:'menu_feedback' /} #{set moreScripts:'bootstrap.min.js' /}
 				</div></form>
 					<span>
 					<form class="form-horizontal" id="history"
-						action="/Profile/history" method="get">
+						action="/History" method="get">
 				<div class="controls">
 						<input type="number" name="customerid" id="customerid"
 							value=${customerid} hidden="true"> 

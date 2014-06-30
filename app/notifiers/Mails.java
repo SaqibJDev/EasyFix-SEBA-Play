@@ -5,8 +5,15 @@ import models.Appointment;
 import models.customer.Customer;
 import models.device.DeviceRepair;
  
+/*
+ * Mail notification API
+ */
 public class Mails extends play.mvc.Mailer {
  public static final String fromEmail = "EasyFix <no-reply@easyfix.com>";
+ 
+ /*
+  * Welcome mail sent on signup
+  */
    public static void welcome(Actor user) {
       setSubject("Welcome %s", user.firstName);
       addRecipient(user.email);
@@ -27,16 +34,23 @@ public class Mails extends play.mvc.Mailer {
       return true;
    }
 
+   /*
+    * Payment confirmation for an appointment
+    */
    public static void paymentConfirmation(DeviceRepair repair, Customer customer) {
 	      setSubject("Payment Confirmation %s", customer.firstName);
 	      addRecipient(customer.email);
 	      setFrom("Me <me@me.com>");
 	      send(repair, customer);
 	   }
-   public static void bookRepairConfirmation(Appointment appointment, Customer customer) {
+   
+   /*
+    * Book Appointment confirmation
+    */
+   public static void bookRepairConfirmation(Appointment appointment, Customer customer, String notes) {
 	      setSubject("Book Repair Confirmation %s", customer.firstName);
 	      addRecipient(customer.email);
 	      setFrom("Me <me@me.com>");
-	      send(appointment, customer);
+	      send(appointment, customer, notes);
 	   }
 }

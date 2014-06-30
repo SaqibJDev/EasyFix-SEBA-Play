@@ -38,6 +38,9 @@ public class Profile extends Application {
 		renderArgs.put("cd4",  paymentInformation.getForthFourDigits());
 		renderArgs.put("customerid", customer.id);
 		renderArgs.put("customer", customer);
+
+		renderArgs.put("telnumber", customer.contactInformation.telephone);
+		renderArgs.put("mobile", customer.contactInformation.mobile);
 		renderArgs.put("holderfirstname", paymentInformation.holderFirstName);
 		renderArgs.put("holderlastname", paymentInformation.holderLastName);
 		renderArgs.put("expiry_month", paymentInformation.cardMonthExp);
@@ -88,7 +91,7 @@ public class Profile extends Application {
 			String lastname, String street, String streetno, String city,
 			String zip, String payopt, String holderfirstname,
 			String holderlastname, String cd1, String cd2, String cd3,
-			String cd4, String expiry_month, String expiry_year, String cvv) {
+			String cd4, String expiry_month, String expiry_year, String cvv, String mobile, String telnumber) {
 
 		Customer customer = Customer.find("byEmail", Security.connected()).first();
 		
@@ -111,6 +114,8 @@ public class Profile extends Application {
 			ContactInformation ci = ContactInformation.find("byId", customer.contactInformation.id).first();
 			ci.email = email;
 			ci.address = address;
+			ci.mobile = mobile;
+			ci.telephone = telnumber;
 			ci.save();
 			
 			PaymentInformation paymentInformation = new PaymentInformation();

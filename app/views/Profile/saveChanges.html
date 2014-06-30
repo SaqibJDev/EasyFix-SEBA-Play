@@ -18,7 +18,7 @@ menu_item:'menu_profile' /} #{set moreScripts:'bootstrap.min.js' /}
 <section id="payment">				 
  		<div class="panel panel-default">
  		  <div class="panel-body">
- 		    <h3> My Account | <a href="/Profile/history/${customerid}"> History</a></h3> 
+ 		    <h3> My Account | <a href="/History"> History</a></h3> 
 	</br>
   <h5>You have successfully saved your profile changes!</h5>
 <div class="well"><h5>Account Settings</h5>
@@ -101,7 +101,21 @@ menu_item:'menu_profile' /} #{set moreScripts:'bootstrap.min.js' /}
 	
 	<div class="row">
 		<div class="col-md-3">
-  		   <h4>Adress:</h4>
+  		   <h4>Telephone(s):</h4>
+			</div>
+		<div class="col-md-4">
+           <input id="telnumber" name="telnumber" type="text" value="${customer.contactInformation.telephone}" class="form-control" placeholder="telephone" title="telephone" required="">
+				       </div>
+		   <div class="col-md-4">
+           <input id="mobile" name="mobile" type="text" class="form-control" value="${customer.contactInformation.mobile}" placeholder="mobile" title="mobile">
+			   
+	     </div>
+		 <div class="col-md-1">
+			     </div>
+    </div>
+	<div class="row">
+		<div class="col-md-3">
+  		   <h4>Address:</h4>
 			</div>
 		<div class="col-md-5">
            <input id="street" name="street" type="text" value="${customer.contactInformation.address.street}" class="form-control" placeholder="Street" title="street" required="">
@@ -113,6 +127,7 @@ menu_item:'menu_profile' /} #{set moreScripts:'bootstrap.min.js' /}
 		 <div class="col-md-1">
 			     </div>
     </div>
+    
 	<div class="row">
 		<div class="col-md-3">
 			</div>

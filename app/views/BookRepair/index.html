@@ -363,6 +363,7 @@
 						// Added by saqib for technician population
 						function addTechnician(name, value){
 							var exists = 0;
+							$("#technician").empty();
 							$( "#technician option" ).each(function() {
 								if($( this ).text()==name){
 							    	exists= 1;
@@ -395,7 +396,7 @@
 										});
 							});
  					*/
-		 					$.get("/Technicians/"+userLatLng.lat()+"/"+userLatLng.lng()+"/5000/true", function(data) {
+		 					$.get("/Technicians/"+userLatLng.lat()+"/"+userLatLng.lng()+"/10000/true", function(data) {
 								//$( ".result" ).html( data );
 								//						//alert( "Load was performed."+data );
 								if(data!=null) {
@@ -416,7 +417,7 @@
 									});
 								}
 							});
-		 					$.get("/Technicians/"+userLatLng.lat()+"/"+userLatLng.lng()+"/5000/false", function(data) {
+		 					$.get("/Technicians/"+userLatLng.lat()+"/"+userLatLng.lng()+"/10000/false", function(data) {
 								//$( ".result" ).html( data );
 								//						//alert( "Load was performed."+data );
 								if(data!=null) {
@@ -426,9 +427,9 @@
 											//alert(value.latitude+' '+value.longitude+'repairShop'+value.name+value.rating);
 											addMarker(new google.maps.LatLng(
 													value.latitude,
-													value.longitude),
+													value.longtitude),
 													'outOfDistanceRepairShop', value.name, value.name, value.rating);
-											alert(value.name + " has "+value.rating+" rating!");
+										//	alert(value.name + " has "+value.rating+" rating!");
 											//$('#campaign_keywords').append("<p>"+data.keywords[i]+"</p>");
 											//alert(name + " has "+rating+" rating!");
 									});

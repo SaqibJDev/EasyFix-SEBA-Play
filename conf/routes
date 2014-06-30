@@ -46,9 +46,9 @@ GET     /                                       Application.index
 	# Feedback
 		POST		/Feedback										controllers.Feedback.index
 		POST    /Feedback/submit								controllers.Feedback.submit(customerid, repairid, rating, comment)
-		GET     /Feedback/Payment								controllers.Payment.index
+		POST     /Payment								controllers.Payment.index
 		# Go back from payment to feedback
-		GET   	/Feedback/feedback/{customerid}/{repairid}		controllers.Feedback.feedback(customerid, repairid)
+		 GET   	/Feedback/feedback/{customerid}/{repairid}		controllers.Feedback.feedback(customerid, repairid)
 	# Payment
 		POST    /Payment/paymentDetails							controllers.Payment.paymentDetails
 		GET   	/Payment/review									controllers.Payment.review(customerid, repairid)

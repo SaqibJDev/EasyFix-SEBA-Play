@@ -44,13 +44,15 @@ menu_item:'menu_profile' /} #{set moreScripts:'bootstrap.min.js' /}
 								<td>${appointment.getDeviceRepair().price} &euro;</td>
 								<td>${appointment.getStatus()}</td>
 								<td><ul class="tooltips">
-						<form class="form-horizontal" id="index" action="/Feedback"
+						<form class="form-horizontal" action="/Feedback"
 							method="post">
 								<!-- hidden values from previous request -->
 							<input type="number" name="customerid" id="customerid" value=${appointment.customerId} hidden="true">
 							<input type="number" name="repairId" id="repairId" value=${appointment.deviceRepairId} hidden="true">
-							<button type="submit" class="btn btn-primary" data-toggle="tooltip" 
-												data-original-title="Click here to view status of repair">View</button>
+							<input type="number" name="appointmentId" id="appointmentId" value=${appointment.id} hidden="true">
+							
+							<input type="submit" class="btn btn-primary" data-toggle="tooltip" 
+												data-original-title="Click here to view status of repair" value="View" />
 									</form></ul></td>
 							</tr>
 							#{/list}
