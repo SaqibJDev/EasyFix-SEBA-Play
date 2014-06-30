@@ -69,14 +69,5 @@ public class ExternalTechnicians extends Application {
             render();
     }
     
-    
-    /*
-     * Get technicaians list for map
-     */
-    public static String getTechnicians(){
-    	List<Technician> technicians = Technician.findTechniciansByIsExternal(false);
-    	System.out.println( "Hello Ajax!");//Integer.toString(technicians.size());
-    	return "Hello Ajax!";
-    }
 
 }

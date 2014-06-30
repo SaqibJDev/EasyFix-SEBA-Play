@@ -20,7 +20,7 @@ public class DeviceRepair extends Model{
 	public String description;
 	public String image;
 	public float price;
-	public long repairTime;// cp: I changed it to Duration because we need it to calculate appointment duration
+	public long repairTime;
     public java.sql.Timestamp createdOn;
 	public java.sql.Timestamp lastUpdated;
 	

@@ -19,11 +19,6 @@ public class Customer extends Actor {
     /**
      * Additional Information 
      */
-//    @Expose
-//    private String notes;
-    
-//    @OneToMany
-//    public List<Appointment> appointments; 
     @OneToOne
    public PaymentInformation paymentInformation;
     

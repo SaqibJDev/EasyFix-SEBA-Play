@@ -120,7 +120,6 @@ public class Technician extends Actor {
     
     public static List<Technician> findByGeoPoint(long latitude, long longtitude) {
         return null;
-//TODO
     }
     public static List<Technician> findTechniciansByIsExternal(
             boolean isExternal) {

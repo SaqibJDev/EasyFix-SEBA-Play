@@ -22,8 +22,6 @@ public class Payment extends Application {
 	 * index page where user can choose option to pay for repair
 	 */
 	public static void index(long repairId, long customerid, long appointmentId) {
-		System.out.println("repairId = " + repairId + ", customerid = "
-				+ customerid);
 		DeviceRepair deviceRepair = (DeviceRepair) DeviceRepair
 				.find("byId", repairId).fetch(1).get(0);
 		Customer customer = (Customer) Customer.find("byId", customerid)
@@ -41,8 +39,6 @@ public class Payment extends Application {
 			String cd1, String cd2, String cd3, String cd4,
 			String expiry_month, String expiry_year, String password,
 			long customerid, long repairId, long appointmentId) {
-		System.out.println("lastname = " + lastname + ", firstName = "
-				+ firstname + ", cardNumber = " + cd1+"cid="+customerid+"rid="+repairId+"|appointmentid="+appointmentId);
 		validation.required(lastname);
 		validation.required(firstname);
 		validation.required(cd1);
@@ -55,7 +51,6 @@ public class Payment extends Application {
 				.find("byId", repairId).first();
 		Customer customer = (Customer) Customer.find("byId", customerid).first();
 
-		System.out.println("lastname = " +deviceRepair.description);
 		if (validation.hasErrors()) {
 			for (play.data.validation.Error error : validation.errors()) {
 				System.out.println(error.message());
@@ -83,14 +78,12 @@ public class Payment extends Application {
 	 * Submits Payment, sends user email and redirects user to confirmation page
 	 */
 	public static void paymentConfirmation(long customerid, long repairId, long appointmentId) {
-		System.out.println("AppointmentId="+appointmentId);
 		try{
 			DeviceRepair deviceRepair = (DeviceRepair) DeviceRepair.find("byId", repairId).fetch(1).get(0);
 			Customer customer = (Customer) Customer.find("byId", customerid)
 					.fetch(1).get(0);
 
 			Appointment appointment = (Appointment) Appointment.findById(appointmentId);
-//					.find("byCustomerIdAndDeviceRepairId", customerid, repairId).first();
 			appointment.paymentStatus = PaymentStatus.PAID.getIndex();
 			appointment.save();
 			Mails.paymentConfirmation(deviceRepair, customer);

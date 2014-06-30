@@ -49,7 +49,7 @@ public class BookRepair extends Application {
      * who can repair the damage and go to the given location
      * <p>
      * Response: list of technicinas who can go to the location otherwise
-     * (list==null) no tech available message //TODO
+     * (list==null) no tech available message 
      * 
      * @param model
      * @param repair

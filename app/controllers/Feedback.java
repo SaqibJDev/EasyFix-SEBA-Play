@@ -18,16 +18,11 @@ public class Feedback extends Application {
 	 * Shows repair details page and rating form
 	 */
 	public static void index(long customerid, long repairId, long appointmentId) {
-		System.out.println("feedback index: cid=" + customerid + ",rid" + repairId);
 		try{
 			DeviceRepair repair = (DeviceRepair) DeviceRepair.find("byId", repairId).fetch(1).get(0);
 			Appointment appointment = (Appointment) Appointment.findById(appointmentId);
-//					find("byCustomerIdAndDeviceRepairId", customerid, repairId).first();
 			Technician technician = appointment.getTechnician();
 			int size = Rating.find("byId", appointment.ratingId).fetch().size();
-
-			System.out.println("cid=" + customerid + ",rid" + repairId + ",rating="
-					+ size + ",tech=" + technician.id+", status="+appointment.paymentStatus);
 
 			if (appointment.paymentStatus == PaymentStatus.PAID.getIndex())
 				paid(customerid, repairId,appointmentId);
@@ -56,8 +51,6 @@ public class Feedback extends Application {
 	 */
 	public static void submit(long customerid, long repairId, int ratinginput,
 			String notes, long appointmentId) {
-		System.out.println("feedback submit: cid=" + customerid + ",rid" + repairId + ",rating="
-				+ ratinginput + ",comment=" + notes);
 		validation.required(ratinginput);
 		validation.min(ratinginput, 1);
 		if (validation.hasErrors()) {
@@ -69,9 +62,6 @@ public class Feedback extends Application {
 					.find("byId", repairId).fetch(1).get(0);
 
 			Appointment appointment = (Appointment) Appointment.findById(appointmentId);
-//					.find(
-//					"byCustomerIdAndDeviceRepairId", customerid, repairId)
-//					.first();
 			Technician technician = appointment.getTechnician();
 			Rating rating = new Rating(0);
 			rating.comment = notes;
@@ -97,12 +87,9 @@ public class Feedback extends Application {
 	 * @param repairId
 	 */
 	public static void paid(long customerid, long repairId, long appointmentId) {
-		System.out.println("paid: cid=" + customerid + ",rid" + repairId);
 		DeviceRepair repair = (DeviceRepair) DeviceRepair
 				.find("byId", repairId).fetch(1).get(0);
 		Appointment appointment = (Appointment) Appointment.findById(appointmentId);
-//				.find(
-//				"byCustomerIdAndDeviceRepairId", customerid, repairId).first();
 		Rating rating = appointment.getRating();
 		if (rating != null) {
 			Technician technician = appointment.getTechnician();
@@ -119,14 +106,10 @@ public class Feedback extends Application {
 	 * @param repairId
 	 */
 	public static void feedback(long customerid, long repairId, long appointmentId) {
-		System.out.println("feedback: cid=" + customerid + ",rid" + repairId);
 		DeviceRepair repair = (DeviceRepair) DeviceRepair
 				.find("byId", repairId).fetch(1).get(0);
 		Appointment appointment = (Appointment) Appointment.findById(appointmentId);
-//				find(
-//				"byCustomerIdAndDeviceRepairId", customerid, repairId).first();
 		Rating rating = appointment.getRating();
-		System.out.println("Appointment rating = "+rating.rating);
 		if (rating != null) {
 			Technician technician = appointment.getTechnician();
 			render(technician, rating, repair, customerid, appointment);
